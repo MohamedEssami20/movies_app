@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'core/widgets/movies_app_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:movies_app/features/splash/presentation/views/splash_view.dart';
 
 void main() {
   runApp(const MoviesApp());
@@ -13,9 +13,11 @@ class MoviesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: MoviesAppView(),
+      debugShowCheckedModeBanner: false,
+      home: SplashView(),
+      theme: ThemeData(
+        fontFamily: GoogleFonts.poppins().fontFamily,
+      ),
     );
   }
 }
-
