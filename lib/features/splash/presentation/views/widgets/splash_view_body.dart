@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
@@ -24,17 +25,37 @@ class SplashViewBody extends StatelessWidget {
             child: Column(
               spacing: 20,
               children: [
-                Text(
-                  "Movie Flix",
-                  style: AppTextStyles.robotoBold48(context),
+                AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      "Movie Flix",
+                      textStyle: AppTextStyles.robotoBold48(context),
+                      speed: const Duration(milliseconds: 500),
+                      curve: Curves.bounceInOut,
+                      cursor: "",
+                    ),
+                  ],
+                  displayFullTextOnTap: true,
+                  totalRepeatCount: 2,
                 ),
-                Text(
-                  'Movies at your fingertips.',
-                  style: AppTextStyles.regular16(context)
-                      .copyWith(color: Colors.white),
+                AnimatedTextKit(
+                  animatedTexts: [
+                    FadeAnimatedText(
+                      'Movies at your fingertips.',
+                      textStyle: AppTextStyles.regular16(context)
+                          .copyWith(color: Colors.white),
+                      duration: const Duration(milliseconds: 5000),
+                    ),
+                  ],
+                  displayFullTextOnTap: true,
+                  totalRepeatCount: 2,
+                  onFinished: (){
+                    
+                  },
                 ),
                 CircularProgressIndicator(
                   color: Colors.white,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
               ],
             ),
