@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+import 'dart:developer';
 
-import 'size_config.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextStyles {
   static TextStyle regular16(BuildContext context) {
@@ -9,7 +10,7 @@ class AppTextStyles {
         fontWeight: FontWeight.w400);
   }
 
- static TextStyle regular12(BuildContext context) {
+  static TextStyle regular12(BuildContext context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 12),
@@ -105,6 +106,15 @@ class AppTextStyles {
     );
   }
 
+  static TextStyle robotoBold48(BuildContext context) {
+    return TextStyle(
+      color: Colors.white,
+      fontSize: getResponsiveFont(context, fontSize: 48),
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w600,
+    );
+  }
+
   static TextStyle semiBold24WithLineHeight(BuildContext context) {
     return TextStyle(
       fontFamily: 'Poppins',
@@ -170,20 +180,18 @@ double getResponsiveFont(BuildContext context, {required double fontSize}) {
   double responsiveText = scaleFactor * fontSize;
   double upperLimit = responsiveText * 1.2;
   double lowerLimit = responsiveText * .8;
+  log("original fontSize= $fontSize");
+  log("responsive Text now= $responsiveText");
   return responsiveText.clamp(lowerLimit, upperLimit);
 }
 
 double getScaleFactor(BuildContext context) {
-  // var dispatcher = PlatformDispatcher.instance;
-  // var phisycalWidth = dispatcher.views.first.physicalSize.width;
-  // var devicepixcelRatio = dispatcher.views.first.devicePixelRatio;
-  //double width = phisycalWidth / devicepixcelRatio;
   double width = MediaQuery.sizeOf(context).width;
-  if (width < SizeConfig.tabletsize) {
+  if (width < 380.w) {
     return width / 600;
-  } else if (width < SizeConfig.desktopSize) {
-    return width / 1100;
+  } else if (width < 600.w) {
+    return width / 860;
   } else {
-    return width / 1800;
+    return width / 1200;
   }
 }

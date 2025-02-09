@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:movies_app/core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
 
 class SplashViewBody extends StatelessWidget {
@@ -25,12 +25,17 @@ class SplashViewBody extends StatelessWidget {
               spacing: 20,
               children: [
                 Text(
-                  "Movies App",
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                        color: Colors.white,
-                      ),
+                  "Movie Flix",
+                  style: AppTextStyles.robotoBold48(context),
                 ),
-                CircularProgressIndicator(color: Colors.white,),
+                Text(
+                  'Movies at your fingertips.',
+                  style: AppTextStyles.regular16(context)
+                      .copyWith(color: Colors.white),
+                ),
+                CircularProgressIndicator(
+                  color: Colors.white,
+                ),
               ],
             ),
           ),
