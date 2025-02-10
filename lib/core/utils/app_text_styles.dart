@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -180,8 +179,6 @@ double getResponsiveFont(BuildContext context, {required double fontSize}) {
   double responsiveText = scaleFactor * fontSize;
   double upperLimit = responsiveText * 1.2;
   double lowerLimit = responsiveText * .8;
-  log("original fontSize= $fontSize");
-  log("responsive Text now= $responsiveText");
   return responsiveText.clamp(lowerLimit, upperLimit);
 }
 

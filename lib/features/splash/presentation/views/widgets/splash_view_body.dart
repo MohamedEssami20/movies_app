@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
+import '../../../../on_boarding/presentation/views/on_boarding_view.dart';
 
 class SplashViewBody extends StatelessWidget {
   const SplashViewBody({super.key});
@@ -31,7 +32,7 @@ class SplashViewBody extends StatelessWidget {
                       "Movie Flix",
                       textStyle: AppTextStyles.robotoBold48(context),
                       speed: const Duration(milliseconds: 500),
-                      curve: Curves.bounceInOut,
+                      curve: Curves.bounceIn,
                       cursor: "",
                     ),
                   ],
@@ -45,12 +46,15 @@ class SplashViewBody extends StatelessWidget {
                       textStyle: AppTextStyles.regular16(context)
                           .copyWith(color: Colors.white),
                       duration: const Duration(milliseconds: 5000),
+                      fadeInEnd: 0.7,
+                      fadeOutBegin: 0.9,
                     ),
                   ],
                   displayFullTextOnTap: true,
                   totalRepeatCount: 2,
-                  onFinished: (){
-                    
+                  onFinished: () {
+                    Navigator.of(context)
+                        .pushReplacementNamed(OnBoardingView.routeName);
                   },
                 ),
                 CircularProgressIndicator(
