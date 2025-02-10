@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/features/on_boarding/presentation/manager/cubit/on_boarding_cubit.dart';
 import '../../../../../core/utils/assets.dart';
 import 'on_boarding_details.dart';
 
@@ -17,7 +19,10 @@ class OnBoardingViewBody extends StatelessWidget {
         ),
         Positioned(
           top: MediaQuery.sizeOf(context).height * 0.60,
-          child: OnBoardingDetails(),
+          child: BlocProvider(
+            create: (context) => OnBoardingCubit(),
+            child: OnBoardingDetails(),
+          ),
         ),
       ],
     );

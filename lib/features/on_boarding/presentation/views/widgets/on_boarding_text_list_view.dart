@@ -1,26 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../manager/cubit/on_boarding_cubit.dart';
 
-class OnBoardingTextListView extends StatefulWidget {
+class OnBoardingTextListView extends StatelessWidget {
   const OnBoardingTextListView({super.key});
-
   @override
-  State<OnBoardingTextListView> createState() => _OnBoardingTextListViewState();
-}
-
-class _OnBoardingTextListViewState extends State<OnBoardingTextListView> {
-  late PageController pageController;
-  @override
-  void initState() {
-    pageController = PageController();
-    pageController.addListener(() {
-      setState(() {});
-      int currentPage = pageController.page!.round().toInt();
-      print("Currnet page= $currentPage");
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +16,11 @@ class _OnBoardingTextListViewState extends State<OnBoardingTextListView> {
         height: 180,
         width: MediaQuery.sizeOf(context).width,
         child: PageView.builder(
-            controller: pageController,
             scrollDirection: Axis.horizontal,
             itemCount: 3,
+            onPageChanged: (value) {
+             context.read<OnBoardingCubit>().changePage(value); 
+            },
             itemBuilder: (context, index) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
