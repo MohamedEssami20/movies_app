@@ -7,8 +7,7 @@ class OnBoardingTextListView extends StatelessWidget {
   const OnBoardingTextListView({super.key});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.green,
+    return SizedBox(
       width: MediaQuery.sizeOf(context).width,
       child: PageView.builder(
           scrollDirection: Axis.horizontal,
@@ -17,28 +16,30 @@ class OnBoardingTextListView extends StatelessWidget {
             context.read<OnBoardingCubit>().changePage(value);
           },
           itemBuilder: (context, index) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 14,
-              children: [
-                FittedBox(
-                  child: Text(
-                    'Downloads',
-                    style: AppTextStyles.medium32(context).copyWith(
-                      color: Colors.white,
+            return FittedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 14,
+                children: [
+                  FittedBox(
+                    child: Text(
+                      'Downloads',
+                      style: AppTextStyles.medium32(context).copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                FittedBox(
-                  fit: BoxFit.fill,
-                  child: Text(
-                    'Download movies and watch them offline\n at your own convenience',
-                    style: AppTextStyles.regular16(context).copyWith(
-                      color: Colors.white,
+                  FittedBox(
+                    fit: BoxFit.fill,
+                    child: Text(
+                      'Download movies and watch them offline\n at your own convenience',
+                      style: AppTextStyles.regular16(context).copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           }),
     );

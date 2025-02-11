@@ -5,9 +5,10 @@ class OnBoardingIndicatorItem extends StatelessWidget {
   final bool isActive;
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.sizeOf(context).width;
     return Container(
-      width: 50,
-      height: 6,
+      width: width < 700 ? 50 : 80,
+      height: width < 700 ? 6 : 8,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
