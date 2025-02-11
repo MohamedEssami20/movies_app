@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnBoardingIndicatorItem extends StatelessWidget {
   const OnBoardingIndicatorItem({super.key, required this.isActive});
@@ -6,8 +7,8 @@ class OnBoardingIndicatorItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 80,
-      height: 8,
+      width: 80.w,
+      height: 8.h,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),

@@ -17,7 +17,7 @@ class OnBoardingViewBody extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        Positioned(
+        Positioned.fill(
           top: MediaQuery.sizeOf(context).height * 0.60,
           child: BlocProvider(
             create: (context) => OnBoardingCubit(),
