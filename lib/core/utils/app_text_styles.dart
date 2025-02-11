@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -174,21 +173,45 @@ class AppTextStyles {
 }
 
 // create a responsive text method;
+// double getResponsiveFont(BuildContext context, {required double fontSize}) {
+//   double scaleFactor = getScaleFactor(context);
+//   double responsiveText = scaleFactor * fontSize;
+//   double upperLimit = responsiveText * 1.2;
+//   double lowerLimit = responsiveText * .8;
+//   return responsiveText.clamp(lowerLimit, upperLimit);
+// }
+
+// double getScaleFactor(BuildContext context) {
+//   double width = MediaQuery.sizeOf(context).width;
+//   if (width < 400.w) {
+//     return width / 600;
+//   } else if (width < 600.w) {
+//     return width / 860;
+//   } else {
+//     return width / 1200;
+//   }
+// }
+
 double getResponsiveFont(BuildContext context, {required double fontSize}) {
-  double scaleFactor = getScaleFactor(context);
+  double scaleFactor =
+      getScaleFactor(context) * MediaQuery.of(context).textScaler.scale(1.5);
   double responsiveText = scaleFactor * fontSize;
-  double upperLimit = responsiveText * 1.2;
-  double lowerLimit = responsiveText * .8;
-  return responsiveText.clamp(lowerLimit, upperLimit);
+
+  // وضع حد أدنى وأقصى لتجنب الخطوط الصغيرة جدًا أو الكبيرة جدًا
+  double minFontSize = fontSize * 0.85; // يمكن تغيير القيم حسب الحاجة
+  double maxFontSize = fontSize * 1.2;
+
+  return responsiveText.clamp(minFontSize, maxFontSize);
 }
 
 double getScaleFactor(BuildContext context) {
-  double width = MediaQuery.sizeOf(context).width;
-  if (width < 380.w) {
-    return width / 600;
+  double width = MediaQuery.of(context).size.width;
+
+  if (width < 400.w) {
+    return width / 500;
   } else if (width < 600.w) {
-    return width / 860;
+    return width / 800;
   } else {
-    return width / 1200;
+    return width / 1100;
   }
 }

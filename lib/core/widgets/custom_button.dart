@@ -22,9 +22,9 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
-        padding: EdgeInsets.all(10),
-        minimumSize: Size(165.w, 50.h),
-        maximumSize: Size(170.w, 60.h),
+        padding: EdgeInsets.symmetric(horizontal: 100.w, vertical: 20.h),
+        // minimumSize: Size(165.w, 50.h),
+        // maximumSize: Size(170.w, 60.h),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -32,7 +32,7 @@ class CustomButton extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: AppTextStyles.regular16(context).copyWith(
+        style: AppTextStyles.regular24(context).copyWith(
           color: Colors.white,
         ),
       ),

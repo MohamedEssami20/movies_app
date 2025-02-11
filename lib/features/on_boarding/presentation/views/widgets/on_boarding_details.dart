@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/utils/app_color.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import 'on_boarding_indicator_listview.dart';
@@ -14,29 +13,35 @@ class OnBoardingDetails extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
         children: [
-          OnBoardingTextListView(),
-          const SizedBox(height: 60),
-          OnBoardingIndicator(),
-          SizedBox(height: 60.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CustomButton(
-                hasBorder: true,
-                color: Colors.transparent,
-                text: "Signup",
-                onPressed: () {},
+          Expanded(flex: 3, child: OnBoardingTextListView()),
+          SizedBox(height: 16),
+          Expanded(child: OnBoardingIndicator()),
+          SizedBox(height: 16),
+          Expanded(
+            flex: 2,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Row(
+                spacing: 32,
+                children: [
+                  CustomButton(
+                    hasBorder: true,
+                    color: Colors.transparent,
+                    text: "Signup",
+                    onPressed: () {},
+                  ),
+                  CustomButton(
+                    hasBorder: false,
+                    color: AppColors.kPrimaryColor,
+                    text: "Login",
+                    onPressed: () {},
+                  ),
+                ],
               ),
-              CustomButton(
-                hasBorder: false,
-                color: AppColors.kPrimaryColor,
-                text: "Login",
-                onPressed: () {},
-              ),
-            ],
+            ),
           ),
+          SizedBox(height: 20),
         ],
       ),
     );
