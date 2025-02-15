@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/app_color.dart';
+import 'package:movies_app/features/auth/presentation/views/auth_view.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import 'on_boarding_indicator_listview.dart';
 import 'on_boarding_text_list_view.dart';
@@ -29,7 +30,10 @@ class OnBoardingDetails extends StatelessWidget {
                     hasBorder: true,
                     color: Colors.transparent,
                     text: "Signup",
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, AuthView.routeName, (_) => false);
+                    },
                   ),
                   CustomButton(
                     hasBorder: false,

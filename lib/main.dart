@@ -1,5 +1,4 @@
-
-import 'package:device_preview/device_preview.dart';
+//import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,10 +6,7 @@ import 'package:movies_app/core/func/on_generate_route.dart';
 
 void main() {
   runApp(
-    DevicePreview(
-      enabled: true,
-      builder: (context)=>const MoviesApp(),
-    ),
+    const MoviesApp(),
   );
 }
 
@@ -23,15 +19,16 @@ class MoviesApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
-      splitScreenMode: true, 
+      splitScreenMode: true,
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          locale: DevicePreview.locale(context),
-          builder: DevicePreview.appBuilder,
+          // locale: DevicePreview.locale(context),
+          // builder: DevicePreview.appBuilder,
           onGenerateRoute: onGenerateRoute,
           theme: ThemeData(
             fontFamily: GoogleFonts.poppins().fontFamily,
+            scaffoldBackgroundColor: Color(0xFF34344A),
           ),
         );
       },
