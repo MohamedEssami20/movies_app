@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/utils/app_text_styles.dart';
 
 import '../manager/Auth_cubit/auth_cubit.dart';
+import '../manager/text_field_cubit/text_field_cubit.dart';
 import 'widgets/auth_view_body.dart';
 
 class AuthView extends StatefulWidget {
@@ -67,7 +68,10 @@ class _AuthViewState extends State<AuthView>
           ),
         ),
       ),
-      body: AuthViewBody(),
+      body: BlocProvider(
+        create: (context) => TextFieldCubit(),
+        child: AuthViewBody(),
+      ),
     );
   }
 }

@@ -23,8 +23,6 @@ class CustomButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
         padding: EdgeInsets.symmetric(horizontal: 100.w, vertical: 20.h),
-        // minimumSize: Size(165.w, 50.h),
-        // maximumSize: Size(170.w, 60.h),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
