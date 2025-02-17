@@ -6,7 +6,10 @@ class CustomTextField extends StatelessWidget {
       {super.key,
       required this.label,
       required this.textInputAction,
-      required this.textInputType, required this.obscureText, this.validate, this.suffix});
+      required this.textInputType,
+      required this.obscureText,
+      this.validate,
+      this.suffix});
   final String label;
   final TextInputAction textInputAction;
   final TextInputType textInputType;
@@ -30,6 +33,8 @@ class CustomTextField extends StatelessWidget {
         labelStyle: AppTextStyles.regular16(context).copyWith(
           color: Colors.white,
         ),
+        errorStyle:
+            AppTextStyles.regular16(context).copyWith(color: Colors.red),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
         ),
