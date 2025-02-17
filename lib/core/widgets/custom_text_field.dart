@@ -11,7 +11,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputAction textInputAction;
   final TextInputType textInputType;
   final bool obscureText;
-  final void Function(String?)? validate;
+  final String? Function(String?)? validate;
   final Widget? suffix;
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,7 @@ class CustomTextField extends StatelessWidget {
       ),
       keyboardType: textInputType,
       obscureText: obscureText,
+      validator: validate,
       decoration: InputDecoration(
         suffixIcon: suffix,
         labelText: label,
