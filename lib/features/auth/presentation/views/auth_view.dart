@@ -17,11 +17,12 @@ class AuthView extends StatefulWidget {
 class _AuthViewState extends State<AuthView>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
-  @override
-  void initState() {
-    tabController = TabController(length: 2, vsync: this);
-    super.initState();
-  }
+@override
+void initState() {
+  tabController = TabController(length: 2, vsync: this);
+  super.initState();
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class _AuthViewState extends State<AuthView>
         centerTitle: true,
         title: BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
           final index = context.watch<AuthCubit>();
-          return Text(index.isSignup ? "Welcome" : "Welcome Back!");
+          return Text(index.isSignup ? "Welcome!" : "Welcome Back!");
         }),
         titleTextStyle:
             AppTextStyles.semiBold24(context).copyWith(color: Colors.white),

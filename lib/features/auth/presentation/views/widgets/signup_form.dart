@@ -13,10 +13,8 @@ class SignupForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GlobalKeyCubit, GlobalKey<FormState>>(
-      builder: (context, state) {
         return Form(
-          key: state,
+          key: context.read<GlobalKeyCubit>().signupKey,
           child: Column(
             children: [
               CustomTextField(
@@ -61,34 +59,31 @@ class SignupForm extends StatelessWidget {
                 builder: (context, state) {
                   final status =
                       context.read<TextFieldCubit>().isConfirmpasswordvisable;
-                      return CustomTextField(
-                        label: "Confirm Password",
-                        textInputAction: TextInputAction.next,
-                        textInputType: TextInputType.visiblePassword,
-                        obscureText: context
+                  return CustomTextField(
+                    label: "Confirm Password",
+                    textInputAction: TextInputAction.next,
+                    textInputType: TextInputType.visiblePassword,
+                    obscureText:
+                        context.read<TextFieldCubit>().isConfirmpasswordvisable,
+                    suffix: IconButton(
+                      onPressed: () {
+                        context
                             .read<TextFieldCubit>()
-                            .isConfirmpasswordvisable,
-                        suffix: IconButton(
-                          onPressed: () {
-                            context
-                                .read<TextFieldCubit>()
-                                .changeConfirmPasswordVisability();
-                          },
-                          icon: Icon(
-                            status ? Icons.visibility : Icons.visibility_off,
-                            color: Colors.white,
-                          ),
-                        ),
-                        validate: (value) {
-                          return validationPassword(value);
-                        },
-                      );
+                            .changeConfirmPasswordVisability();
+                      },
+                      icon: Icon(
+                        status ? Icons.visibility : Icons.visibility_off,
+                        color: Colors.white,
+                      ),
+                    ),
+                    validate: (value) {
+                      return validationPassword(value);
                     },
-                  ),
+                  );
+                },
+              ),
             ],
           ),
-        );
-      },
     );
   }
 }

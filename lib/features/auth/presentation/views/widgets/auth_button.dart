@@ -19,19 +19,24 @@ class AuthButton extends StatelessWidget {
       width: MediaQuery.sizeOf(context).width,
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
-          final isSignup = context.watch<AuthCubit>().isSignup;
+          final isSignup = context.read<AuthCubit>().isSignup;
           return CustomButton(
             text: isSignup ? "Signup" : "Login",
             onPressed: () {
-              final isValid = context.read<GlobalKeyCubit>().validateForm();
+              log("isSignup: $isSignup");
+              
               if (isSignup) {
-                if (isValid) {
+                final isSignupValid =
+                  context.read<GlobalKeyCubit>().validateSignupForm();
+                if (isSignupValid) {
                   log("validate signup *****");
                 } else {
                   log("not validte signup *****");
                 }
               } else {
-                if (isValid) {
+                final isLoginValid =
+                  context.read<GlobalKeyCubit>().validateLoginForm();
+                if (isLoginValid) {
                   log("validate login *****");
                 } else {
                   log("not validte login *****");
