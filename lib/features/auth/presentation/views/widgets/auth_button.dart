@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/features/auth/presentation/manager/text_field_cubit/text_field_cubit.dart';
 
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/widgets/custom_button.dart';
@@ -24,21 +25,23 @@ class AuthButton extends StatelessWidget {
             text: isSignup ? "Signup" : "Login",
             onPressed: () {
               log("isSignup: $isSignup");
-              
+
               if (isSignup) {
                 final isSignupValid =
-                  context.read<GlobalKeyCubit>().validateSignupForm();
+                    context.read<GlobalKeyCubit>().validateSignupForm();
                 if (isSignupValid) {
                   log("validate signup *****");
                 } else {
+                  context.read<TextFieldCubit>().changeSignupValidateMode();
                   log("not validte signup *****");
                 }
               } else {
                 final isLoginValid =
-                  context.read<GlobalKeyCubit>().validateLoginForm();
+                    context.read<GlobalKeyCubit>().validateLoginForm();
                 if (isLoginValid) {
                   log("validate login *****");
                 } else {
+                  context.read<TextFieldCubit>().changeLoginValidateMode();
                   log("not validte login *****");
                 }
               }
@@ -51,4 +54,3 @@ class AuthButton extends StatelessWidget {
     );
   }
 }
-

@@ -14,6 +14,7 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
+      autovalidateMode: context.read<TextFieldCubit>().loginValidateMode,
       key: context.read<GlobalKeyCubit>().loginKey,
       child: Column(
         spacing: 30,

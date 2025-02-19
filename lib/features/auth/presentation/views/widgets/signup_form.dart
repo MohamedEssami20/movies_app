@@ -14,6 +14,7 @@ class SignupForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
+      autovalidateMode: context.read<TextFieldCubit>().signupValidateMode,
       key: context.read<GlobalKeyCubit>().signupKey,
       child: Column(
         spacing: 30,

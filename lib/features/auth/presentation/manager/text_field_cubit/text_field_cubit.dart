@@ -12,7 +12,8 @@ class TextFieldCubit extends Cubit<TextFieldState> {
   bool isLoginpasswordvisable = true;
   bool isSignupPasswordVisable = true;
   bool isConfirmpasswordvisable = true;
-
+  AutovalidateMode loginValidateMode = AutovalidateMode.disabled;
+  AutovalidateMode signupValidateMode = AutovalidateMode.disabled;
   void changePasswordVisability() {
     isLoginpasswordvisable = !isLoginpasswordvisable;
     emit(
@@ -31,6 +32,18 @@ class TextFieldCubit extends Cubit<TextFieldState> {
     isSignupPasswordVisable = !isSignupPasswordVisable;
     emit(
       IsVisiablePassword(isvisiablePassword: isSignupPasswordVisable),
+    );
+  }
+
+  void changeLoginValidateMode() {
+    loginValidateMode = AutovalidateMode.always;
+    emit(AutoValidationFieldMode(autoValidationMode: loginValidateMode));
+  }
+
+  void changeSignupValidateMode() {
+    signupValidateMode = AutovalidateMode.always;
+    emit(
+      AutoValidationFieldMode(autoValidationMode: signupValidateMode),
     );
   }
 }

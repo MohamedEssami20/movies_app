@@ -10,3 +10,9 @@ final class IsVisiablePassword extends TextFieldState {
 
   IsVisiablePassword({required this.isvisiablePassword});
 }
+
+final class AutoValidationFieldMode extends TextFieldState {
+  final AutovalidateMode autoValidationMode;
+
+  AutoValidationFieldMode({required this.autoValidationMode});
+}

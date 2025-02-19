@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/core/widgets/animated_text_cross_fading.dart';
 import 'package:movies_app/features/auth/presentation/manager/Auth_cubit/auth_cubit.dart';
 import 'package:movies_app/features/auth/presentation/views/widgets/animated_auth_form.dart';
 import '../../../../../core/utils/app_text_styles.dart';
@@ -21,11 +22,15 @@ class AuthViewBody extends StatelessWidget {
               child: BlocBuilder<AuthCubit, AuthState>(
                 builder: (context, state) {
                   final isSignup = context.watch<AuthCubit>().isSignup;
-                  return Text(
-                    isSignup
-                        ? 'Please register for an account '
-                        : 'Please login to your account',
-                    style: AppTextStyles.regular16(context)
+                  return AnimatedTextCrossFading(
+                    crossFadeState: isSignup
+                        ? CrossFadeState.showFirst
+                        : CrossFadeState.showSecond,
+                    firstText: "Please register for an account",
+                    secondText: "Please login to your account",
+                    firstTextStyle: AppTextStyles.regular16(context)
+                        .copyWith(color: Colors.white),
+                    secondTextStyle: AppTextStyles.regular16(context)
                         .copyWith(color: Colors.white),
                   );
                 },
