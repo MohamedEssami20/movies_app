@@ -12,6 +12,14 @@ class TextFieldCubit extends Cubit<TextFieldState> {
   // create two global key variables;
   GlobalKey<FormFieldState> loginKey = GlobalKey<FormFieldState>();
   GlobalKey<FormFieldState> signupKey = GlobalKey<FormFieldState>();
+
+  // create all controller variables;
+  TextEditingController loginEmailController = TextEditingController();
+  TextEditingController loginPasswordController = TextEditingController();
+  TextEditingController signupEmailController = TextEditingController();
+  TextEditingController signupPasswordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
   // create method to change visiable login password;
   void changeVisiableLoginPassword({required bool isVisiable}) {
     emit(
@@ -73,5 +81,16 @@ class TextFieldCubit extends Cubit<TextFieldState> {
     } else {
       return false;
     }
+  }
+
+  //create method that dispose all controllers;
+  @override
+  Future<void> close() {
+    loginEmailController.dispose();
+    loginPasswordController.dispose();
+    signupEmailController.dispose();
+    signupPasswordController.dispose();
+    confirmPasswordController.dispose();
+    return super.close();
   }
 }

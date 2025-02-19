@@ -9,13 +9,14 @@ class CustomTextField extends StatelessWidget {
       required this.textInputType,
       required this.obscureText,
       this.validate,
-      this.suffix});
+      this.suffix, this.controller});
   final String label;
   final TextInputAction textInputAction;
   final TextInputType textInputType;
   final bool obscureText;
   final String? Function(String?)? validate;
   final Widget? suffix;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -24,6 +25,7 @@ class CustomTextField extends StatelessWidget {
         color: Colors.white,
         decoration: TextDecoration.none,
       ),
+      controller: controller,
       keyboardType: textInputType,
       obscureText: obscureText,
       validator: validate,
