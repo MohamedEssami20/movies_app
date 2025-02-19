@@ -6,44 +6,72 @@ part 'text_field_state.dart';
 class TextFieldCubit extends Cubit<TextFieldState> {
   TextFieldCubit()
       : super(
-          TextFieldInitial(),
+          TextFieldState(),
         );
 
-  bool isLoginpasswordvisable = true;
-  bool isSignupPasswordVisable = true;
-  bool isConfirmpasswordvisable = true;
-  AutovalidateMode loginValidateMode = AutovalidateMode.disabled;
-  AutovalidateMode signupValidateMode = AutovalidateMode.disabled;
-  void changePasswordVisability() {
-    isLoginpasswordvisable = !isLoginpasswordvisable;
+  // create two global key variables;
+  GlobalKey<FormFieldState> loginKey = GlobalKey<FormFieldState>();
+  GlobalKey<FormFieldState> signupKey = GlobalKey<FormFieldState>();
+  // create method to change visiable login password;
+  void changeVisiableLoginPassword({required bool isVisiable}) {
     emit(
-      IsVisiablePassword(isvisiablePassword: isLoginpasswordvisable),
+      state.copyWith(
+        isLoginPasswordVisiable: isVisiable,
+      ),
     );
   }
 
-  void changeConfirmPasswordVisability() {
-    isConfirmpasswordvisable = !isConfirmpasswordvisable;
+  //create method to change visiable signup password;
+  void changeVisiableSignupPassword({required bool isVisiable}) {
     emit(
-      IsVisiablePassword(isvisiablePassword: isConfirmpasswordvisable),
+      state.copyWith(
+        isSignupPasswordVisible: isVisiable,
+      ),
     );
   }
 
-  void changeSignupPasswordVisability() {
-    isSignupPasswordVisable = !isSignupPasswordVisable;
+  //create method that change confirm password visiable;
+  void changeVisiableConfirmPassword({required bool isVisiable}) {
     emit(
-      IsVisiablePassword(isvisiablePassword: isSignupPasswordVisable),
+      state.copyWith(
+        isConfirmPasswordVisible: isVisiable,
+      ),
     );
   }
 
-  void changeLoginValidateMode() {
-    loginValidateMode = AutovalidateMode.always;
-    emit(AutoValidationFieldMode(autoValidationMode: loginValidateMode));
+  // create method that change validate login form;
+  void changeValidateLoginForm({required AutovalidateMode validateMode}) {
+    emit(
+      state.copyWith(
+        loginValidateMode: validateMode,
+      ),
+    );
   }
 
-  void changeSignupValidateMode() {
-    signupValidateMode = AutovalidateMode.always;
+  // create method that change validate signup form;
+  void changeValidateSignupForm({required AutovalidateMode validateMode}) {
     emit(
-      AutoValidationFieldMode(autoValidationMode: signupValidateMode),
+      state.copyWith(
+        signupValidateMode: validateMode,
+      ),
     );
+  }
+
+  //create that validate key of login form;
+  bool validateLoginForm() {
+    if (loginKey.currentState != null && loginKey.currentState!.validate()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // create method that validate key of signup form;
+  bool validateSignupForm() {
+    if (signupKey.currentState != null && signupKey.currentState!.validate()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
