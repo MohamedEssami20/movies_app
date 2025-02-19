@@ -15,6 +15,7 @@ class AuthViewBody extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: Column(
+          spacing: 30,
           children: [
             Center(
               child: BlocBuilder<AuthCubit, AuthState>(
@@ -30,9 +31,7 @@ class AuthViewBody extends StatelessWidget {
                 },
               ),
             ),
-            const SizedBox(height: 30),
             AnimatedAuthForm(),
-            const SizedBox(height: 30),
             AuthButton(),
           ],
         ),
@@ -40,4 +39,3 @@ class AuthViewBody extends StatelessWidget {
     );
   }
 }
-

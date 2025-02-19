@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -10,20 +9,28 @@ class TextFieldCubit extends Cubit<TextFieldState> {
           TextFieldInitial(),
         );
 
-  bool ispasswordvisable = true;
+  bool isLoginpasswordvisable = true;
+  bool isSignupPasswordVisable = true;
   bool isConfirmpasswordvisable = true;
 
   void changePasswordVisability() {
-    ispasswordvisable = !ispasswordvisable;
+    isLoginpasswordvisable = !isLoginpasswordvisable;
     emit(
-      IsVisiablePassword(isvisiablePassword: ispasswordvisable),
+      IsVisiablePassword(isvisiablePassword: isLoginpasswordvisable),
     );
   }
 
-  void changeConfirmPasswordVisability() {  
+  void changeConfirmPasswordVisability() {
     isConfirmpasswordvisable = !isConfirmpasswordvisable;
     emit(
       IsVisiablePassword(isvisiablePassword: isConfirmpasswordvisable),
+    );
+  }
+
+  void changeSignupPasswordVisability() {
+    isSignupPasswordVisable = !isSignupPasswordVisable;
+    emit(
+      IsVisiablePassword(isvisiablePassword: isSignupPasswordVisable),
     );
   }
 }

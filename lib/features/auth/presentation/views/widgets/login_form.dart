@@ -16,7 +16,11 @@ class LoginForm extends StatelessWidget {
     return Form(
       key: context.read<GlobalKeyCubit>().loginKey,
       child: Column(
+        spacing: 30,
         children: [
+          const SizedBox(
+            height: 0,
+          ),
           CustomTextField(
             label: "Email",
             textInputAction: TextInputAction.next,
@@ -26,15 +30,16 @@ class LoginForm extends StatelessWidget {
               return validationEmail(value);
             },
           ),
-          const SizedBox(height: 30),
           BlocBuilder<TextFieldCubit, TextFieldState>(
             builder: (context, state) {
-              final status = context.read<TextFieldCubit>().ispasswordvisable;
+              final status =
+                  context.read<TextFieldCubit>().isLoginpasswordvisable;
               return CustomTextField(
                 label: "Password",
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.visiblePassword,
-                obscureText: context.read<TextFieldCubit>().ispasswordvisable,
+                obscureText:
+                    context.read<TextFieldCubit>().isLoginpasswordvisable,
                 suffix: IconButton(
                   onPressed: () {
                     context.read<TextFieldCubit>().changePasswordVisability();

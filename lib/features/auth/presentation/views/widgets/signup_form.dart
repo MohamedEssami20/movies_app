@@ -13,77 +13,77 @@ class SignupForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        return Form(
-          key: context.read<GlobalKeyCubit>().signupKey,
-          child: Column(
-            children: [
-              CustomTextField(
-                label: "Email",
-                textInputAction: TextInputAction.next,
-                textInputType: TextInputType.emailAddress,
-                obscureText: false,
-                validate: (value) {
-                  return validationEmail(value);
-                },
-              ),
-              const SizedBox(height: 30),
-              BlocBuilder<TextFieldCubit, TextFieldState>(
-                builder: (context, state) {
-                  final status =
-                      context.read<TextFieldCubit>().ispasswordvisable;
-                  return CustomTextField(
-                    label: "Password",
-                    textInputAction: TextInputAction.next,
-                    textInputType: TextInputType.visiblePassword,
-                    obscureText:
-                        context.read<TextFieldCubit>().ispasswordvisable,
-                    suffix: IconButton(
-                      onPressed: () {
-                        context
-                            .read<TextFieldCubit>()
-                            .changePasswordVisability();
-                      },
-                      icon: Icon(
-                        status ? Icons.visibility : Icons.visibility_off,
-                        color: Colors.white,
-                      ),
-                    ),
-                    validate: (value) {
-                      return validationPassword(value);
-                    },
-                  );
-                },
-              ),
-              const SizedBox(height: 30),
-              BlocBuilder<TextFieldCubit, TextFieldState>(
-                builder: (context, state) {
-                  final status =
-                      context.read<TextFieldCubit>().isConfirmpasswordvisable;
-                  return CustomTextField(
-                    label: "Confirm Password",
-                    textInputAction: TextInputAction.next,
-                    textInputType: TextInputType.visiblePassword,
-                    obscureText:
-                        context.read<TextFieldCubit>().isConfirmpasswordvisable,
-                    suffix: IconButton(
-                      onPressed: () {
-                        context
-                            .read<TextFieldCubit>()
-                            .changeConfirmPasswordVisability();
-                      },
-                      icon: Icon(
-                        status ? Icons.visibility : Icons.visibility_off,
-                        color: Colors.white,
-                      ),
-                    ),
-                    validate: (value) {
-                      return validationPassword(value);
-                    },
-                  );
-                },
-              ),
-            ],
+    return Form(
+      key: context.read<GlobalKeyCubit>().signupKey,
+      child: Column(
+        spacing: 30,
+        children: [
+          const SizedBox(
+            height: 0,
           ),
+          CustomTextField(
+            label: "Email",
+            textInputAction: TextInputAction.next,
+            textInputType: TextInputType.emailAddress,
+            obscureText: false,
+            validate: (value) {
+              return validationEmail(value);
+            },
+          ),
+          BlocBuilder<TextFieldCubit, TextFieldState>(
+            builder: (context, state) {
+              final status =
+                  context.read<TextFieldCubit>().isSignupPasswordVisable;
+              return CustomTextField(
+                label: "Password",
+                textInputAction: TextInputAction.next,
+                textInputType: TextInputType.visiblePassword,
+                obscureText:
+                    context.read<TextFieldCubit>().isSignupPasswordVisable,
+                suffix: IconButton(
+                  onPressed: () {
+                    context.read<TextFieldCubit>().changeSignupPasswordVisability();
+                  },
+                  icon: Icon(
+                    status ? Icons.visibility : Icons.visibility_off,
+                    color: Colors.white,
+                  ),
+                ),
+                validate: (value) {
+                  return validationPassword(value);
+                },
+              );
+            },
+          ),
+          BlocBuilder<TextFieldCubit, TextFieldState>(
+            builder: (context, state) {
+              final status =
+                  context.read<TextFieldCubit>().isConfirmpasswordvisable;
+              return CustomTextField(
+                label: "Confirm Password",
+                textInputAction: TextInputAction.next,
+                textInputType: TextInputType.visiblePassword,
+                obscureText:
+                    context.read<TextFieldCubit>().isConfirmpasswordvisable,
+                suffix: IconButton(
+                  onPressed: () {
+                    context
+                        .read<TextFieldCubit>()
+                        .changeConfirmPasswordVisability();
+                  },
+                  icon: Icon(
+                    status ? Icons.visibility : Icons.visibility_off,
+                    color: Colors.white,
+                  ),
+                ),
+                validate: (value) {
+                  return validationPassword(value);
+                },
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }
