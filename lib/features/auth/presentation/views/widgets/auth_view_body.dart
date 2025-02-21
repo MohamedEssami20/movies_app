@@ -5,6 +5,7 @@ import 'package:movies_app/features/auth/presentation/manager/Auth_cubit/auth_cu
 import 'package:movies_app/features/auth/presentation/views/widgets/animated_auth_form.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import 'auth_button.dart';
+import 'or_signup_and_login_with.dart';
 
 class AuthViewBody extends StatelessWidget {
   const AuthViewBody({super.key});
@@ -35,6 +36,7 @@ class AuthViewBody extends StatelessWidget {
           ),
           AnimatedAuthForm(),
           AuthButton(),
+          OrSignupAndLoginWith(),
         ],
       ),
     );
