@@ -27,7 +27,7 @@ class AuthButton extends StatelessWidget {
                 final isSignupValid =
                     context.read<TextFieldCubit>().validateSignupForm();
                 if (isSignupValid) {
-                  log("validate signup *****");
+                       log("validate signup *****");  
                 } else {
                   context.read<TextFieldCubit>().changeValidateSignupForm(
                       validateMode: AutovalidateMode.always);

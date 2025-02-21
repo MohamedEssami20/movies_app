@@ -24,6 +24,7 @@ class SignupForm extends StatelessWidget {
               height: 0,
             ),
             CustomTextField(
+              controller: context.read<TextFieldCubit>().signupEmailController,
               label: "Email",
               textInputAction: TextInputAction.next,
               textInputType: TextInputType.emailAddress,
@@ -33,6 +34,7 @@ class SignupForm extends StatelessWidget {
               },
             ),
             CustomTextField(
+              controller: context.read<TextFieldCubit>().signupPasswordController,
               label: "Password",
               textInputAction: TextInputAction.next,
               textInputType: TextInputType.visiblePassword,
@@ -50,10 +52,11 @@ class SignupForm extends StatelessWidget {
                 ),
               ),
               validate: (value) {
-                return validationPassword(value);
+                return validationPassword(value,context);
               },
             ),
             CustomTextField(
+              controller: context.read<TextFieldCubit>().confirmPasswordController,
               label: "Confirm Password",
               textInputAction: TextInputAction.next,
               textInputType: TextInputType.visiblePassword,
@@ -71,7 +74,7 @@ class SignupForm extends StatelessWidget {
                 ),
               ),
               validate: (value) {
-                return validationPassword(value);
+                return validationPassword(value, context);
               },
             ),
           ],

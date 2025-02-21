@@ -24,6 +24,7 @@ class LoginForm extends StatelessWidget {
                 height: 0,
               ),
               CustomTextField(
+                controller: context.read<TextFieldCubit>().loginEmailController,
                 label: "Email",
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.emailAddress,
@@ -33,6 +34,7 @@ class LoginForm extends StatelessWidget {
                 },
               ),
               CustomTextField(
+                controller: context.read<TextFieldCubit>().loginPasswordController,
                 label: "Password",
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.visiblePassword,
@@ -50,7 +52,7 @@ class LoginForm extends StatelessWidget {
                   ),
                 ),
                 validate: (value) {
-                  return validationPassword(value);
+                  return validationPassword(value, context);
                 },
               ),
             ],
