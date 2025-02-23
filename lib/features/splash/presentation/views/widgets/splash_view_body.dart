@@ -78,7 +78,7 @@ class SplashViewBodyState extends State<SplashViewBody> {
                             textStyle: AppTextStyles.regular16(context)
                                 .copyWith(color: Colors.white),
                             duration: const Duration(seconds: 2),
-                            fadeInEnd: 0.7,
+                            fadeInEnd: 0.7, 
                             fadeOutBegin: 0.9,
                           ),
                         ],

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/widgets/animated_text_cross_fading.dart';
@@ -6,6 +7,7 @@ import 'package:movies_app/features/auth/presentation/views/widgets/animated_aut
 import '../../../../../core/utils/app_text_styles.dart';
 import 'auth_button.dart';
 import 'or_signup_and_login_with.dart';
+import 'other_way_auth_listview.dart';
 
 class AuthViewBody extends StatelessWidget {
   const AuthViewBody({super.key});
@@ -36,7 +38,14 @@ class AuthViewBody extends StatelessWidget {
           ),
           AnimatedAuthForm(),
           AuthButton(),
+          const SizedBox(
+            height: 16,
+          ),
           OrSignupAndLoginWith(),
+          const SizedBox(
+            height: 12,
+          ),
+          OtherWayAuthListView(),
         ],
       ),
     );
