@@ -4,11 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/core/func/on_generate_route.dart';
+import 'package:movies_app/core/services/shared_pref_service.dart';
 import 'features/auth/presentation/manager/Auth_cubit/auth_cubit.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPrefService().init();
   runApp(
-  
     const MoviesApp(),
   );
 }
