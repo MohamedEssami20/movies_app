@@ -8,9 +8,11 @@ import '../manager/text_field_cubit/text_field_cubit.dart';
 import 'widgets/auth_view_body.dart';
 
 class AuthView extends StatefulWidget {
-  const AuthView({super.key});
+  const AuthView({
+    super.key, required this.initialIndex,
+  });
   static const String routeName = "AuthView";
-
+  final int initialIndex;
   @override
   State<AuthView> createState() => _AuthViewState();
 }
@@ -20,7 +22,7 @@ class _AuthViewState extends State<AuthView>
   late TabController tabController;
   @override
   void initState() {
-    tabController = TabController(length: 2, vsync: this);
+    tabController = TabController(length: 2, vsync: this, initialIndex: widget.initialIndex);
     super.initState();
   }
 

@@ -8,6 +8,7 @@ import 'features/auth/presentation/manager/Auth_cubit/auth_cubit.dart';
 
 void main() {
   runApp(
+  
     const MoviesApp(),
   );
 }

@@ -10,7 +10,8 @@ Route<T>? onGenerateRoute<T>(RouteSettings settings){
     case OnBoardingView.routeName:
       return MaterialPageRoute(builder: (context) => const OnBoardingView());
     case AuthView.routeName:
-      return MaterialPageRoute(builder: (context) => const AuthView());
+      final int initialIndex = settings.arguments as int? ?? 0;
+      return MaterialPageRoute(builder: (context) =>  AuthView(initialIndex: initialIndex,));
     default:
       return MaterialPageRoute(builder: (context) => const SplashView());
   }

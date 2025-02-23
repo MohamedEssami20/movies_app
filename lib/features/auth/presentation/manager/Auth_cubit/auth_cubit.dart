@@ -10,11 +10,11 @@ class AuthCubit extends Cubit<AuthState> {
         );
 
   bool isSignup = true;
+  int tabIndex = 0;
   void changeAuthState(int index) {
     isSignup = index == 0;
     emit(
       AuthTabCubit(isSignup: isSignup),
     );
   }
-
 }
