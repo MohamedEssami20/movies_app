@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/core/services/shared_pref_service.dart';
 import 'package:movies_app/core/utils/app_color.dart';
 import 'package:movies_app/features/auth/presentation/manager/Auth_cubit/auth_cubit.dart';
 import 'package:movies_app/features/auth/presentation/views/auth_view.dart';
@@ -31,23 +32,31 @@ class OnBoardingDetails extends StatelessWidget {
                   CustomButton(
                     hasBorder: true,
                     color: Colors.transparent,
-                    text: "Signup", 
-                    onPressed: () {
+                    text: "Signup",
+                    onPressed: () async {
                       context.read<AuthCubit>().changeAuthState(0);
                       Navigator.pushNamedAndRemoveUntil(
-                          context, AuthView.routeName, (_) => false,
-                          arguments: 0);
+                        context,
+                        AuthView.routeName,
+                        (_) => false,
+                        arguments: 0,
+                      );
+                      await SharedPrefService().setOnboardingShow(true);
                     },
                   ),
                   CustomButton(
                     hasBorder: false,
                     color: AppColors.kPrimaryColor,
                     text: "Login",
-                    onPressed: () {
+                    onPressed: () async {
                       context.read<AuthCubit>().changeAuthState(1);
                       Navigator.pushNamedAndRemoveUntil(
-                          context, AuthView.routeName, (_) => false,
-                          arguments: 1);
+                        context,
+                        AuthView.routeName,
+                        (_) => false,
+                        arguments: 1,
+                      );
+                      await SharedPrefService().setOnboardingShow(true);
                     },
                   ),
                 ],

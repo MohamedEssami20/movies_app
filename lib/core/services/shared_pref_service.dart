@@ -13,6 +13,12 @@ class SharedPrefService {
     _prefs = await SharedPreferences.getInstance();
   }
 
+  // create method that set bool at if user show on boarding;
+  Future<void> setOnboardingShow(bool showed) async {
+    await _prefs.setBool(AppConstants.showBoardingKey, showed);
+    log("save true ***");
+  }
+
   // create method that check if user show onboarding or not
   bool showOnboarding() => _prefs.getBool(AppConstants.showBoardingKey) ?? true;
 }
