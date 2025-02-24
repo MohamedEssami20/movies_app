@@ -11,8 +11,8 @@ class OtherWayAuthItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 70.w,
-      height: 80.h,
+      width: 60.w,
+      height: 70.h,
       padding: EdgeInsets.all(8),
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
@@ -20,19 +20,22 @@ class OtherWayAuthItem extends StatelessWidget {
         ),
         color: AppColors.kPrimaryColor,
       ),
-      child: Column(
-        spacing: 10,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SvgPicture.asset(image, height: 28.h),
-          FittedBox(
-            child: Text(
-              title,
-              style: AppTextStyles.regular12(context)
-                  .copyWith(color: Colors.white),
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Column(
+          spacing: 10,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(image, height: 25.h),
+            FittedBox(
+              child: Text(
+                title,
+                style: AppTextStyles.regular12(context)
+                    .copyWith(color: Colors.white),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

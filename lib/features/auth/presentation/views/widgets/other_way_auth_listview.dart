@@ -14,17 +14,24 @@ class OtherWayAuthListView extends StatelessWidget {
       spacing: 30,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        OtherWayAuthItem(
-          image: Assets.assetsImagesGoogleIcon,
-          title: "Google",
+        Expanded(
+          child: OtherWayAuthItem(
+            image: Assets.assetsImagesGoogleIcon,
+            title: "Google",
+          ),
         ),
         Visibility(
-            visible: Platform.isIOS,
+          visible: Platform.isIOS,
+          child: Expanded(
             child: OtherWayAuthItem(
-                image: Assets.assetsImagesAppleIcon, title: "Apple"),),
-        OtherWayAuthItem(
-          image: Assets.assetsImagesFacebookIcon,
-          title: "Facebook",
+                image: Assets.assetsImagesAppleIcon, title: "Apple"),
+          ),
+        ),
+        Expanded(
+          child: OtherWayAuthItem(
+            image: Assets.assetsImagesFacebookIcon,
+            title: "Facebook",
+          ),
         ),
       ],
     );

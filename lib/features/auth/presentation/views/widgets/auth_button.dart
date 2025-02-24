@@ -18,35 +18,38 @@ class AuthButton extends StatelessWidget {
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           final isSignup = context.read<AuthCubit>().isSignup;
-          return CustomButton(
-            text: isSignup ? "Signup" : "Login",
-            onPressed: () {
-              log("isSignup: $isSignup");
+          return FittedBox(
+            fit: BoxFit.scaleDown,
+            child: CustomButton(
+              text: isSignup ? "Signup" : "Login",
+              onPressed: () {
+                log("isSignup: $isSignup");
 
-              if (isSignup) {
-                final isSignupValid =
-                    context.read<TextFieldCubit>().validateSignupForm();
-                if (isSignupValid) {
-                       log("validate signup *****");  
+                if (isSignup) {
+                  final isSignupValid =
+                      context.read<TextFieldCubit>().validateSignupForm();
+                  if (isSignupValid) {
+                    log("validate signup *****");
+                  } else {
+                    context.read<TextFieldCubit>().changeValidateSignupForm(
+                        validateMode: AutovalidateMode.always);
+                    log("not validte signup *****");
+                  }
                 } else {
-                  context.read<TextFieldCubit>().changeValidateSignupForm(
-                      validateMode: AutovalidateMode.always);
-                  log("not validte signup *****");
+                  final isLoginValid =
+                      context.read<TextFieldCubit>().validateLoginForm();
+                  if (isLoginValid) {
+                    log("validate login *****");
+                  } else {
+                    context.read<TextFieldCubit>().changeValidateLoginForm(
+                        validateMode: AutovalidateMode.always);
+                    log("not validte login *****");
+                  }
                 }
-              } else {
-                final isLoginValid =
-                    context.read<TextFieldCubit>().validateLoginForm();
-                if (isLoginValid) {
-                  log("validate login *****");
-                } else {
-                  context.read<TextFieldCubit>().changeValidateLoginForm(
-                      validateMode: AutovalidateMode.always);
-                  log("not validte login *****");
-                }
-              }
-            },
-            hasBorder: false,
-            color: AppColors.kPrimaryColor,
+              },
+              hasBorder: false,
+              color: AppColors.kPrimaryColor,
+            ),
           );
         },
       ),

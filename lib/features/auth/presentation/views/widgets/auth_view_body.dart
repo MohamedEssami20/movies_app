@@ -16,40 +16,48 @@ class AuthViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-      child: Column(
-        spacing: 30,
-        children: [
-          Center(
-            child: BlocBuilder<AuthCubit, AuthState>(
-              builder: (context, state) {
-                final isSignup = context.watch<AuthCubit>().isSignup;
-                return AnimatedTextCrossFading(
-                  crossFadeState: isSignup
-                      ? CrossFadeState.showFirst
-                      : CrossFadeState.showSecond,
-                  firstText: "Please register for an account",
-                  secondText: "Please login to your account",
-                  firstTextStyle: AppTextStyles.regular16(context)
-                      .copyWith(color: Colors.white),
-                  secondTextStyle: AppTextStyles.regular16(context)
-                      .copyWith(color: Colors.white),
-                );
-              },
+      child: SingleChildScrollView(
+        child: Column(
+          spacing: 20,
+          children: [
+            Center(
+              child: BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  final isSignup = context.watch<AuthCubit>().isSignup;
+                  return AnimatedTextCrossFading(
+                    crossFadeState: isSignup
+                        ? CrossFadeState.showFirst
+                        : CrossFadeState.showSecond,
+                    firstText: "Please register for an account",
+                    secondText: "Please login to your account",
+                    firstTextStyle: AppTextStyles.regular16(context)
+                        .copyWith(color: Colors.white),
+                    secondTextStyle: AppTextStyles.regular16(context)
+                        .copyWith(color: Colors.white),
+                  );
+                },
+              ),
             ),
-          ),
-          AnimatedAuthForm(),
-          AuthButton(),
-          const SizedBox(
-            height: 16,
-          ),
-          OrSignupAndLoginWith(),
-          const SizedBox(
-            height: 12,
-          ),
-          OtherWayAuthListView(),
-          AnimatedFooterAuth(),
-          AuthFooterItem(),
-        ],
+            AnimatedAuthForm(),
+            const SizedBox(
+              height: 10,
+            ),
+            AuthButton(),
+            const SizedBox(
+              height: 8,
+            ),
+            OrSignupAndLoginWith(),
+            const SizedBox(
+              height: 12,
+            ),
+            OtherWayAuthListView(),
+            AnimatedFooterAuth(),
+            AuthFooterItem(),
+            const SizedBox(
+              height: 12,
+            ),
+          ],
+        ),
       ),
     );
   }

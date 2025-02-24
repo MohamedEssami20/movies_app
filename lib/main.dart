@@ -1,4 +1,5 @@
 //import 'package:device_preview/device_preview.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +12,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefService().init();
   runApp(
-    const MoviesApp(),
+    DevicePreview(
+      builder: (context) => MoviesApp(),
+      enabled: true,
+    ),
   );
 }
 
@@ -34,8 +38,8 @@ class MoviesApp extends StatelessWidget {
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            // locale: DevicePreview.locale(context),
-            // builder: DevicePreview.appBuilder,
+            locale: DevicePreview.locale(context),
+            builder: DevicePreview.appBuilder,
             onGenerateRoute: onGenerateRoute,
             theme: ThemeData(
               fontFamily: GoogleFonts.poppins().fontFamily,
