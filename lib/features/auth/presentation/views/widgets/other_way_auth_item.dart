@@ -11,7 +11,6 @@ class OtherWayAuthItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 60.w,
       height: 70.h,
       padding: EdgeInsets.all(8),
       decoration: ShapeDecoration(

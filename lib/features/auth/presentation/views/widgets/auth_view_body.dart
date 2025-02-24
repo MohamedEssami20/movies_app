@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/widgets/animated_text_cross_fading.dart';
 import 'package:movies_app/features/auth/presentation/manager/Auth_cubit/auth_cubit.dart';
 import 'package:movies_app/features/auth/presentation/views/widgets/animated_auth_form.dart';
+import 'package:movies_app/features/auth/presentation/views/widgets/forget_password.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import 'animated_footer_auth.dart';
 import 'auth_button.dart';
@@ -43,6 +44,7 @@ class AuthViewBody extends StatelessWidget {
               height: 10,
             ),
             AuthButton(),
+            ForgetPassword(),
             const SizedBox(
               height: 8,
             ),
