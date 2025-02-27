@@ -1,15 +1,20 @@
 //import 'package:device_preview/device_preview.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/core/func/on_generate_route.dart';
 import 'package:movies_app/core/services/shared_pref_service.dart';
+import 'package:movies_app/firebase_options.dart';
 import 'features/auth/presentation/manager/Auth_cubit/auth_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await SharedPrefService().init();
   runApp(
     DevicePreview(
