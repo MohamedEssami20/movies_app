@@ -1,25 +1,18 @@
 class UserEntity {
   final String email;
-  final String password;
+  final String userName;
+  final String uid;
   UserEntity({
     required this.email,
-    required this.password,
+    required this.userName,
+    required this.uid,
   });
 
-  UserEntity copyWith({
-    String? email,
-    String? password,
-  }) {
+  factory UserEntity.fromMap(Map<String, dynamic> map) {
     return UserEntity(
-      email: email ?? this.email,
-      password: password ?? this.password,
+      email: map['email'],
+      userName: map['password'],
+      uid: map['uid'],
     );
-  }
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'email': email,
-      'password': password,
-    };
   }
 }
