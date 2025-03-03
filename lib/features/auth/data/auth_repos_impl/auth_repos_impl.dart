@@ -17,10 +17,10 @@ class AuthReposImpl extends AuthRepos {
 
   @override
   Future<Either<Failure, UserEntity>> login(
-      String email, String password) async {
+      {required String email, required String password}) async {
     User? user;
     try {
-      user = await firebaseAuthService.signIn(email, password);
+      user = await firebaseAuthService.signIn(email: email, password: password);
       UserEntity userEntity = UserModel.fromfirebase(user: user);
       return Right(userEntity);
     } on FirebaseLoginFailure catch (error) {
@@ -36,10 +36,10 @@ class AuthReposImpl extends AuthRepos {
 
   @override
   Future<Either<Failure, UserEntity>> singup(
-      String email, String password) async {
+      {required String email, required String password}) async {
     User? user;
     try {
-      user = await firebaseAuthService.signUp(email, password);
+      user = await firebaseAuthService.signUp(email: email,password: password);
       UserEntity userEntity = UserModel.fromfirebase(user: user);
       return right(userEntity);
     } on FirebaseSignupFailure catch (error) {
