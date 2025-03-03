@@ -1,8 +1,11 @@
 // create auth repos  
 
+import 'package:dartz/dartz.dart';
 import 'package:movies_app/features/auth/domain/entity/user_entity.dart';
 
+import '../../../../core/errors/failure.dart';
+
 abstract class AuthRepos {
-  Future<void> login(UserEntity userEntity);
-  Future<void> signup(UserEntity userEntity);
+  Future<Either<Failure,UserEntity>> singup(String email, String password);
+  Future<Either<Failure,UserEntity>> login(String email, String password);
 }
