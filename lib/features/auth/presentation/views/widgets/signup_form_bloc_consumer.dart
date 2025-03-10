@@ -7,8 +7,8 @@ import '../../manager/Auth_cubit/auth_cubit.dart';
 import 'signup_form.dart';
 
 class SignupFormBlocConsumer extends StatelessWidget {
-  const SignupFormBlocConsumer({super.key});
-
+  const SignupFormBlocConsumer({super.key, required this.signupKey});
+  final GlobalKey<FormState> signupKey;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
@@ -16,7 +16,7 @@ class SignupFormBlocConsumer extends StatelessWidget {
         if(state is SignupFailure){
           CustomErrorSnackBar(message: state.errorMessage);
         }
-        return const SignupForm();
+        return  SignupForm(signupKey: signupKey,);
       },
       listener: (state, context) {
         if (state is SignupLoading) {

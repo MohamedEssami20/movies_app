@@ -8,15 +8,16 @@ import '../../manager/text_field_cubit/text_field_cubit.dart';
 class SignupForm extends StatelessWidget {
   const SignupForm({
     super.key,
+    required this.signupKey,
   });
-
+  final GlobalKey<FormState> signupKey;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TextFieldCubit, TextFieldState>(
         builder: (context, state) {
       return Form(
         autovalidateMode: state.signupValidateMode,
-        key: context.read<TextFieldCubit>().signupKey,
+        key: signupKey, // context.read<TextFieldCubit>().signupKey,
         child: Column(
           spacing: 30,
           children: [
@@ -34,7 +35,8 @@ class SignupForm extends StatelessWidget {
               },
             ),
             CustomTextField(
-              controller: context.read<TextFieldCubit>().signupPasswordController,
+              controller:
+                  context.read<TextFieldCubit>().signupPasswordController,
               label: "Password",
               textInputAction: TextInputAction.next,
               textInputType: TextInputType.visiblePassword,
@@ -52,11 +54,12 @@ class SignupForm extends StatelessWidget {
                 ),
               ),
               validate: (value) {
-                return validationPassword(value,context);
+                return validationPassword(value, context);
               },
             ),
             CustomTextField(
-              controller: context.read<TextFieldCubit>().confirmPasswordController,
+              controller:
+                  context.read<TextFieldCubit>().confirmPasswordController,
               label: "Confirm Password",
               textInputAction: TextInputAction.next,
               textInputType: TextInputType.visiblePassword,

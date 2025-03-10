@@ -9,7 +9,7 @@ class CustomTextField extends StatelessWidget {
       required this.textInputType,
       required this.obscureText,
       this.validate,
-      this.suffix, this.controller});
+      this.suffix, this.controller, this.focusNode});
   final String label;
   final TextInputAction textInputAction;
   final TextInputType textInputType;
@@ -17,6 +17,7 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validate;
   final Widget? suffix;
   final TextEditingController? controller;
+  final FocusNode? focusNode;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -25,6 +26,7 @@ class CustomTextField extends StatelessWidget {
         color: Colors.white,
         decoration: TextDecoration.none,
       ),
+      focusNode: focusNode,
       controller: controller,
       keyboardType: textInputType,
       obscureText: obscureText,

@@ -9,10 +9,6 @@ class TextFieldCubit extends Cubit<TextFieldState> {
           TextFieldState(),
         );
 
-  // create two global key variables;
-  GlobalKey<FormFieldState> loginKey = GlobalKey<FormFieldState>();
-  GlobalKey<FormFieldState> signupKey = GlobalKey<FormFieldState>();
-
   // create all controller variables;
   TextEditingController loginEmailController = TextEditingController();
   TextEditingController loginPasswordController = TextEditingController();
@@ -63,24 +59,6 @@ class TextFieldCubit extends Cubit<TextFieldState> {
         signupValidateMode: validateMode,
       ),
     );
-  }
-
-  //create that validate key of login form;
-  bool validateLoginForm() {
-    if (loginKey.currentState != null && loginKey.currentState!.validate()) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  // create method that validate key of signup form;
-  bool validateSignupForm() {
-    if (signupKey.currentState != null && signupKey.currentState!.validate()) {
-      return true;
-    } else {
-      return false;
-    }
   }
 
   //create method that dispose all controllers;

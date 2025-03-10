@@ -11,8 +11,17 @@ import 'auth_footer_item.dart';
 import 'or_signup_and_login_with.dart';
 import 'other_way_auth_listview.dart';
 
-class AuthViewBody extends StatelessWidget {
+class AuthViewBody extends StatefulWidget {
   const AuthViewBody({super.key});
+
+  @override
+  State<AuthViewBody> createState() => _AuthViewBodyState();
+}
+
+class _AuthViewBodyState extends State<AuthViewBody> {
+  final GlobalKey<FormState> signupKey=GlobalKey<FormState>();
+  final GlobalKey<FormState>loginKey=GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,11 +48,11 @@ class AuthViewBody extends StatelessWidget {
                 },
               ),
             ),
-            AnimatedAuthForm(),
+            AnimatedAuthForm(signupKey: signupKey,loginKey: loginKey,),
             const SizedBox(
               height: 10,
             ),
-            AuthButton(),
+            AuthButton(signupKey: signupKey,loginKey: loginKey,),
             ForgetPassword(),
             const SizedBox(
               height: 8,
