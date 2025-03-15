@@ -1,5 +1,4 @@
 // create auth repos implementaion
-import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,10 +25,12 @@ class AuthReposImpl extends AuthRepos {
       UserEntity userEntity = UserModel.fromfirebase(user: user);
       return Right(userEntity);
     } on FirebaseLoginFailure catch (error) {
+      await firebaseAuthService.deleteUser(user);
       return Left(
         Failure(error.message),
       );
     } catch (error) {
+       await firebaseAuthService.deleteUser(user);
       return left(
         Failure("Unknown Error, try later"),
       );
@@ -45,11 +46,12 @@ class AuthReposImpl extends AuthRepos {
       UserEntity userEntity = UserModel.fromfirebase(user: user);
       return right(userEntity);
     } on FirebaseSignupFailure catch (error) {
+      await firebaseAuthService.deleteUser(user);
       return left(
         Failure(error.message),
       );
     } catch (error) {
-      log("Signup error= ${error.toString()}");
+      await firebaseAuthService.deleteUser(user);
       return left(
         Failure("Unknown Error, try later"),
       );

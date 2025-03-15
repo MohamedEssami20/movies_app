@@ -1,6 +1,7 @@
 // create firebase auth service
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movies_app/core/errors/failure.dart';
 import 'package:movies_app/core/errors/firebase_signup_errors.dart';
 
@@ -39,12 +40,30 @@ class FirebaseAuthService {
   Future<void> signOut() async => await firebaseAuth.signOut();
 
   // create method that delete user account;
-  Future<void> deleteUser()async{
-    try{
-      await firebaseAuth.currentUser!.delete();
+  Future<void> deleteUser(User? user) async {
+    if (user != null) {
+      try {
+        await firebaseAuth.currentUser!.delete();
+      } catch (error) {
+        Failure("failed to delete user, try later.");
+      }
     }
-    catch (error){
-      Failure("failed to delete user, try later.");
+  }
+
+  // create method that signin with google;
+  Future<User> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+    if (googleUser == null) {
+      throw Failure("google signin was canceled");
     }
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    final UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+    return userCredential.user!;
   }
 }
