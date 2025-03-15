@@ -5,7 +5,7 @@ import 'package:movies_app/core/utils/app_text_styles.dart';
 
 // create method that returns snak bar;
 
-void buildErrorSnackBar(BuildContext context, String message) {
+void buildSuccessSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       width: MediaQuery.sizeOf(context).width,

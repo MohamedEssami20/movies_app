@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/func/signup_at_auth_button.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../manager/Auth_cubit/auth_cubit.dart';
@@ -28,22 +29,7 @@ class AuthButton extends StatelessWidget {
               onPressed: () {
                 if (isSignup) {
                   final isSignupvalidate = signupKey.currentState!.validate();
-                  log("is signup validate= $isSignupvalidate");
-                  if (isSignupvalidate) {
-                    // final email = context.read<TextFieldCubit>().signupEmailController.text;
-                    // final password =
-                    //     context.read<TextFieldCubit>().signupPasswordController.text;
-                    // await context.read<AuthCubit>().signup(
-                    //       email: email,
-                    //       password: password,
-                    //     );
-                    log("i am validate signup");
-                  } else {
-                    context.read<TextFieldCubit>().changeValidateSignupForm(
-                        validateMode: AutovalidateMode.always);
-                    log("not validte signup *****");
-                  }
-                  //sigupAtAuthButton(context, isSignupValid);
+                  sigupAtAuthButton(context, isSignupvalidate);
                 } else {
                   final isLoginValidate = loginKey.currentState!.validate();
                   if (isLoginValidate) {

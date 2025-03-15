@@ -19,8 +19,8 @@ class AuthViewBody extends StatefulWidget {
 }
 
 class _AuthViewBodyState extends State<AuthViewBody> {
-  final GlobalKey<FormState> signupKey=GlobalKey<FormState>();
-  final GlobalKey<FormState>loginKey=GlobalKey<FormState>();
+  final GlobalKey<FormState> signupKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> loginKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +48,14 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                 },
               ),
             ),
-            AnimatedAuthForm(signupKey: signupKey,loginKey: loginKey,),
-            const SizedBox(
-              height: 10,
+            AnimatedAuthForm(
+              signupKey: signupKey,
+              loginKey: loginKey,
             ),
-            AuthButton(signupKey: signupKey,loginKey: loginKey,),
+            AuthButton(
+              signupKey: signupKey,
+              loginKey: loginKey,
+            ),
             ForgetPassword(),
             const SizedBox(
               height: 8,

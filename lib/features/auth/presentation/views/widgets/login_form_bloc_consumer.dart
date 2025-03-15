@@ -3,35 +3,34 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:movies_app/core/widgets/build_success_snak_bar.dart';
 import 'package:movies_app/core/widgets/custom_error_snak_bar.dart';
-
+import 'package:movies_app/features/auth/presentation/views/widgets/login_form.dart';
 import '../../../../home/presentation/views/home_view.dart';
 import '../../manager/Auth_cubit/auth_cubit.dart';
-import 'signup_form.dart';
 
-class SignupFormBlocConsumer extends StatelessWidget {
-  const SignupFormBlocConsumer({super.key, required this.signupKey});
-  final GlobalKey<FormState> signupKey;
+class LoginFormBlocConsumer extends StatelessWidget {
+  const LoginFormBlocConsumer({super.key, required this.loginKey});
+  final GlobalKey<FormState> loginKey;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
     return BlocConsumer<AuthCubit, AuthState>(
       builder: (context, state) {
         return AspectRatio(
-          aspectRatio: width < 800 ? 1 : 2,
+          aspectRatio: width < 800 ? 1.6 : 2.5,
           child: ModalProgressHUD(
             opacity: 0.0,
-            inAsyncCall: state is SignupLoading ? true : false,
-            child: SignupForm(signupKey: signupKey),
+            inAsyncCall: state is LoginLoading ? true : false,
+            child: LoginForm(loginKey: loginKey),
           ),
         );
       },
       listener: (context, state) {
-        if (state is SignupSuccess) {
+        if (state is LoginSuccess) {
           Navigator.pushNamedAndRemoveUntil(
               context, HomeView.routeName, (_) => false);
-          buildSuccessSnackBar(context, "signup Success!");
+          buildSuccessSnackBar(context, "login Success!");
         }
-        if (state is SignupFailure) {
+        if (state is LoginFailure) {
           buildErrorSnackBar(context, state.errorMessage);
         }
       },
