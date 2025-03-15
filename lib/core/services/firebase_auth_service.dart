@@ -1,5 +1,7 @@
 // create firebase auth service
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:movies_app/core/errors/failure.dart';
 import 'package:movies_app/core/errors/firebase_signup_errors.dart';
 
 import '../errors/firebase_login_errors.dart';
@@ -30,6 +32,19 @@ class FirebaseAuthService {
       throw FirebaseSignupFailure.firebaseExecption(error.code.toString());
     } catch (unkownError) {
       throw FirebaseSignupFailure("Unknown error, try later");
+    }
+  }
+
+  // create method that signout user;
+  Future<void> signOut() async => await firebaseAuth.signOut();
+
+  // create method that delete user account;
+  Future<void> deleteUser()async{
+    try{
+      await firebaseAuth.currentUser!.delete();
+    }
+    catch (error){
+      Failure("failed to delete user, try later.");
     }
   }
 }

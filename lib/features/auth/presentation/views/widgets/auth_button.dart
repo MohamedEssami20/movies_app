@@ -1,11 +1,10 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/func/login_at_auth_button.dart';
 import '../../../../../core/func/signup_at_auth_button.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../manager/Auth_cubit/auth_cubit.dart';
-import '../../manager/text_field_cubit/text_field_cubit.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({
@@ -32,13 +31,7 @@ class AuthButton extends StatelessWidget {
                   sigupAtAuthButton(context, isSignupvalidate);
                 } else {
                   final isLoginValidate = loginKey.currentState!.validate();
-                  if (isLoginValidate) {
-                    log("login validate");
-                  } else {
-                    context.read<TextFieldCubit>().changeValidateLoginForm(
-                        validateMode: AutovalidateMode.always);
-                    log("login not validate");
-                  }
+                  loginAtAuthButton(context, isLoginValidate);
                 }
               },
               hasBorder: false,

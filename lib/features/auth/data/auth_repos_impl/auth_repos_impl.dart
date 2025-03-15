@@ -1,4 +1,6 @@
 // create auth repos implementaion
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movies_app/core/errors/failure.dart';
@@ -39,7 +41,7 @@ class AuthReposImpl extends AuthRepos {
       {required String email, required String password}) async {
     User? user;
     try {
-      user = await firebaseAuthService.signUp(email: email,password: password);
+      user = await firebaseAuthService.signUp(email: email, password: password);
       UserEntity userEntity = UserModel.fromfirebase(user: user);
       return right(userEntity);
     } on FirebaseSignupFailure catch (error) {
@@ -47,6 +49,7 @@ class AuthReposImpl extends AuthRepos {
         Failure(error.message),
       );
     } catch (error) {
+      log("Signup error= ${error.toString()}");
       return left(
         Failure("Unknown Error, try later"),
       );

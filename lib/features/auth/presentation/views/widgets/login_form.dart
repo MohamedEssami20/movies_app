@@ -37,7 +37,7 @@ class LoginForm extends StatelessWidget {
                 controller:
                     context.read<TextFieldCubit>().loginPasswordController,
                 label: "Password",
-                textInputAction: TextInputAction.next,
+                textInputAction: TextInputAction.done,
                 textInputType: TextInputType.visiblePassword,
                 obscureText: state.isLoginPasswordVisiable,
                 suffix: IconButton(

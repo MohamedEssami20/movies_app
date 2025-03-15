@@ -61,7 +61,7 @@ class SignupForm extends StatelessWidget {
               controller:
                   context.read<TextFieldCubit>().confirmPasswordController,
               label: "Confirm Password",
-              textInputAction: TextInputAction.next,
+              textInputAction: TextInputAction.done,
               textInputType: TextInputType.visiblePassword,
               obscureText: state.isConfirmPasswordVisible,
               suffix: IconButton(
