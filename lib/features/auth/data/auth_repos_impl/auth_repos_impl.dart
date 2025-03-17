@@ -30,7 +30,7 @@ class AuthReposImpl extends AuthRepos {
         Failure(error.message),
       );
     } catch (error) {
-       await firebaseAuthService.deleteUser(user);
+      await firebaseAuthService.deleteUser(user);
       return left(
         Failure("Unknown Error, try later"),
       );
@@ -54,6 +54,28 @@ class AuthReposImpl extends AuthRepos {
       await firebaseAuthService.deleteUser(user);
       return left(
         Failure("Unknown Error, try later"),
+      );
+    }
+  }
+
+  // create signin with google repo implementation;
+  @override
+  Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    User? user;
+    try {
+      user = await firebaseAuthService.signInWithGoogle();
+      UserEntity userEntity = UserModel.fromfirebase(user: user);
+      return right(userEntity);
+    } on Failure catch (error) {
+      await firebaseAuthService.deleteUser(user);
+      return left(
+        Failure(
+          error.message.toString(),
+        ),
+      );
+    } catch (error) {
+      return left(
+        Failure("there was an error, try later"),
       );
     }
   }
