@@ -4,6 +4,8 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movies_app/core/errors/failure.dart';
 import 'package:movies_app/core/errors/firebase_signup_errors.dart';
+import 'package:movies_app/core/func/add_user_data.dart';
+import 'package:movies_app/core/services/database_service.dart';
 import 'package:movies_app/core/services/firebase_auth_service.dart';
 import 'package:movies_app/features/auth/data/models/user_model.dart';
 import 'package:movies_app/features/auth/domain/entity/user_entity.dart';
@@ -13,8 +15,9 @@ import '../../../../core/errors/firebase_login_errors.dart';
 
 class AuthReposImpl extends AuthRepos {
   final FirebaseAuthService firebaseAuthService;
-
-  AuthReposImpl({required this.firebaseAuthService});
+  final DatabaseService dataBaseService;
+  AuthReposImpl(
+      {required this.dataBaseService, required this.firebaseAuthService});
 
   @override
   Future<Either<Failure, UserEntity>> login(
@@ -44,6 +47,12 @@ class AuthReposImpl extends AuthRepos {
     try {
       user = await firebaseAuthService.signUp(email: email, password: password);
       UserEntity userEntity = UserModel.fromfirebase(user: user);
+      Map<String, dynamic> userData =
+          UserModel.fromUserEntity(userEntity).toMap();
+      await addUserData(
+          databaseService: dataBaseService,
+          data: userData,
+          documentId: user.uid);
       return right(userEntity);
     } on FirebaseSignupFailure catch (error) {
       await firebaseAuthService.deleteUser(user);

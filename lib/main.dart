@@ -6,11 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/core/func/on_generate_route.dart';
-import 'package:movies_app/core/services/firebase_auth_service.dart';
+import 'package:movies_app/core/services/get_it_service.dart';
 import 'package:movies_app/core/services/shared_pref_service.dart';
 import 'package:movies_app/core/utils/bloc_observer.dart';
-import 'package:movies_app/features/auth/data/auth_repos_impl/auth_repos_impl.dart';
 import 'package:movies_app/firebase_options.dart';
+import 'features/auth/domain/repos/auth_repos.dart';
 import 'features/auth/presentation/manager/Auth_cubit/auth_cubit.dart';
 
 void main() async {
@@ -20,6 +20,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await SharedPrefService().init();
+  setupGetIt();
   runApp(
     DevicePreview(
       builder: (context) => MoviesApp(),
@@ -43,9 +44,7 @@ class MoviesApp extends StatelessWidget {
           providers: [
             BlocProvider(
               create: (context) => AuthCubit(
-                AuthReposImpl(
-                  firebaseAuthService: FirebaseAuthService(),
-                ),
+                getIt.get<AuthRepos>(),
               ),
             ),
           ],
