@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/services/shared_pref_service.dart';
 import 'package:movies_app/core/utils/app_color.dart';
+import 'package:movies_app/core/utils/app_text_styles.dart';
 import 'package:movies_app/features/auth/presentation/manager/Auth_cubit/auth_cubit.dart';
 import 'package:movies_app/features/auth/presentation/views/auth_view.dart';
 import '../../../../../core/widgets/custom_button.dart';
@@ -32,7 +33,11 @@ class OnBoardingDetails extends StatelessWidget {
                   CustomButton(
                     hasBorder: true,
                     color: Colors.transparent,
-                    text: "Signup",
+                    child: Text(
+                      "Sign Up",
+                      style: AppTextStyles.regular24(context)
+                          .copyWith(color: Colors.white),
+                    ),
                     onPressed: () async {
                       context.read<AuthCubit>().changeAuthState(0);
                       Navigator.pushNamedAndRemoveUntil(
@@ -47,7 +52,11 @@ class OnBoardingDetails extends StatelessWidget {
                   CustomButton(
                     hasBorder: false,
                     color: AppColors.kPrimaryColor,
-                    text: "Login",
+                    child: Text(
+                      "Login",
+                      style: AppTextStyles.regular24(context)
+                          .copyWith(color: Colors.white),
+                    ),
                     onPressed: () async {
                       context.read<AuthCubit>().changeAuthState(1);
                       Navigator.pushNamedAndRemoveUntil(

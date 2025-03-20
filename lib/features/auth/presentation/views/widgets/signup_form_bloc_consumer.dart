@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:movies_app/core/widgets/build_success_snak_bar.dart';
 import 'package:movies_app/core/widgets/custom_error_snak_bar.dart';
 
@@ -13,17 +12,9 @@ class SignupFormBlocConsumer extends StatelessWidget {
   final GlobalKey<FormState> signupKey;
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.sizeOf(context).width;
     return BlocConsumer<AuthCubit, AuthState>(
       builder: (context, state) {
-        return AspectRatio(
-          aspectRatio: width < 800 ? 1 : 2,
-          child: ModalProgressHUD(
-            opacity: 0.0,
-            inAsyncCall: state is SignupLoading ? true : false,
-            child: SignupForm(signupKey: signupKey),
-          ),
-        );
+        return SignupForm(signupKey: signupKey);
       },
       listener: (context, state) {
         if (state is SignupSuccess) {

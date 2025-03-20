@@ -52,6 +52,9 @@ class _AuthViewBodyState extends State<AuthViewBody> {
               signupKey: signupKey,
               loginKey: loginKey,
             ),
+            const SizedBox(
+              height: 12,
+            ),
             AuthButton(
               signupKey: signupKey,
               loginKey: loginKey,
