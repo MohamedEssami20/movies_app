@@ -49,6 +49,7 @@ class MoviesApp extends StatelessWidget {
             ),
           ],
           child: MaterialApp(
+            
             debugShowCheckedModeBanner: false,
             locale: DevicePreview.locale(context),
             builder: DevicePreview.appBuilder,

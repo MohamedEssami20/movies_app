@@ -74,6 +74,12 @@ class AuthReposImpl extends AuthRepos {
     try {
       user = await firebaseAuthService.signInWithGoogle();
       UserEntity userEntity = UserModel.fromfirebase(user: user);
+      Map<String, dynamic> userData =
+          UserModel.fromUserEntity(userEntity).toMap();
+      addUserData(
+          databaseService: dataBaseService,
+          data: userData,
+          documentId: user.uid);
       return right(userEntity);
     } on Failure catch (error) {
       await firebaseAuthService.deleteUser(user);

@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/assets.dart';
+import '../../manager/Auth_cubit/auth_cubit.dart';
 import 'other_way_auth_item.dart';
 
 class OtherWayAuthListView extends StatelessWidget {
@@ -16,9 +18,14 @@ class OtherWayAuthListView extends StatelessWidget {
       children: [
         Expanded(
           flex: Platform.isAndroid ? 2 : 1,
-          child: OtherWayAuthItem(
-            image: Assets.assetsImagesGoogleIcon,
-            title: "Google",
+          child: GestureDetector(
+            onTap: () async {
+              await context.read<AuthCubit>().loginWithGoogle();
+            },
+            child: OtherWayAuthItem(
+              image: Assets.assetsImagesGoogleIcon,
+              title: "Google",
+            ),
           ),
         ),
         Expanded(
