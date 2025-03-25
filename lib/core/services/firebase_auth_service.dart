@@ -1,6 +1,7 @@
 // create firebase auth service
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movies_app/core/errors/failure.dart';
 import 'package:movies_app/core/errors/firebase_signup_errors.dart';
@@ -65,5 +66,22 @@ class FirebaseAuthService {
     final UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
     return userCredential.user!;
+  }
+
+  // create method that login with facebook;
+  Future<User?> signInWithFacebook() async {
+    // Trigger the sign-in flow
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+    if (loginResult.status != LoginStatus.success) {
+      throw Failure("failed to login with facebook");
+    }
+    // Create a credential from the access token
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+
+    // Once signed in, return the UserCredential
+    UserCredential userCredential = await FirebaseAuth.instance
+        .signInWithCredential(facebookAuthCredential);
+    return userCredential.user;
   }
 }
