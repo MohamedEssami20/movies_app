@@ -58,3 +58,19 @@ final class LoginWithGoogleFailure extends AuthState {
 
   LoginWithGoogleFailure({required this.errorMessage});
 }
+
+// create all login with facebook states;
+
+final class LoginWithFacebookLoading extends AuthState {}
+
+final class LoginWithFacebookSuccess extends AuthState {
+  final UserEntity userEntity;
+
+  LoginWithFacebookSuccess({required this.userEntity});
+}
+
+final class LoginWithFacebookFailure extends AuthState {
+  final String errorMessage;
+
+  LoginWithFacebookFailure({required this.errorMessage});
+}
