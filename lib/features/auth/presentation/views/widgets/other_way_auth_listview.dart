@@ -42,9 +42,14 @@ class OtherWayAuthListView extends StatelessWidget {
         ),
         Expanded(
           flex: Platform.isAndroid ? 2 : 1,
-          child: OtherWayAuthItem(
-            image: Assets.assetsImagesFacebookIcon,
-            title: "Facebook",
+          child: GestureDetector(
+            onTap: () async {
+              await context.read<AuthCubit>().loginWithFacebook();
+            },
+            child: OtherWayAuthItem(
+              image: Assets.assetsImagesFacebookIcon,
+              title: "Facebook",
+            ),
           ),
         ),
       ],

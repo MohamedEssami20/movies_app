@@ -17,19 +17,25 @@ class SignupFormBlocConsumer extends StatelessWidget {
         return SignupForm(signupKey: signupKey);
       },
       listener: (context, state) {
-        if (state is SignupSuccess || state is LoginWithGoogleSuccess) {
+        if (state is SignupSuccess ||
+            state is LoginWithGoogleSuccess ||
+            state is LoginWithFacebookSuccess) {
           Navigator.pushNamedAndRemoveUntil(
               context, HomeView.routeName, (_) => false);
           buildSuccessSnackBar(context, "signup Success!");
         }
-        if (state is SignupFailure || state is LoginWithGoogleFailure) {
+        if (state is SignupFailure ||
+            state is LoginWithGoogleFailure ||
+            state is LoginWithFacebookFailure) {
           buildErrorSnackBar(
               context,
               state is SignupFailure
                   ? state.errorMessage
                   : state is LoginWithGoogleFailure
                       ? state.errorMessage
-                      : "signup Failure, try again.");
+                      : state is LoginWithFacebookFailure
+                          ? state.errorMessage
+                          : "there is an error, try later!");
         }
       },
     );

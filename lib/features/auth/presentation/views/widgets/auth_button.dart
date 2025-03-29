@@ -39,7 +39,8 @@ class AuthButton extends StatelessWidget {
               color: AppColors.kPrimaryColor,
               child: state is LoginLoading ||
                       state is SignupLoading ||
-                      state is LoginWithGoogleLoading
+                      state is LoginWithGoogleLoading||
+                      state is LoginWithFacebookLoading
                   ? Center(
                       child: CircularProgressIndicator(
                         color: Colors.white.withValues(alpha: 0.8),
