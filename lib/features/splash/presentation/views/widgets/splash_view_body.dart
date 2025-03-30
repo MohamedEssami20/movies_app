@@ -1,7 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/app_text_styles.dart';
 import 'package:movies_app/features/auth/presentation/views/auth_view.dart';
+import 'package:movies_app/features/home/presentation/views/home_view.dart';
 import '../../../../../core/services/shared_pref_service.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../on_boarding/presentation/views/on_boarding_view.dart';
@@ -84,13 +86,19 @@ class SplashViewBodyState extends State<SplashViewBody> {
                         ],
                         displayFullTextOnTap: true,
                         totalRepeatCount: 2,
-                        onFinished: () {
+                        onFinished: (){
+                          final ifUserSignIn= FirebaseAuth.instance.currentUser!=null;
                           final bool isOnboardingShow =
                               SharedPrefService().showOnboarding();
-                          Navigator.of(context).pushReplacementNamed(
-                              isOnboardingShow
-                                  ? AuthView.routeName
-                                  : OnBoardingView.routeName);
+                          if(!ifUserSignIn && !isOnboardingShow){
+                            Navigator.of(context).pushReplacementNamed(OnBoardingView.routeName);
+                          }
+                          else if(ifUserSignIn && isOnboardingShow) {
+                          Navigator.of(context).pushReplacementNamed(HomeView.routeName);
+                          }
+                          else if(!ifUserSignIn && isOnboardingShow) {
+                            Navigator.of(context).pushReplacementNamed(AuthView.routeName);
+                          }
                         },
                       ),
                       SizedBox(height: 20),
