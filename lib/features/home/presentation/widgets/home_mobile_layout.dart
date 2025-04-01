@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/features/home/presentation/manager/categories_items/categories_items_cubit.dart';
 import 'categories_item_list_view.dart';
 import 'custom_search_field.dart';
 
@@ -25,7 +27,10 @@ class HomeMobileLayout extends StatelessWidget {
           SliverToBoxAdapter(
             child: SizedBox(
               height: 50,
-              child: CategoriesItemListView(),
+              child: BlocProvider(
+                create: (context) => CategoriesItemsCubit(),
+                child: CategoriesItemListView(),
+              ),
             ),
           ),
         ],
@@ -33,5 +38,3 @@ class HomeMobileLayout extends StatelessWidget {
     );
   }
 }
-
-
