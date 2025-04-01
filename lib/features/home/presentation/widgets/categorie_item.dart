@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/app_text_styles.dart';
 
 class CategorieItem extends StatelessWidget {
-  const CategorieItem({super.key, required this.title, this.icon});
+  const CategorieItem(
+      {super.key, required this.title, this.icon, this.isSelected = false});
   final String title;
   final IconData? icon;
+  final bool isSelected;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,12 +24,16 @@ class CategorieItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 8,
         children: [
-          Icon(icon, color: Colors.white,),
+          Icon(
+            icon,
+            color: Colors.white,
+          ),
           Text(
             title,
-            style:AppTextStyles.regular16(context).copyWith(color: Colors.white,),
+            style: AppTextStyles.regular16(context).copyWith(
+                color: Colors.white,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal),
           ),
-          
         ],
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/features/home/presentation/widgets/categorie_item.dart';
-
+import 'categories_item_list_view.dart';
 import 'custom_search_field.dart';
 
 class HomeMobileLayout extends StatelessWidget {
@@ -24,9 +23,9 @@ class HomeMobileLayout extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: CategorieItem(
-              title: "All Categories",
-              icon: Icons.category,
+            child: SizedBox(
+              height: 50,
+              child: CategoriesItemListView(),
             ),
           ),
         ],
@@ -34,3 +33,5 @@ class HomeMobileLayout extends StatelessWidget {
     );
   }
 }
+
+
