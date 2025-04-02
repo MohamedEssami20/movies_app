@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/features/home/presentation/manager/categories_items/categories_items_cubit.dart';
 import 'categories_item_list_view.dart';
 import 'custom_search_field.dart';
+import 'title_of_categorie.dart';
 
 class HomeMobileLayout extends StatelessWidget {
   const HomeMobileLayout({super.key});
@@ -33,6 +34,11 @@ class HomeMobileLayout extends StatelessWidget {
               ),
             ),
           ),
+          SliverToBoxAdapter(
+            child: const TitleOfCategorie(
+              title: 'Trending',
+            ),
+          )
         ],
       ),
     );
