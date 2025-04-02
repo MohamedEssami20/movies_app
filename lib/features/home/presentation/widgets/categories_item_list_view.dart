@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/features/home/data/models/categories_model.dart';
 import 'package:movies_app/features/home/presentation/manager/categories_items/categories_items_cubit.dart';
 import 'package:movies_app/features/home/presentation/widgets/categorie_item.dart';
 
@@ -14,7 +15,7 @@ class CategoriesItemListView extends StatelessWidget {
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          itemCount: 10,
+          itemCount: CategoriesModel.categories.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.only(right: 12),
@@ -23,8 +24,7 @@ class CategoriesItemListView extends StatelessWidget {
                   context.read<CategoriesItemsCubit>().changeIndex(index);
                 },
                 child: CategorieItem(
-                  title: "All Categories",
-                  icon: Icons.category,
+                  categoriesModel: CategoriesModel.categories[index],
                   isSelected: index == state,
                 ),
               ),

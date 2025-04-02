@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/core/widgets/animated_text_cross_fading.dart';
+import 'package:movies_app/features/home/data/models/categories_model.dart';
 
 import '../../../../core/utils/app_text_styles.dart';
 
 class CategorieItem extends StatelessWidget {
-  const CategorieItem(
-      {super.key, required this.title, this.icon, this.isSelected = false});
-  final String title;
-  final IconData? icon;
+  const CategorieItem({
+    super.key,
+    required this.categoriesModel,
+    required this.isSelected,
+  });
+  final CategoriesModel categoriesModel;
   final bool isSelected;
   @override
   Widget build(BuildContext context) {
@@ -24,15 +28,24 @@ class CategorieItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 8,
         children: [
-          Icon(
-            icon,
-            color: Colors.white,
-          ),
-          Text(
-            title,
-            style: AppTextStyles.regular16(context).copyWith(
-                color: Colors.white,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal),
+          if (categoriesModel.icon != null)
+            Icon(
+              categoriesModel.icon,
+              color: Colors.white,
+            ),
+          AnimatedTextCrossFading(
+            crossFadeState: isSelected
+                ? CrossFadeState.showSecond
+                : CrossFadeState.showFirst,
+            firstText: categoriesModel.title,
+            secondText: categoriesModel.title,
+            firstTextStyle: AppTextStyles.regular16(context).copyWith(
+              color: Colors.white,
+            ),
+            secondTextStyle: AppTextStyles.regular16(context).copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
