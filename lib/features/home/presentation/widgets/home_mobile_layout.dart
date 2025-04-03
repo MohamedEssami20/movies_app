@@ -12,58 +12,56 @@ class HomeMobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-      child: CustomScrollView(
-        scrollDirection: Axis.vertical,
-        slivers: [
-          SliverToBoxAdapter(
+    return CustomScrollView(
+      scrollDirection: Axis.vertical,
+      slivers: [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
             child: CustomSearchField(
               onChanged: (value) {},
             ),
           ),
-          SliverToBoxAdapter(
-            child: const SizedBox(
-              height: 24,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 50,
-              child: BlocProvider(
-                create: (context) => CategoriesItemsCubit(),
+        ),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 50,
+            child: BlocProvider(
+              create: (context) => CategoriesItemsCubit(),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
                 child: CategoriesItemListView(),
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: const TitleOfCategorie(
-              title: 'Trending',
-            ),
+        ),
+        SliverToBoxAdapter(
+          child: const TitleOfCategorie(
+            title: 'Trending',
           ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 12,
-            ),
+        ),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 12,
           ),
-          SliverToBoxAdapter(
-            child: TrendingMoviesListView(),
+        ),
+        SliverToBoxAdapter(
+          child: TrendingMoviesListView(),
+        ),
+        SliverToBoxAdapter(
+          child: const TitleOfCategorie(
+            title: 'New Releases - Movies',
           ),
-          SliverToBoxAdapter(
-            child: const TitleOfCategorie(
-              title: 'New Releases - Movies',
-            ),
+        ),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 12,
           ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 12,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: NewReleaseMoviesListView(),
-          )
-        ],
-      ),
+        ),
+        SliverToBoxAdapter(
+          child: NewReleaseMoviesListView(),
+        )
+      ],
     );
   }
 }

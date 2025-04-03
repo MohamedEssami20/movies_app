@@ -12,6 +12,7 @@ class CategoriesItemListView extends StatelessWidget {
     return BlocBuilder<CategoriesItemsCubit, int>(
       builder: (context, state) {
         return ListView.builder(
+          clipBehavior: Clip.none,
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
