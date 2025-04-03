@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/features/home/presentation/widgets/new_release_movies_item.dart';
 
-import 'trending_movies_item.dart';
-
-class TrendingMoviesListView extends StatelessWidget {
-  const TrendingMoviesListView({super.key});
+class NewReleaseMoviesListView extends StatelessWidget {
+  const NewReleaseMoviesListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class TrendingMoviesListView extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.only(right: 16),
-              child: TrendingMoviesItem(),
+              child: NewReleaseMoviesItem(),
             );
           }),
     );
