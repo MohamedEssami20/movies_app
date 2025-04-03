@@ -4,6 +4,7 @@ import 'package:movies_app/features/home/presentation/manager/categories_items/c
 import 'categories_item_list_view.dart';
 import 'custom_search_field.dart';
 import 'title_of_categorie.dart';
+import 'trending_movies_list_view.dart';
 
 class HomeMobileLayout extends StatelessWidget {
   const HomeMobileLayout({super.key});
@@ -38,9 +39,18 @@ class HomeMobileLayout extends StatelessWidget {
             child: const TitleOfCategorie(
               title: 'Trending',
             ),
-          )
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 12,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: TrendingMoviesListView(),
+          ),
         ],
       ),
     );
   }
 }
+
