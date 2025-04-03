@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/features/home/presentation/manager/categories_items/categories_items_cubit.dart';
 import 'package:movies_app/features/home/presentation/widgets/new_release_tvshow_list_view.dart';
+import 'package:movies_app/features/home/presentation/widgets/recomended_movies_list_view.dart';
 import 'categories_item_list_view.dart';
 import 'custom_search_field.dart';
 import 'new_release_movies_list_view.dart';
@@ -74,7 +75,25 @@ class HomeMobileLayout extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: NewReleaseTvshowListView(),
-        )
+        ),
+        SliverToBoxAdapter(
+          child: const TitleOfCategorie(
+            title: 'Recommended',
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 12,
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: RecommendedMoviesListView(),
+        ),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 20,
+          ),
+        ),
       ],
     );
   }
