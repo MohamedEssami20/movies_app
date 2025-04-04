@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/features/home/presentation/manager/bottom_bar_cubit/bottom_bar_cubit.dart';
 import 'package:movies_app/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:movies_app/features/home/presentation/widgets/custom_bottom_navigation_bar.dart';
 import 'package:movies_app/features/home/presentation/widgets/home_layout.dart';
@@ -18,7 +20,10 @@ class HomeView extends StatelessWidget {
         tabletLayout: (context) => HomeTabletLayout(),
         desktopLayout: (context) => SizedBox(),
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(),
+      bottomNavigationBar: BlocProvider(
+        create: (context) => BottomBarCubit(),
+        child: CustomBottomNavigationBar(),
+      ),
     );
   }
 }
