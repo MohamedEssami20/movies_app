@@ -16,6 +16,10 @@ class HomeTabletLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       scrollDirection: Axis.vertical,
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        overscroll: false,
+        physics: BouncingScrollPhysics(),
+      ),
       slivers: [
         SliverToBoxAdapter(
           child: Padding(
@@ -91,7 +95,7 @@ class HomeTabletLayout extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: SizedBox(
-            height: 20,
+            height: 40,
           ),
         ),
       ],
