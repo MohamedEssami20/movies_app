@@ -1,20 +1,31 @@
 import 'package:dio/dio.dart';
+import 'package:movies_app/core/errors/api_server_errors.dart';
 import 'package:movies_app/core/utils/api_end_points.dart';
+
+import '../errors/failure.dart';
 
 class ApiServices {
   static final Dio _dio = Dio();
 
   static Future<Response> get(String url) async {
-    return await _dio.get(
-      url,
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": "Bearer ${ApiEndPoints.apiKey}",
-        },
-      ),
-    );
+    try {
+      Response response = await _dio.get(
+        url,
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer ${ApiEndPoints.apiKey}",
+          },
+        ),
+      );
+      return response;
+    } on DioException catch (error) {
+      ApiServerErrors.fromDioError(error);
+    } catch (error) {
+      throw Failure("there was unkown error, try later.");
+    }
+    throw Failure("there was unkown error!, try later.");
   }
 
   static Future<Response> post(String url, {data}) async {
