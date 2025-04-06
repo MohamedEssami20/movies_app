@@ -7,7 +7,7 @@ import '../errors/failure.dart';
 class ApiServices {
   static final Dio _dio = Dio();
 
-  static Future<Response> get(String url) async {
+   Future<Map<String, dynamic>> get(String url) async {
     try {
       Response response = await _dio.get(
         ApiEndPoints.apiKey + url,
@@ -19,7 +19,7 @@ class ApiServices {
           },
         ),
       );
-      return response;
+      return response.data;
     } on DioException catch (error) {
       ApiServerErrors.fromDioError(error);
     } catch (error) {
@@ -28,7 +28,7 @@ class ApiServices {
     throw Failure("there was unkown error!, try later.");
   }
 
-  static Future<Response> post(String url, {data}) async {
+  Future<Response> post(String url, {data}) async {
     return await _dio.post(
       url,
       data: data,
