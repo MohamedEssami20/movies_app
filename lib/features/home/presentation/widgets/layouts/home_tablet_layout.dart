@@ -6,6 +6,7 @@ import 'package:movies_app/features/home/presentation/widgets/recomended_movies_
 import '../categories_item_list_view.dart';
 import '../custom_search_field.dart';
 import '../new_release_movies_list_view.dart';
+import '../now_playing.dart';
 import '../title_of_categorie.dart';
 import '../trending_movies_list_view.dart';
 
@@ -40,6 +41,9 @@ class HomeTabletLayout extends StatelessWidget {
               ),
             ),
           ),
+        ),
+        SliverToBoxAdapter(
+          child: NowPlaying(),
         ),
         SliverToBoxAdapter(
           child: const TitleOfCategorie(
