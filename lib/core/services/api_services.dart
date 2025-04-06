@@ -10,7 +10,7 @@ class ApiServices {
   static Future<Response> get(String url) async {
     try {
       Response response = await _dio.get(
-        url,
+        ApiEndPoints.apiKey + url,
         options: Options(
           headers: {
             "Content-Type": "application/json",
