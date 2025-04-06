@@ -1,4 +1,6 @@
-class NowPlayingMoviesModel {
+import 'package:movies_app/features/home/domain/entities/now_playing_entity.dart';
+
+class NowPlayingMoviesModel extends NowPlayingEntity {
   bool? adult;
   String? backdropPath;
   List<int>? genreIds;
@@ -29,7 +31,10 @@ class NowPlayingMoviesModel {
     this.video,
     this.voteAverage,
     this.voteCount,
-  });
+  }) : super(
+            moviesId: id!,
+            movieTitle: originalTitle ?? "Unknown",
+            voteAveragemovie: voteAverage ?? 0.0);
 
   factory NowPlayingMoviesModel.fromJson(Map<String, dynamic> json) {
     return NowPlayingMoviesModel(
@@ -61,7 +66,7 @@ class NowPlayingMoviesModel {
         'popularity': popularity,
         'poster_path': posterPath,
         'release_date': releaseDate,
-        'title': title,
+        'title': movieTitle,
         'video': video,
         'vote_average': voteAverage,
         'vote_count': voteCount,
