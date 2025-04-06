@@ -6,7 +6,7 @@ import '../errors/failure.dart';
 
 Future<void> addUserData(
     {required DatabaseService databaseService,
-    required Map<String,dynamic> data,
+    required Map<String, dynamic> data,
     String? documentId}) async {
   try {
     await databaseService.addData(

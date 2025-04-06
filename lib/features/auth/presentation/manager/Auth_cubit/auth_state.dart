@@ -31,7 +31,7 @@ final class SignupFailure extends AuthState {
 
 final class LoginLoading extends AuthState {}
 
-final class LoginSuccess extends AuthState { 
+final class LoginSuccess extends AuthState {
   final UserEntity userEntity;
 
   LoginSuccess({required this.userEntity});
@@ -54,7 +54,7 @@ final class LoginWithGoogleSuccess extends AuthState {
 }
 
 final class LoginWithGoogleFailure extends AuthState {
-  final String errorMessage;  
+  final String errorMessage;
 
   LoginWithGoogleFailure({required this.errorMessage});
 }

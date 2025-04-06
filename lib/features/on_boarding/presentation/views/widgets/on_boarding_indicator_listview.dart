@@ -19,8 +19,7 @@ class OnBoardingIndicator extends StatelessWidget {
           children: List.generate(
             3,
             (index) => OnBoardingIndicatorItem(
-              isActive:
-                state == index,
+              isActive: state == index,
             ),
           ),
         );

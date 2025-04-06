@@ -80,24 +80,26 @@ class SplashViewBodyState extends State<SplashViewBody> {
                             textStyle: AppTextStyles.regular16(context)
                                 .copyWith(color: Colors.white),
                             duration: const Duration(seconds: 2),
-                            fadeInEnd: 0.7, 
+                            fadeInEnd: 0.7,
                             fadeOutBegin: 0.9,
                           ),
                         ],
                         displayFullTextOnTap: true,
                         totalRepeatCount: 2,
-                        onFinished: (){
-                          final ifUserSignIn= FirebaseAuth.instance.currentUser!=null;
+                        onFinished: () {
+                          final ifUserSignIn =
+                              FirebaseAuth.instance.currentUser != null;
                           final bool isOnboardingShow =
                               SharedPrefService().showOnboarding();
-                          if(!ifUserSignIn && !isOnboardingShow){
-                            Navigator.of(context).pushReplacementNamed(OnBoardingView.routeName);
-                          }
-                          else if(ifUserSignIn && isOnboardingShow) {
-                          Navigator.of(context).pushReplacementNamed(HomeView.routeName);
-                          }
-                          else if(!ifUserSignIn && isOnboardingShow) {
-                            Navigator.of(context).pushReplacementNamed(AuthView.routeName);
+                          if (!ifUserSignIn && !isOnboardingShow) {
+                            Navigator.of(context)
+                                .pushReplacementNamed(OnBoardingView.routeName);
+                          } else if (ifUserSignIn && isOnboardingShow) {
+                            Navigator.of(context)
+                                .pushReplacementNamed(HomeView.routeName);
+                          } else if (!ifUserSignIn && isOnboardingShow) {
+                            Navigator.of(context)
+                                .pushReplacementNamed(AuthView.routeName);
                           }
                         },
                       ),

@@ -8,12 +8,12 @@ String? validationPassword(String? value, BuildContext context) {
   if (value!.isEmpty) {
     return "Please enter your password";
   } else if (value.isNotEmpty) {
-     if(value.length<8){
-       return "Password must be at least 8 characters";
-     }
-     else if(textFieldController.signupPasswordController.text != textFieldController.confirmPasswordController.text){
-       return "Password doesn't match";
-     }
+    if (value.length < 8) {
+      return "Password must be at least 8 characters";
+    } else if (textFieldController.signupPasswordController.text !=
+        textFieldController.confirmPasswordController.text) {
+      return "Password doesn't match";
+    }
   }
   return null;
 }

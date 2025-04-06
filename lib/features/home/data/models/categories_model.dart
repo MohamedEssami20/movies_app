@@ -11,15 +11,35 @@ class CategoriesModel {
 
   static List<CategoriesModel> categories = [
     CategoriesModel(
-        title: 'All Categories', icon: Icons.category,),
-    CategoriesModel(title: 'Action',),
-    CategoriesModel(title: 'Adventure',),
-    CategoriesModel(title: 'Comedy',),
-    CategoriesModel(title: "Crime",),
-    CategoriesModel(title: "Animation",),
-    CategoriesModel(title: 'Drama',),
-    CategoriesModel(title: 'Family',),
-    CategoriesModel(title: 'Horror',),
-    CategoriesModel(title: 'Romance',),
+      title: 'All Categories',
+      icon: Icons.category,
+    ),
+    CategoriesModel(
+      title: 'Action',
+    ),
+    CategoriesModel(
+      title: 'Adventure',
+    ),
+    CategoriesModel(
+      title: 'Comedy',
+    ),
+    CategoriesModel(
+      title: "Crime",
+    ),
+    CategoriesModel(
+      title: "Animation",
+    ),
+    CategoriesModel(
+      title: 'Drama',
+    ),
+    CategoriesModel(
+      title: 'Family',
+    ),
+    CategoriesModel(
+      title: 'Horror',
+    ),
+    CategoriesModel(
+      title: 'Romance',
+    ),
   ];
 }

@@ -10,8 +10,7 @@ class UserModel extends UserEntity {
   });
 
   factory UserModel.fromfirebase({required User user}) {
-    return UserModel(
-        email: user.email!, uid: user.uid);
+    return UserModel(email: user.email!, uid: user.uid);
   }
 
   factory UserModel.formJson(Map<String, dynamic> map) {
@@ -21,7 +20,9 @@ class UserModel extends UserEntity {
     );
   }
 
-  factory UserModel.fromUserEntity(UserEntity user,) {
+  factory UserModel.fromUserEntity(
+    UserEntity user,
+  ) {
     return UserModel(
       email: user.email,
       uid: user.uid,

@@ -11,13 +11,12 @@ class HomeLayout extends StatelessWidget {
   final WidgetBuilder mobileLayout, tabletLayout, desktopLayout;
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints){
-      if(constraints.maxWidth < SizeConfig.tabletsize){
+    return LayoutBuilder(builder: (context, constraints) {
+      if (constraints.maxWidth < SizeConfig.tabletsize) {
         return mobileLayout(context);
-      }else if(constraints.maxWidth < SizeConfig.desktopSize){
+      } else if (constraints.maxWidth < SizeConfig.desktopSize) {
         return tabletLayout(context);
-      }else{
+      } else {
         return desktopLayout(context);
       }
     });

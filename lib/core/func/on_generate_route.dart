@@ -1,4 +1,3 @@
-
 // create method that returns route
 import 'package:flutter/material.dart';
 import 'package:movies_app/features/auth/presentation/views/auth_view.dart';
@@ -7,13 +6,16 @@ import 'package:movies_app/features/splash/presentation/views/splash_view.dart';
 
 import '../../features/home/presentation/views/home_view.dart';
 
-Route<T>? onGenerateRoute<T>(RouteSettings settings){
-  switch(settings.name){
+Route<T>? onGenerateRoute<T>(RouteSettings settings) {
+  switch (settings.name) {
     case OnBoardingView.routeName:
       return MaterialPageRoute(builder: (context) => const OnBoardingView());
     case AuthView.routeName:
       final int initialIndex = settings.arguments as int? ?? 0;
-      return MaterialPageRoute(builder: (context) =>  AuthView(initialIndex: initialIndex,));
+      return MaterialPageRoute(
+          builder: (context) => AuthView(
+                initialIndex: initialIndex,
+              ));
     case HomeView.routeName:
       return MaterialPageRoute(builder: (context) => const HomeView());
     default:

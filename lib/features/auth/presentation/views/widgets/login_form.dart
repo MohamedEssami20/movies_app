@@ -7,7 +7,8 @@ import '../../manager/text_field_cubit/text_field_cubit.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
-    super.key, required this.loginKey,
+    super.key,
+    required this.loginKey,
   });
   final GlobalKey<FormState> loginKey;
   @override

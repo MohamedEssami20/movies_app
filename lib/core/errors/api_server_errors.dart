@@ -17,7 +17,8 @@ class ApiServerErrors extends Failure {
       case DioExceptionType.connectionError:
         return ApiServerErrors("Enternet connection error, try later.");
       case DioExceptionType.badResponse:
-        return ApiServerErrors.fromStatusCode(dioError.response!.data['status_code']);
+        return ApiServerErrors.fromStatusCode(
+            dioError.response!.data['status_code']);
       case DioExceptionType.unknown:
         return ApiServerErrors("Unknown error, try later.");
 
@@ -34,23 +35,32 @@ class ApiServerErrors extends Failure {
       case 2:
         return ApiServerErrors("Invalid service: this service does not exist.");
       case 3:
-        return ApiServerErrors("Authentication failed: You do not have permissions to access the service.");
+        return ApiServerErrors(
+            "Authentication failed: You do not have permissions to access the service.");
       case 4:
-        return ApiServerErrors("Invalid format: This service doesn't exist in that format.");
+        return ApiServerErrors(
+            "Invalid format: This service doesn't exist in that format.");
       case 5:
-        return ApiServerErrors("Invalid parameters: Your request parameters are incorrect.");
+        return ApiServerErrors(
+            "Invalid parameters: Your request parameters are incorrect.");
       case 6:
-        return ApiServerErrors("Invalid ID: The pre-requisite ID is invalid or not found.");
+        return ApiServerErrors(
+            "Invalid ID: The pre-requisite ID is invalid or not found.");
       case 7:
-        return ApiServerErrors("Invalid API key: You must be granted a valid key.");
+        return ApiServerErrors(
+            "Invalid API key: You must be granted a valid key.");
       case 8:
-        return ApiServerErrors("Duplicate entry: The data you tried to submit already exists.");
+        return ApiServerErrors(
+            "Duplicate entry: The data you tried to submit already exists.");
       case 9:
-        return ApiServerErrors("Service offline: This service is temporarily offline, try again later.");
+        return ApiServerErrors(
+            "Service offline: This service is temporarily offline, try again later.");
       case 10:
-        return ApiServerErrors("Suspended API key: Access to your account has been suspended, contact TMDB.");
+        return ApiServerErrors(
+            "Suspended API key: Access to your account has been suspended, contact TMDB.");
       case 11:
-        return ApiServerErrors("Internal error: Something went wrong, contact TMDB.");
+        return ApiServerErrors(
+            "Internal error: Something went wrong, contact TMDB.");
       case 12:
         return ApiServerErrors("The item/record was updated successfully.");
       case 13:
@@ -68,25 +78,32 @@ class ApiServerErrors extends Failure {
       case 19:
         return ApiServerErrors("Invalid accept header.");
       case 20:
-        return ApiServerErrors("Invalid date range: Should be a range no longer than 14 days.");
+        return ApiServerErrors(
+            "Invalid date range: Should be a range no longer than 14 days.");
       case 21:
-        return ApiServerErrors("Entry not found: The item you are trying to edit cannot be found.");
+        return ApiServerErrors(
+            "Entry not found: The item you are trying to edit cannot be found.");
       case 22:
-        return ApiServerErrors("Invalid page: Pages start at 1 and max at 500.");
+        return ApiServerErrors(
+            "Invalid page: Pages start at 1 and max at 500.");
       case 23:
         return ApiServerErrors("Invalid date: Format needs to be YYYY-MM-DD.");
       case 24:
-        return ApiServerErrors("Timeout: Request to the backend server timed out.");
+        return ApiServerErrors(
+            "Timeout: Request to the backend server timed out.");
       case 25:
-        return ApiServerErrors("Too many requests: You are over the allowed request limit.");
+        return ApiServerErrors(
+            "Too many requests: You are over the allowed request limit.");
       case 26:
         return ApiServerErrors("Username and password required.");
       case 27:
-        return ApiServerErrors("Too many appended response objects: Max is 20.");
+        return ApiServerErrors(
+            "Too many appended response objects: Max is 20.");
       case 28:
         return ApiServerErrors("Invalid timezone: Check documentation.");
       case 29:
-        return ApiServerErrors("Action not confirmed: Please confirm with confirm=true.");
+        return ApiServerErrors(
+            "Action not confirmed: Please confirm with confirm=true.");
       case 30:
         return ApiServerErrors("Invalid username or password.");
       case 31:

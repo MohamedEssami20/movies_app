@@ -94,33 +94,31 @@ class AuthReposImpl extends AuthRepos {
       );
     }
   }
-  
+
   @override
-  Future<Either<Failure, UserEntity>> signInWithFacebook()async {
+  Future<Either<Failure, UserEntity>> signInWithFacebook() async {
     User? user;
-   try{
-     user = await firebaseAuthService.signInWithFacebook();
-     UserEntity userEntity = UserModel.fromfirebase(user: user!);
-     Map<String, dynamic> userData =
+    try {
+      user = await firebaseAuthService.signInWithFacebook();
+      UserEntity userEntity = UserModel.fromfirebase(user: user!);
+      Map<String, dynamic> userData =
           UserModel.fromUserEntity(userEntity).toMap();
       addUserData(
           databaseService: dataBaseService,
           data: userData,
           documentId: user.uid);
       return right(userEntity);
-   }
-   on Failure catch(error){
-     await firebaseAuthService.deleteUser(user);
-     return left(
+    } on Failure catch (error) {
+      await firebaseAuthService.deleteUser(user);
+      return left(
         Failure(
           error.message.toString(),
         ),
       );
-   }
-   catch(error){
-     return left(
+    } catch (error) {
+      return left(
         Failure("there was an error, try later."),
       );
-   }
+    }
   }
 }

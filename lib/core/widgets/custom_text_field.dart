@@ -9,7 +9,9 @@ class CustomTextField extends StatelessWidget {
       required this.textInputType,
       required this.obscureText,
       this.validate,
-      this.suffix, this.controller, this.focusNode});
+      this.suffix,
+      this.controller,
+      this.focusNode});
   final String label;
   final TextInputAction textInputAction;
   final TextInputType textInputType;

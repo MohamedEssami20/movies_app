@@ -20,7 +20,9 @@ class AlreadyHaveAccount extends StatelessWidget {
         TextButton(
           onPressed: () {
             context.read<AuthCubit>().changeAuthState(1);
-            Navigator.pushNamedAndRemoveUntil(context, AuthView.routeName, (_) => false, arguments: 1);
+            Navigator.pushNamedAndRemoveUntil(
+                context, AuthView.routeName, (_) => false,
+                arguments: 1);
           },
           child: Text(
             "Login",

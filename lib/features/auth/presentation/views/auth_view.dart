@@ -9,7 +9,8 @@ import 'widgets/auth_view_body.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({
-    super.key, required this.initialIndex,
+    super.key,
+    required this.initialIndex,
   });
   static const String routeName = "AuthView";
   final int initialIndex;
@@ -22,7 +23,8 @@ class _AuthViewState extends State<AuthView>
   late TabController tabController;
   @override
   void initState() {
-    tabController = TabController(length: 2, vsync: this, initialIndex: widget.initialIndex);
+    tabController = TabController(
+        length: 2, vsync: this, initialIndex: widget.initialIndex);
     super.initState();
   }
 
