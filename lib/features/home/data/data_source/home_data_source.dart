@@ -3,8 +3,7 @@ import 'package:movies_app/features/home/domain/entities/now_playing_entity.dart
 
 import '../../../../core/errors/failure.dart';
 
-abstract class HomeDataSourceRepos {
-
+abstract class HomeRemoteDataSource {
   // create method that get now playing movies from api services;
-  Future<Either<Failure,NowPlayingEntity>> getNowPlayingMovies(); 
+  Future<Either<Failure, NowPlayingEntity>> getNowPlayingMovies();
 }

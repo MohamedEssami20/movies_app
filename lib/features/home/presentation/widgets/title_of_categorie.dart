@@ -10,7 +10,7 @@ class TitleOfCategorie extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 28, left: 20, right: 20),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
