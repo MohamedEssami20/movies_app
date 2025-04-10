@@ -6,5 +6,5 @@ import '../entities/now_playing_entity.dart';
 
 abstract class HomeRepos {
   // create method that get now playing movies;
-  Future<Either<Failure,NowPlayingEntity>> getNowPlayingMovies();
+  Future<Either<Failure,List<NowPlayingEntity>>> getNowPlayingMovies();
 }

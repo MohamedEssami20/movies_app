@@ -13,7 +13,7 @@ final class NowPlayingMoviesFailure extends MoviesState {
   NowPlayingMoviesFailure({required this.errorMessage});
 }
 final class NowPlayingMoviesSuccess extends MoviesState {
-  final NowPlayingEntity nowPlayingEntity;
+  final List<NowPlayingEntity> nowPlayingEntity;
 
   NowPlayingMoviesSuccess({required this.nowPlayingEntity});
 }

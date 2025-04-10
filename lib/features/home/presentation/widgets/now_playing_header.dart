@@ -4,8 +4,9 @@ import 'package:movies_app/core/utils/app_text_styles.dart';
 class NowPlayingHeader extends StatelessWidget {
   const NowPlayingHeader({
     super.key,
+    required this.voteAvarage,
   });
-
+  final double voteAvarage;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -73,7 +74,7 @@ class NowPlayingHeader extends StatelessWidget {
                     size: 15,
                   ),
                   Text(
-                    '8.5',
+                    voteAvarage.toString(),
                     style: AppTextStyles.medium12(context).copyWith(
                       color: Colors.white,
                     ),
