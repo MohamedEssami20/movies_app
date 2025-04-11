@@ -74,7 +74,7 @@ class NowPlayingHeader extends StatelessWidget {
                     size: 15,
                   ),
                   Text(
-                    voteAvarage.toString(),
+                    voteAvarage.toString().substring(0, 3),
                     style: AppTextStyles.medium12(context).copyWith(
                       color: Colors.white,
                     ),

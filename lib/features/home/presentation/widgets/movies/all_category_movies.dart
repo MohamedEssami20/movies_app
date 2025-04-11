@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/now_playing_bloc_consumer.dart';
 import '../new_release_movies_list_view.dart';
 import '../new_release_tvshow_list_view.dart';
+import '../now_playing.dart';
 import '../recomended_movies_list_view.dart';
 import '../title_of_categorie.dart';
 import '../trending_movies_list_view.dart';
@@ -18,7 +18,7 @@ class AllCategories extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          NowPlayingBlocConsumer(),
+          NowPlaying(),
           const TitleOfCategorie(
             title: 'Trending',
           ),
