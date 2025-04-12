@@ -1,7 +1,15 @@
-class NowPlayingEntity {
+
+import 'package:hive_flutter/hive_flutter.dart';
+part 'now_playing_entity.g.dart';
+@HiveType(typeId: 0)
+class NowPlayingEntity extends HiveObject {
+  @HiveField(0)
   final int moviesId;
+  @HiveField(1)
   final String movieTitle;
+  @HiveField(2)
   final double voteAveragemovie;
+  @HiveField(3)
   final String movieImage;
 
   NowPlayingEntity({
