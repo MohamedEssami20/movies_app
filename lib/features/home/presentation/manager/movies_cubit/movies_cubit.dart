@@ -9,18 +9,17 @@ part 'movies_state.dart';
 class MoviesCubit extends Cubit<MoviesState> {
   MoviesCubit(this.homeRepos) : super(MoviesInitial());
   final HomeRepos homeRepos;
-
+  List<NowPlayingEntity> currentNowPlayingEntity = [];
   // create method that get now playing movies;
   Future<void> getNowPlayingMovies() async {
     emit(NowPlayingMoviesLoading());
     final result = await homeRepos.getNowPlayingMovies();
     result.fold(
       (faliure) => emit(NowPlayingMoviesFailure(errorMessage: faliure.message)),
-      (nowPlayingMovies) => emit(
-        NowPlayingMoviesSuccess(
-          nowPlayingEntity: nowPlayingMovies,
-        ),
-      ),
+      (nowPlayingMovies) {
+        currentNowPlayingEntity = nowPlayingMovies;
+        emit(NowPlayingMoviesSuccess(nowPlayingEntity: nowPlayingMovies));
+      }
     );
   }
 }

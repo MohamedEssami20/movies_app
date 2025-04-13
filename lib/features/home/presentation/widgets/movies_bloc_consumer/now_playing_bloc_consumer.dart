@@ -9,11 +9,12 @@ class NowPlayingBlocConsumer extends StatelessWidget {
   const NowPlayingBlocConsumer({super.key});
 
   @override
+
   Widget build(BuildContext context) {
     return BlocConsumer<MoviesCubit, MoviesState>(
       builder: (context, state) {
-        if (state is NowPlayingMoviesSuccess) {
-          return NowPlayingPoster(nowPlayingEntity: state.nowPlayingEntity);
+        if (state is NowPlayingMoviesSuccess || state is NowPlayingMoviesFailure) {
+          return NowPlayingPoster(nowPlayingEntity: context.read<MoviesCubit>().currentNowPlayingEntity,);
         } else if (state is NowPlayingMoviesFailure) {
           return Center(
             child: Text(

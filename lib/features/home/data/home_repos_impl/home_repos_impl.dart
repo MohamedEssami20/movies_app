@@ -1,31 +1,27 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:movies_app/core/errors/failure.dart';
 import 'package:movies_app/features/home/data/data_source/home_data_source.dart';
+import 'package:movies_app/features/home/data/data_source/home_local_data_source.dart';
 import 'package:movies_app/features/home/domain/entities/now_playing_entity.dart';
 import 'package:movies_app/features/home/domain/home_repos/home_repos.dart';
-import '../../../../core/errors/api_server_errors.dart';
+import '../../../../core/func/get_movies_data_impl.dart';
 
 class HomeReposImpl implements HomeRepos {
   HomeRemoteDataSource homeDataSourceRepos;
-  HomeReposImpl({required this.homeDataSourceRepos});
+  HomeLocalDataSource homeLocalDataSource;
+  HomeReposImpl({
+    required this.homeDataSourceRepos,
+    required this.homeLocalDataSource,
+  });
   @override
   Future<Either<Failure, List<NowPlayingEntity>>> getNowPlayingMovies() async {
-    try {
-      final result = await homeDataSourceRepos.getNowPlayingMovies();
-      return right(result);
-    } on DioException catch (error) {
-      log("Dio error= ${error.toString()}");
-      return left(
-        ApiServerErrors.fromDioError(error),
-      );
-    } catch (error) {
-      log("global error= ${error.toString()}");
-      return Left(
-        Failure("Opps there was an error, try later."),
-      );
-    }
+    Future<List<NowPlayingEntity>> homeRemoteSource =
+        homeDataSourceRepos.getNowPlayingMovies();
+    List<NowPlayingEntity> homeLocalSource =
+        homeLocalDataSource.getNowPlayingMovies();
+    return getMoviesDataImpl(
+      homeRemoteDataSource: homeRemoteSource,
+      homeLocalDataSource: homeLocalSource,
+    );
   }
 }
