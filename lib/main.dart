@@ -10,6 +10,7 @@ import 'package:movies_app/core/services/get_it_service.dart';
 import 'package:movies_app/core/services/shared_pref_service.dart';
 import 'package:movies_app/core/utils/bloc_observer.dart';
 import 'package:movies_app/firebase_options.dart';
+import 'core/services/hive_service.dart';
 import 'features/auth/domain/repos/auth_repos.dart';
 import 'features/auth/presentation/manager/Auth_cubit/auth_cubit.dart';
 
@@ -20,6 +21,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await SharedPrefService().init();
+  await HiveService.init();
   setupGetIt();
   runApp(
     DevicePreview(
