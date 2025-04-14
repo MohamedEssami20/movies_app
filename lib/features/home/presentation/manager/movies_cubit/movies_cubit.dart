@@ -15,11 +15,36 @@ class MoviesCubit extends Cubit<MoviesState> {
     emit(NowPlayingMoviesLoading());
     final result = await homeRepos.getNowPlayingMovies();
     result.fold(
-      (faliure) => emit(NowPlayingMoviesFailure(errorMessage: faliure.message)),
-      (nowPlayingMovies) {
-        currentNowPlayingEntity = nowPlayingMovies;
-        emit(NowPlayingMoviesSuccess(nowPlayingEntity: nowPlayingMovies));
+        (faliure) =>
+            emit(NowPlayingMoviesFailure(errorMessage: faliure.message)),
+        (nowPlayingMovies) {
+      final bool iscurrentMoviesEqualNewMovies= checkIfCurrentMoviesEqualNewMovies(currentNowPlayingEntity, nowPlayingMovies);
+      if(iscurrentMoviesEqualNewMovies){
+        // trigger current movies if equal new movies;
+        emit(NowPlayingMoviesSuccess(nowPlayingEntity: currentNowPlayingEntity),);
       }
-    );
+      else{
+        currentNowPlayingEntity.clear();
+        currentNowPlayingEntity.addAll(nowPlayingMovies);
+        emit(NowPlayingMoviesSuccess(nowPlayingEntity: currentNowPlayingEntity),);
+      }
+    });
+  }
+
+  // create method that check if current movies equal new movies;
+  bool checkIfCurrentMoviesEqualNewMovies(
+      List<NowPlayingEntity> currentMovies, List<NowPlayingEntity> newMovies) {
+    if (currentMovies.isEmpty || newMovies.isEmpty) {
+      // firsr start app;
+      return false;
+    }
+    for (int counter = 0;
+        counter < currentMovies.length && counter < newMovies.length;
+        counter++) {
+      if (currentMovies[counter].moviesId != newMovies[counter].moviesId) {
+        return false;
+      } // check if current movies equal new movies;
+    }
+    return true;
   }
 }
