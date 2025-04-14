@@ -7,7 +7,8 @@ import 'home_local_data_source.dart';
 class HomeLocalDataSouceImpl implements HomeLocalDataSource {
   @override
   List<NowPlayingEntity> getNowPlayingMovies() {
-    Box<NowPlayingEntity> box = Hive.box<NowPlayingEntity>(AppConstants.nowPlayingKey);
+    Box<NowPlayingEntity> box =
+        Hive.box<NowPlayingEntity>(AppConstants.nowPlayingKey);
     return box.values.toList();
   }
 }

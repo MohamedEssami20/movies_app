@@ -9,13 +9,13 @@ class HiveService {
     Hive.registerAdapter(
       NowPlayingEntityAdapter(),
     );
-   await _initTypeAdapters();
-   await _openAllBoxes();
+    await _initTypeAdapters();
+    await _openAllBoxes();
   }
 }
 
 // create method that open all Boxes;
-Future<void>_openAllBoxes()async{
+Future<void> _openAllBoxes() async {
   await Hive.openBox<NowPlayingEntity>(AppConstants.nowPlayingKey);
 }
 
@@ -26,9 +26,8 @@ List<TypeAdapter> typeAdapters = <TypeAdapter>[
 // create method that init all type adapters;
 Future<void> _initTypeAdapters() async {
   for (final typeAdapter in typeAdapters) {
-    if(!Hive.isAdapterRegistered(typeAdapter.typeId)){
+    if (!Hive.isAdapterRegistered(typeAdapter.typeId)) {
       Hive.registerAdapter(typeAdapter);
     }
   }
 }
-

@@ -24,4 +24,9 @@ class HomeReposImpl implements HomeRepos {
       homeLocalDataSource: homeLocalSource,
     );
   }
+
+  @override
+  Future<Either<Failure, List<NowPlayingEntity>>> getTrendingMovies() {
+    throw UnimplementedError();
+  }
 }

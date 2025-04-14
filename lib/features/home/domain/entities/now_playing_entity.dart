@@ -1,6 +1,6 @@
-
 import 'package:hive_flutter/hive_flutter.dart';
 part 'now_playing_entity.g.dart';
+
 @HiveType(typeId: 0)
 class NowPlayingEntity extends HiveObject {
   @HiveField(0)
