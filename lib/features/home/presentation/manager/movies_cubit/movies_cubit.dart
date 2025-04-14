@@ -18,20 +18,15 @@ class MoviesCubit extends Cubit<MoviesState> {
         (faliure) =>
             emit(NowPlayingMoviesFailure(errorMessage: faliure.message)),
         (nowPlayingMovies) {
-      final bool iscurrentMoviesEqualNewMovies =
-          checkIfCurrentMoviesEqualNewMovies(
-              currentNowPlayingEntity, nowPlayingMovies);
-      if (iscurrentMoviesEqualNewMovies) {
+      final bool iscurrentMoviesEqualNewMovies= checkIfCurrentMoviesEqualNewMovies(currentNowPlayingEntity, nowPlayingMovies);
+      if(iscurrentMoviesEqualNewMovies){
         // trigger current movies if equal new movies;
-        emit(
-          NowPlayingMoviesSuccess(nowPlayingEntity: currentNowPlayingEntity),
-        );
-      } else {
+        emit(NowPlayingMoviesSuccess(nowPlayingEntity: currentNowPlayingEntity),);
+      }
+      else{
         currentNowPlayingEntity.clear();
         currentNowPlayingEntity.addAll(nowPlayingMovies);
-        emit(
-          NowPlayingMoviesSuccess(nowPlayingEntity: currentNowPlayingEntity),
-        );
+        emit(NowPlayingMoviesSuccess(nowPlayingEntity: currentNowPlayingEntity),);
       }
     });
   }

@@ -2,15 +2,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:movies_app/core/errors/failure.dart';
-
-import '../../features/home/domain/entities/now_playing_entity.dart';
 import '../errors/api_server_errors.dart';
 
-Future<Either<Failure, List<NowPlayingEntity>>> getMoviesDataImpl({
-  required Future<List<NowPlayingEntity>> homeRemoteDataSource,
-  required List<NowPlayingEntity> homeLocalDataSource,
+Future<Either<Failure, List<T>>> getMoviesDataImpl<T>({
+  required Future<List<T>> homeRemoteDataSource,
+  required List<T> homeLocalDataSource,
 }) async {
-  List<NowPlayingEntity> nowPlayingEntity;
+  List<T> nowPlayingEntity;
   try {
     nowPlayingEntity = await homeRemoteDataSource;
     return right(nowPlayingEntity);
