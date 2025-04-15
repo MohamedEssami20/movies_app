@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/features/home/domain/home_repos/home_repos.dart';
 
+import '../../../domain/entities/base_movies_entity.dart';
 import '../../../domain/entities/now_playing_entity.dart';
 
 part 'movies_state.dart';
@@ -32,8 +33,8 @@ class MoviesCubit extends Cubit<MoviesState> {
   }
 
   // create method that check if current movies equal new movies;
-  bool checkIfCurrentMoviesEqualNewMovies(
-      List<NowPlayingEntity> currentMovies, List<NowPlayingEntity> newMovies) {
+  bool checkIfCurrentMoviesEqualNewMovies<T extends BaseMoviesEntity>(
+      List<T> currentMovies, List<T> newMovies) {
     if (currentMovies.isEmpty || newMovies.isEmpty) {
       // firsr start app;
       return false;
@@ -41,7 +42,7 @@ class MoviesCubit extends Cubit<MoviesState> {
     for (int counter = 0;
         counter < currentMovies.length && counter < newMovies.length;
         counter++) {
-      if (currentMovies[counter].moviesId != newMovies[counter].moviesId) {
+      if (currentMovies[counter].baseMoviesId != newMovies[counter].baseMoviesId) {
         return false;
       } // check if current movies equal new movies;
     }

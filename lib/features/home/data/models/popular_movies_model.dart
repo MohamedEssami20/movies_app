@@ -1,6 +1,6 @@
 import '../../domain/entities/popular_movies_entity.dart';
 
-class PopularMoviesModel extends PopularMoviesEntity{
+class PopularMoviesModel extends PopularMoviesEntity {
   bool? adult;
   String? backdropPath;
   List<int>? genreIds;
@@ -31,7 +31,10 @@ class PopularMoviesModel extends PopularMoviesEntity{
     this.video,
     this.voteAverage,
     this.voteCount,
-  }):super(moiveId: id??0, movieTitle: title??"No name", moviePoster: posterPath??"");
+  }) : super(
+            movieId: id ?? 0,
+            movieTitle: title ?? "No name",
+            moviePoster: posterPath ?? "");
 
   factory PopularMoviesModel.fromJson(Map<String, dynamic> json) {
     return PopularMoviesModel(

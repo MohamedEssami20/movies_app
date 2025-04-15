@@ -1,8 +1,10 @@
 import 'package:hive_flutter/hive_flutter.dart';
+
+import 'base_movies_entity.dart';
 part 'now_playing_entity.g.dart';
 
 @HiveType(typeId: 0)
-class NowPlayingEntity extends HiveObject {
+class NowPlayingEntity extends HiveObject implements BaseMoviesEntity {
   @HiveField(0)
   final int moviesId;
   @HiveField(1)
@@ -17,7 +19,11 @@ class NowPlayingEntity extends HiveObject {
     required this.movieTitle,
     required this.voteAveragemovie,
     required this.movieImage,
-  });
+  })
+      : super();
+
+    @override
+  int get baseMoviesId => moviesId;
 
   factory NowPlayingEntity.fromJson(Map<String, dynamic> json) {
     return NowPlayingEntity(
@@ -27,4 +33,6 @@ class NowPlayingEntity extends HiveObject {
       movieImage: json['poster_path'],
     );
   }
+  
+  
 }

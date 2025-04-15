@@ -17,7 +17,7 @@ class PopularMoviesEntityAdapter extends TypeAdapter<PopularMoviesEntity> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return PopularMoviesEntity(
-      moiveId: fields[0] as int,
+      movieId: fields[0] as int,
       movieTitle: fields[1] as String,
       moviePoster: fields[2] as String,
     );
@@ -28,7 +28,7 @@ class PopularMoviesEntityAdapter extends TypeAdapter<PopularMoviesEntity> {
     writer
       ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.moiveId)
+      ..write(obj.movieId)
       ..writeByte(1)
       ..write(obj.movieTitle)
       ..writeByte(2)
