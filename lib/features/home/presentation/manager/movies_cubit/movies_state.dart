@@ -19,3 +19,18 @@ final class NowPlayingMoviesSuccess extends MoviesState {
 
   NowPlayingMoviesSuccess({required this.nowPlayingEntity});
 }
+
+// create all states of Popular movies;
+final class PopularMoviesLoading extends MoviesState {}
+
+final class PopularMoviesSuccess extends MoviesState {
+  final List<PopularMoviesEntity> popularMovies;
+
+  PopularMoviesSuccess({required this.popularMovies});
+}
+
+final class PopularMoviesFailure extends MoviesState {
+  final String errorMessage;
+
+  PopularMoviesFailure({required this.errorMessage});
+}
