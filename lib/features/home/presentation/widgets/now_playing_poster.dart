@@ -1,10 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shimmer/shimmer.dart';
 import '../../../../core/utils/api_end_points.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/utils/assets.dart';
+import '../../../../core/widgets/custom_cached_network_image.dart';
+import '../../../../core/widgets/custom_shimmer_widget.dart';
 import '../../domain/entities/now_playing_entity.dart';
 import 'now_playing_header.dart';
 
@@ -20,44 +21,12 @@ class NowPlayingPoster extends StatelessWidget {
     return Stack(
       children: [
         isLoading
-            ? Shimmer.fromColors(
-                baseColor: Colors.grey.shade300,
-                highlightColor: Colors.grey.shade100,
-                direction: ShimmerDirection.ltr,
-                period: Duration(milliseconds: 1200),
-                child: AspectRatio(
-                  aspectRatio: 1.6,
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.white,
-                  ),
-                ),
+            ? CustomShimmer(
+                aspectRatio: 1.6,
               )
-            : CachedNetworkImage(
+            : CustomCachedNetworkImage(
                 imageUrl: ApiEndPoints.imagebaseUrl +
                     nowPlayingEntity[0].movieImage.toString(),
-                fit: BoxFit.scaleDown,
-                errorWidget: (context, url, error) {
-                  return Icon(
-                    Icons.error_outline,
-                    color: Colors.white,
-                  );
-                },
-                placeholder: (context, url) {
-                  return Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: Colors.grey.shade100,
-                    direction: ShimmerDirection.ltr,
-                    period: Duration(milliseconds: 1200),
-                    child: AspectRatio(
-                      aspectRatio: 1.6,
-                      child: Container(
-                        width: double.infinity,
-                        color: Colors.white,
-                      ),
-                    ),
-                  );
-                },
               ),
         if (!isLoading)
           NowPlayingHeader(
