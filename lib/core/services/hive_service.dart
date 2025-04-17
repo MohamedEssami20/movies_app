@@ -7,6 +7,8 @@ import '../../features/home/domain/entities/popular_movies_entity.dart';
 class HiveService {
   static Future<void> init() async {
     await Hive.initFlutter();
+    Hive.registerAdapter(NowPlayingEntityAdapter(),);
+    Hive.registerAdapter(PopularMoviesEntityAdapter(),);
     await _initTypeAdapters();
     await _openAllBoxes();
   }

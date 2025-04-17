@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/utils/api_end_points.dart';
@@ -17,16 +16,19 @@ class NowPlayingPoster extends StatelessWidget {
   final List<NowPlayingEntity> nowPlayingEntity;
   @override
   Widget build(BuildContext context) {
-    final isLoading = nowPlayingEntity.isEmpty;
+    final bool isLoading = nowPlayingEntity.isEmpty;
     return Stack(
       children: [
         isLoading
             ? CustomShimmer(
                 aspectRatio: 1.6,
               )
-            : CustomCachedNetworkImage(
-                imageUrl: ApiEndPoints.imagebaseUrl +
-                    nowPlayingEntity[0].movieImage.toString(),
+            : ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: CustomCachedNetworkImage(
+                  imageUrl: ApiEndPoints.imagebaseUrl +
+                      nowPlayingEntity[0].movieImage.toString(),
+                ),
               ),
         if (!isLoading)
           NowPlayingHeader(

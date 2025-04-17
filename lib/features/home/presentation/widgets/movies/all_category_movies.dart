@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import '../movies_bloc_consumer/trending_movies_bloc_consumer.dart';
 import '../new_release_movies_list_view.dart';
 import '../new_release_tvshow_list_view.dart';
 import '../now_playing.dart';
 import '../recomended_movies_list_view.dart';
 import '../title_of_categorie.dart';
-import '../trending_movies_list_view.dart';
 
 class AllCategories extends StatelessWidget {
   const AllCategories({
@@ -25,7 +25,7 @@ class AllCategories extends StatelessWidget {
           SizedBox(
             height: 12,
           ),
-          TrendingMoviesListView(),
+         TrendingMoviesBlocConsumer(),
           const TitleOfCategorie(
             title: 'New Releases - Movies',
           ),

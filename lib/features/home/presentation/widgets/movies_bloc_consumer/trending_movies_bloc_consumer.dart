@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/features/home/presentation/manager/movies_cubit/movies_cubit.dart';
-
+import 'package:movies_app/features/home/presentation/manager/popular_movies_cubit/popular_movies_cubit.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/custom_error_snack_bar.dart';
-import '../now_playing_poster.dart';
-import '../trending_movies_item.dart';
+import '../trending_movies_list_view.dart';
 
 class TrendingMoviesBlocConsumer extends StatelessWidget {
   const TrendingMoviesBlocConsumer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MoviesCubit, MoviesState>(
+    return BlocConsumer<PopularMoviesCubit, PopularMoviesState>(
       builder: (context, state) {
-        if (state is PopularMoviesLoading ||
-            state is PopularMoviesSuccess) {
-          return TrendingMoviesItem();
+        if (state is PopularMoviesLoading || state is PopularMoviesSuccess) {
+          return TrendingMoviesListView(
+            popularMovies:
+                context.read<PopularMoviesCubit>().currentPoupularMovies,
+          );
         } else if (state is PopularMoviesFailure) {
           return Center(
             child: Text(
@@ -26,8 +26,8 @@ class TrendingMoviesBlocConsumer extends StatelessWidget {
             ),
           );
         } else {
-          return NowPlayingPoster(
-            nowPlayingEntity: [],
+          return TrendingMoviesListView(
+            popularMovies: [],
           );
         }
       },

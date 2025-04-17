@@ -1,17 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/features/home/domain/entities/popular_movies_entity.dart';
 import 'package:movies_app/features/home/domain/home_repos/home_repos.dart';
 import '../../../../../core/func/check_if_new_movies_equal_current_movies.dart';
 import '../../../domain/entities/now_playing_entity.dart';
 
-part 'movies_state.dart';
+part 'now_playing_movies_state.dart';
 
-class MoviesCubit extends Cubit<MoviesState> {
-  MoviesCubit(this.homeRepos) : super(MoviesInitial());
+class NowPlayingMoviesCubit extends Cubit<NowPlayingMoviesState> {
+  NowPlayingMoviesCubit(this.homeRepos) : super(MoviesInitial());
   final HomeRepos homeRepos;
   List<NowPlayingEntity> currentNowPlayingEntity = [];
-  List<PopularMoviesEntity> currentPoupularMovies = [];
 
   // create method that get now playing movies;
   Future<void> getNowPlayingMovies() async {
@@ -34,33 +32,6 @@ class MoviesCubit extends Cubit<MoviesState> {
         currentNowPlayingEntity.addAll(nowPlayingMovies);
         emit(
           NowPlayingMoviesSuccess(nowPlayingEntity: currentNowPlayingEntity),
-        );
-      }
-    });
-  }
-
-  // create method that return popular movies;
-  Future<void> getPopularMovies() async {
-    emit(PopularMoviesLoading());
-
-    final results = await homeRepos.getTrendingMovies();
-    results.fold((failure) {
-      emit(
-        PopularMoviesFailure(errorMessage: failure.message),
-      );
-    }, (popularMovies) {
-      final bool iscurrentMoviesEqualNewMovies =
-          checkIfCurrentMoviesEqualNewMovies(
-              currentPoupularMovies, popularMovies);
-      if (iscurrentMoviesEqualNewMovies) {
-        emit(
-          PopularMoviesSuccess(popularMovies: currentPoupularMovies),
-        );
-      } else {
-        currentPoupularMovies.clear();
-        currentPoupularMovies.addAll(popularMovies);
-        emit(
-          PopularMoviesSuccess(popularMovies: currentPoupularMovies),
         );
       }
     });

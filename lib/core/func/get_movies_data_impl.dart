@@ -1,4 +1,6 @@
 // creat method that get movies from api and local storage ;
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:movies_app/core/errors/failure.dart';
@@ -8,21 +10,22 @@ Future<Either<Failure, List<T>>> getMoviesDataImpl<T>({
   required Future<List<T>> homeRemoteDataSource,
   required List<T> homeLocalDataSource,
 }) async {
-  List<T> nowPlayingEntity;
+  List<T> moviesEntity;
   try {
-    nowPlayingEntity = await homeRemoteDataSource;
-    return right(nowPlayingEntity);
+    moviesEntity = await homeRemoteDataSource;
+    return right(moviesEntity);
   } on DioException catch (error) {
-    nowPlayingEntity = homeLocalDataSource;
-    if (nowPlayingEntity.isNotEmpty) {
-      return right(nowPlayingEntity);
+    moviesEntity = homeLocalDataSource;
+    if (moviesEntity.isNotEmpty) {
+      return right(moviesEntity);
     } else {
       return left(
         ApiServerErrors.fromDioError(error),
       );
     }
   } catch (error) {
-    nowPlayingEntity = homeLocalDataSource;
+    moviesEntity = homeLocalDataSource;
+    log(" error is= $error");
     return Left(
       Failure("Opps there was an error, try later."),
     );
