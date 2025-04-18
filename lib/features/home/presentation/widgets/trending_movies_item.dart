@@ -8,14 +8,12 @@ class TrendingMoviesItem extends StatelessWidget {
     super.key,
     required this.imageUrl,
     required this.movieTitle,
-    required this.isLoading,
   });
   final String imageUrl, movieTitle;
-  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 150,
+      width: 160,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         spacing: 8,
@@ -24,42 +22,49 @@ class TrendingMoviesItem extends StatelessWidget {
             borderRadius: BorderRadius.all(
               Radius.circular(12),
             ),
-            child: SizedBox(
-              height: 165,
-              width: 150,
-              child: CachedNetworkImage(
-                imageUrl: imageUrl,
+            child: AspectRatio(
+              aspectRatio: 0.80,
+              child: FittedBox(
                 fit: BoxFit.fill,
-                errorWidget: (context, url, error) {
-                  return Icon(
-                    Icons.error_outline,
-                    color: Colors.white,
-                  );
-                },
-                placeholder: (context, url) {
-                  return Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: Colors.grey.shade100,
-                    direction: ShimmerDirection.ltr,
-                    period: Duration(milliseconds: 1200),
-                    child: Container(
-                      width: double.infinity,
-                      color: Colors.white,
-                    ),
-                  );
-                },
+                child: SizedBox(
+                  height: 165,
+                  width: 160,
+                  child: CachedNetworkImage(
+                    imageUrl: imageUrl,
+                    memCacheHeight: 165,
+                    memCacheWidth: 160,
+                    fit: BoxFit.fill,
+                    errorWidget: (context, url, error) {
+                      return Icon(
+                        Icons.error_outline,
+                        color: Colors.white,
+                      );
+                    },
+                    placeholder: (context, url) {
+                      return Shimmer.fromColors(
+                        baseColor: Colors.grey.shade300,
+                        highlightColor: Colors.grey.shade100,
+                        direction: ShimmerDirection.ltr,
+                        period: Duration(milliseconds: 1200),
+                        child: Container(
+                          width: double.infinity,
+                          color: Colors.white,
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
             ),
           ),
-          if (!isLoading)
-            Text(
-              movieTitle,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: AppTextStyles.semiBold12(context)
-                  .copyWith(color: Colors.white),
-            ),
+          Text(
+            movieTitle,
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style:
+                AppTextStyles.semiBold12(context).copyWith(color: Colors.white),
+          ),
         ],
       ),
     );

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/api_end_points.dart';
 import '../../domain/entities/popular_movies_entity.dart';
@@ -12,7 +11,7 @@ class TrendingMoviesListView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 20),
       child: SizedBox(
-        height: 216,
+        height: 250,
         child: ListView.builder(
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
@@ -24,7 +23,6 @@ class TrendingMoviesListView extends StatelessWidget {
                   imageUrl: ApiEndPoints.imagebaseUrl +
                       popularMovies[index].moviePoster.toString(),
                   movieTitle: popularMovies[index].movieTitle,
-                  isLoading: popularMovies.isEmpty,
                 ),
               );
             }),
