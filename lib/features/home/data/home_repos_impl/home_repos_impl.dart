@@ -4,6 +4,7 @@ import 'package:movies_app/features/home/data/data_source/home_data_source.dart'
 import 'package:movies_app/features/home/data/data_source/home_local_data_source.dart';
 import 'package:movies_app/features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
 import 'package:movies_app/features/home/domain/entities/popular_movies_entity/popular_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
 import 'package:movies_app/features/home/domain/home_repos/home_repos.dart';
 import '../../../../core/func/get_movies_data_impl.dart';
 
@@ -14,6 +15,8 @@ class HomeReposImpl implements HomeRepos {
     required this.homeDataSourceRepos,
     required this.homeLocalDataSource,
   });
+
+  // implementation of get Now Playing movies;
   @override
   Future<Either<Failure, List<NowPlayingEntity>>> getNowPlayingMovies() async {
     Future<List<NowPlayingEntity>> homeRemoteSource =
@@ -26,6 +29,7 @@ class HomeReposImpl implements HomeRepos {
     );
   }
 
+  // implementation of get popular movies;
   @override
   Future<Either<Failure, List<PopularMoviesEntity>>> getPopularMovies() {
     Future<List<PopularMoviesEntity>> homeRemoteSource =
@@ -37,4 +41,17 @@ class HomeReposImpl implements HomeRepos {
       homeLocalDataSource: homeLocalSource,
     );
   }
+
+  // iplmentation of get trending movies;
+  @override
+  Future<Either<Failure, List<TrendingMoviesEntity>>> getTrendingMovies() {
+    Future<List<TrendingMoviesEntity>> homeRemoteSource =
+        homeDataSourceRepos.getTrendingMovies();
+    List<TrendingMoviesEntity> homeLocalSource =
+        homeLocalDataSource.getTrendingMovies();
+    return getMoviesDataImpl(
+      homeRemoteDataSource: homeRemoteSource,
+      homeLocalDataSource: homeLocalSource,
+    );
+  } 
 }
