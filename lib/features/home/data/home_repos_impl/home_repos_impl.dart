@@ -27,11 +27,11 @@ class HomeReposImpl implements HomeRepos {
   }
 
   @override
-  Future<Either<Failure, List<PopularMoviesEntity>>> getTrendingMovies() {
+  Future<Either<Failure, List<PopularMoviesEntity>>> getPopularMovies() {
     Future<List<PopularMoviesEntity>> homeRemoteSource =
-        homeDataSourceRepos.getTrendingMovies();
+        homeDataSourceRepos.getPopularMovies();
     List<PopularMoviesEntity> homeLocalSource =
-        homeLocalDataSource.getTrendingMovies();
+        homeLocalDataSource.getPopularMovies();
     return getMoviesDataImpl(
       homeRemoteDataSource: homeRemoteSource,
       homeLocalDataSource: homeLocalSource,

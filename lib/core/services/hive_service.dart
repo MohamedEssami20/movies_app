@@ -3,6 +3,7 @@ import 'package:movies_app/core/utils/constant.dart';
 
 import '../../features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
 import '../../features/home/domain/entities/popular_movies_entity/popular_movies_entity.dart';
+import '../../features/home/domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
 
 class HiveService {
   static Future<void> init() async {
@@ -13,6 +14,9 @@ class HiveService {
     Hive.registerAdapter(
       PopularMoviesEntityAdapter(),
     );
+    Hive.registerAdapter(
+      TrendingMoviesEntityAdapter(),
+    );
     await _initTypeAdapters();
     await _openAllBoxes();
   }
@@ -22,11 +26,13 @@ class HiveService {
 Future<void> _openAllBoxes() async {
   await Hive.openBox<NowPlayingEntity>(AppConstants.nowPlayingKey);
   await Hive.openBox<PopularMoviesEntity>(AppConstants.popularMovieKey);
+  await Hive.openBox<TrendingMoviesEntity>(AppConstants.trendingMovieKey);
 }
 
 List<TypeAdapter> typeAdapters = <TypeAdapter>[
   NowPlayingEntityAdapter(),
   PopularMoviesEntityAdapter(),
+  TrendingMoviesEntityAdapter(),
 ];
 
 // create method that init all type adapters;

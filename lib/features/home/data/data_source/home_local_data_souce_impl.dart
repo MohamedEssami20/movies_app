@@ -16,7 +16,7 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
 
   // implementation of get trending movies from local storage;
   @override
-  List<PopularMoviesEntity> getTrendingMovies() {
+  List<PopularMoviesEntity> getPopularMovies() {
     Box<PopularMoviesEntity> box =
         Hive.box<PopularMoviesEntity>(AppConstants.popularMovieKey);
     return box.values.toList();

@@ -5,8 +5,10 @@ import 'package:movies_app/features/home/domain/entities/popular_movies_entity/p
 import '../../../../core/func/save_movies_local.dart';
 import '../../../../core/services/api_services.dart';
 import '../../../../core/utils/api_end_points.dart';
+import '../../domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
 import '../models/now_playing_movies_model.dart';
 import '../models/popular_movies_model.dart';
+import '../models/trending_movies_model.dart';
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   final ApiServices apiServices;
@@ -28,7 +30,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
   // ceate method that get trending movies form data source;
   @override
-  Future<List<PopularMoviesEntity>> getTrendingMovies() async {
+  Future<List<PopularMoviesEntity>> getPopularMovies() async {
     List<PopularMoviesEntity> popularMoviesEntity = [];
     final results = await apiServices.get(ApiEndPoints.popularMovies);
     for (var movies in results['results']) {
@@ -37,5 +39,18 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     await saveMoviesLocal(
         boxName: AppConstants.popularMovieKey, results: popularMoviesEntity);
     return popularMoviesEntity;
+  }
+
+  // implement get trending movies;
+  @override
+  Future<List<TrendingMoviesEntity>> getTrendingMovies()async {
+    List<TrendingMoviesEntity> trendingMoviesEntity = [];
+    final results = await apiServices.get(ApiEndPoints.trendingMovies);
+    for (var movies in results['results']) {
+      trendingMoviesEntity.add(TrendingMoviesModel.fromJson(movies));
+    }
+    await saveMoviesLocal(
+        boxName: AppConstants.trendingMovieKey, results: trendingMoviesEntity);
+    return trendingMoviesEntity;
   }
 }

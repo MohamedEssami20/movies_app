@@ -1,4 +1,6 @@
-class TrendingMoviesModel {
+import '../../domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
+
+class TrendingMoviesModel extends TrendingMoviesEntity {
   String? backdropPath;
   int? id;
   String? title;
@@ -31,7 +33,7 @@ class TrendingMoviesModel {
     this.video,
     this.voteAverage,
     this.voteCount,
-  });
+  }) :super(movieId: id??0, movieTitle: title??"", moviePoster:posterPath??"");
 
   factory TrendingMoviesModel.fromJson(Map<String, dynamic> json) {
     return TrendingMoviesModel(

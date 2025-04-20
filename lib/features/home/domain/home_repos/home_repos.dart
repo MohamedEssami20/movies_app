@@ -8,5 +8,5 @@ abstract class HomeRepos {
   // create method that get now playing movies;
   Future<Either<Failure, List<NowPlayingEntity>>> getNowPlayingMovies();
   // creat method that get Trending movies;
-  Future<Either<Failure, List<PopularMoviesEntity>>> getTrendingMovies();
+  Future<Either<Failure, List<PopularMoviesEntity>>> getPopularMovies();
 }
