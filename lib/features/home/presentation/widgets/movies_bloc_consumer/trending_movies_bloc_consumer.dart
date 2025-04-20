@@ -5,15 +5,15 @@ import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/custom_error_snack_bar.dart';
 import '../trending_movies_list_view.dart';
 
-class TrendingMoviesBlocConsumer extends StatelessWidget {
-  const TrendingMoviesBlocConsumer({super.key});
+class PopularMoviesBlocConsumer extends StatelessWidget {
+  const PopularMoviesBlocConsumer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PopularMoviesCubit, PopularMoviesState>(
       builder: (context, state) {
         if (state is PopularMoviesLoading || state is PopularMoviesSuccess) {
-          return TrendingMoviesListView(
+          return PopularMoviesListView(
             popularMovies:
                 context.read<PopularMoviesCubit>().currentPoupularMovies,
           );
@@ -26,7 +26,7 @@ class TrendingMoviesBlocConsumer extends StatelessWidget {
             ),
           );
         } else {
-          return TrendingMoviesListView(
+          return PopularMoviesListView(
             popularMovies: [],
           );
         }

@@ -3,8 +3,8 @@ import 'package:movies_app/core/utils/api_end_points.dart';
 import '../../domain/entities/popular_movies_entity/popular_movies_entity.dart';
 import 'trending_movies_item.dart';
 
-class TrendingMoviesListView extends StatelessWidget {
-  const TrendingMoviesListView({super.key, required this.popularMovies});
+class PopularMoviesListView extends StatelessWidget {
+  const PopularMoviesListView({super.key, required this.popularMovies});
   final List<PopularMoviesEntity> popularMovies;
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class TrendingMoviesListView extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.only(right: 12),
-                child: TrendingMoviesItem(
+                child: PopularMoviesItem(
                   imageUrl: ApiEndPoints.imagebaseUrl +
                       popularMovies[index].moviePoster.toString(),
                   movieTitle: popularMovies[index].movieTitle,

@@ -20,14 +20,14 @@ class AllCategories extends StatelessWidget {
         children: [
           NowPlaying(),
           const TitleOfCategorie(
-            title: 'Trending',
+            title: 'Popular',
           ),
           SizedBox(
             height: 12,
           ),
-          TrendingMoviesBlocConsumer(),
+          PopularMoviesBlocConsumer(),
           const TitleOfCategorie(
-            title: 'New Releases - Movies',
+            title: 'Trending',
           ),
           SizedBox(
             height: 12,
