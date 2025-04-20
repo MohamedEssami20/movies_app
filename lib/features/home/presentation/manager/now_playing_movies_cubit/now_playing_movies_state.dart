@@ -19,4 +19,3 @@ final class NowPlayingMoviesSuccess extends NowPlayingMoviesState {
 
   NowPlayingMoviesSuccess({required this.nowPlayingEntity});
 }
-

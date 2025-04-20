@@ -1,7 +1,7 @@
 import 'package:movies_app/core/utils/constant.dart';
 import 'package:movies_app/features/home/data/data_source/home_data_source.dart';
-import 'package:movies_app/features/home/domain/entities/now_playing_entity.dart';
-import 'package:movies_app/features/home/domain/entities/popular_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
+import 'package:movies_app/features/home/domain/entities/popular_movies_entity/popular_movies_entity.dart';
 import '../../../../core/func/save_movies_local.dart';
 import '../../../../core/services/api_services.dart';
 import '../../../../core/utils/api_end_points.dart';

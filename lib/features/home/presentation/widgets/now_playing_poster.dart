@@ -5,7 +5,7 @@ import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/utils/assets.dart';
 import '../../../../core/widgets/custom_cached_network_image.dart';
 import '../../../../core/widgets/custom_shimmer_widget.dart';
-import '../../domain/entities/now_playing_entity.dart';
+import '../../domain/entities/now_palying_entity/now_playing_entity.dart';
 import 'now_playing_header.dart';
 
 class NowPlayingPoster extends StatelessWidget {

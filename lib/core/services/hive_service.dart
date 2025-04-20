@@ -1,14 +1,18 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies_app/core/utils/constant.dart';
 
-import '../../features/home/domain/entities/now_playing_entity.dart';
-import '../../features/home/domain/entities/popular_movies_entity.dart';
+import '../../features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
+import '../../features/home/domain/entities/popular_movies_entity/popular_movies_entity.dart';
 
 class HiveService {
   static Future<void> init() async {
     await Hive.initFlutter();
-    Hive.registerAdapter(NowPlayingEntityAdapter(),);
-    Hive.registerAdapter(PopularMoviesEntityAdapter(),);
+    Hive.registerAdapter(
+      NowPlayingEntityAdapter(),
+    );
+    Hive.registerAdapter(
+      PopularMoviesEntityAdapter(),
+    );
     await _initTypeAdapters();
     await _openAllBoxes();
   }

@@ -43,7 +43,7 @@ class HomeMobileLayout extends StatelessWidget {
                 )..getNowPlayingMovies(),
               ),
               BlocProvider(
-                create: (context) =>PopularMoviesCubit (
+                create: (context) => PopularMoviesCubit(
                   homeRepos: getIt.get<HomeRepos>(),
                 )..getPopularMovies(),
               ),

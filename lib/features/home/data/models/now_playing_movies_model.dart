@@ -1,4 +1,4 @@
-import 'package:movies_app/features/home/domain/entities/now_playing_entity.dart';
+import 'package:movies_app/features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
 
 class NowPlayingMoviesModel extends NowPlayingEntity {
   bool? adult;

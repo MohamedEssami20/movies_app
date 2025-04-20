@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/api_end_points.dart';
-import '../../domain/entities/popular_movies_entity.dart';
+import '../../domain/entities/popular_movies_entity/popular_movies_entity.dart';
 import 'trending_movies_item.dart';
 
 class TrendingMoviesListView extends StatelessWidget {

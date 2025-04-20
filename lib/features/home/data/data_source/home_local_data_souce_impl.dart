@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:movies_app/features/home/domain/entities/now_playing_entity.dart';
-import 'package:movies_app/features/home/domain/entities/popular_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
+import 'package:movies_app/features/home/domain/entities/popular_movies_entity/popular_movies_entity.dart';
 
 import '../../../../core/utils/constant.dart';
 import 'home_local_data_source.dart';

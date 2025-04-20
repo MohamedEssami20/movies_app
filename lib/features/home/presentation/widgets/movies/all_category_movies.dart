@@ -25,7 +25,7 @@ class AllCategories extends StatelessWidget {
           SizedBox(
             height: 12,
           ),
-         TrendingMoviesBlocConsumer(),
+          TrendingMoviesBlocConsumer(),
           const TitleOfCategorie(
             title: 'New Releases - Movies',
           ),

@@ -1,4 +1,4 @@
-import '../../domain/entities/popular_movies_entity.dart';
+import '../../domain/entities/popular_movies_entity/popular_movies_entity.dart';
 
 class PopularMoviesModel extends PopularMoviesEntity {
   bool? adult;

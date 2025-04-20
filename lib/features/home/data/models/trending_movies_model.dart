@@ -1,8 +1,8 @@
 class TrendingMoviesModel {
   String? backdropPath;
   int? id;
-  String? name;
-  String? originalName;
+  String? title;
+  String? originalTitle;
   String? overview;
   String? posterPath;
   String? mediaType;
@@ -10,16 +10,16 @@ class TrendingMoviesModel {
   String? originalLanguage;
   List<int>? genreIds;
   double? popularity;
-  String? firstAirDate;
+  String? releaseDate;
+  bool? video;
   double? voteAverage;
   int? voteCount;
-  List<String>? originCountry;
 
   TrendingMoviesModel({
     this.backdropPath,
     this.id,
-    this.name,
-    this.originalName,
+    this.title,
+    this.originalTitle,
     this.overview,
     this.posterPath,
     this.mediaType,
@@ -27,18 +27,18 @@ class TrendingMoviesModel {
     this.originalLanguage,
     this.genreIds,
     this.popularity,
-    this.firstAirDate,
+    this.releaseDate,
+    this.video,
     this.voteAverage,
     this.voteCount,
-    this.originCountry,
   });
 
   factory TrendingMoviesModel.fromJson(Map<String, dynamic> json) {
     return TrendingMoviesModel(
       backdropPath: json['backdrop_path'] as String?,
       id: json['id'] as int?,
-      name: json['name'] as String?,
-      originalName: json['original_name'] as String?,
+      title: json['title'] as String?,
+      originalTitle: json['original_title'] as String?,
       overview: json['overview'] as String?,
       posterPath: json['poster_path'] as String?,
       mediaType: json['media_type'] as String?,
@@ -46,18 +46,18 @@ class TrendingMoviesModel {
       originalLanguage: json['original_language'] as String?,
       genreIds: json['genre_ids'] as List<int>?,
       popularity: (json['popularity'] as num?)?.toDouble(),
-      firstAirDate: json['first_air_date'] as String?,
+      releaseDate: json['release_date'] as String?,
+      video: json['video'] as bool?,
       voteAverage: (json['vote_average'] as num?)?.toDouble(),
       voteCount: json['vote_count'] as int?,
-      originCountry: json['origin_country'] as List<String>?,
     );
   }
 
   Map<String, dynamic> toJson() => {
         'backdrop_path': backdropPath,
         'id': id,
-        'name': name,
-        'original_name': originalName,
+        'title': title,
+        'original_title': originalTitle,
         'overview': overview,
         'poster_path': posterPath,
         'media_type': mediaType,
@@ -65,9 +65,9 @@ class TrendingMoviesModel {
         'original_language': originalLanguage,
         'genre_ids': genreIds,
         'popularity': popularity,
-        'first_air_date': firstAirDate,
+        'release_date': releaseDate,
+        'video': video,
         'vote_average': voteAverage,
         'vote_count': voteCount,
-        'origin_country': originCountry,
       };
 }

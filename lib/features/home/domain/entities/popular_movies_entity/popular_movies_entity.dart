@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'base_movies_entity.dart';
+import '../base_movies_entity.dart';
 part 'popular_movies_entity.g.dart';
 
 @HiveType(typeId: 1)
