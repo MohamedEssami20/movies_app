@@ -10,7 +10,7 @@ class TrendingMoviesModel extends TrendingMoviesEntity {
   String? mediaType;
   bool? adult;
   String? originalLanguage;
-  List<int>? genreIds;
+  List<dynamic>? genreIds;
   double? popularity;
   String? releaseDate;
   bool? video;
@@ -46,7 +46,7 @@ class TrendingMoviesModel extends TrendingMoviesEntity {
       mediaType: json['media_type'] as String?,
       adult: json['adult'] as bool?,
       originalLanguage: json['original_language'] as String?,
-      genreIds: json['genre_ids'] as List<int>?,
+      genreIds: json['genre_ids'] as List<dynamic>?,
       popularity: (json['popularity'] as num?)?.toDouble(),
       releaseDate: json['release_date'] as String?,
       video: json['video'] as bool?,

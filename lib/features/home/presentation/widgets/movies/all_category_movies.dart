@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../movies_bloc_consumer/trending_movies_bloc_consumer.dart';
-import '../new_release_movies_list_view.dart';
+import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/trending_movies_bloc_consumer.dart';
+import '../movies_bloc_consumer/popular_movies_bloc_consumer.dart';
 import '../new_release_tvshow_list_view.dart';
 import '../now_playing.dart';
 import '../recomended_movies_list_view.dart';
@@ -32,7 +32,7 @@ class AllCategories extends StatelessWidget {
           SizedBox(
             height: 12,
           ),
-          NewReleaseMoviesListView(),
+          TrendingMoviesBlocConsumer(),
           const TitleOfCategorie(
             title: 'New Release - Tv Show',
           ),

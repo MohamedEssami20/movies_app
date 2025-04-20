@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
-import '../../../../core/utils/api_end_points.dart';
-import '../../domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
+import 'package:movies_app/core/utils/api_end_points.dart';
+import '../../domain/entities/popular_movies_entity/popular_movies_entity.dart';
 import 'movies_item.dart';
 
-class TrendingMoviesListView extends StatelessWidget {
-  const TrendingMoviesListView({super.key, required this.trendingMoives});
-  final List<TrendingMoviesEntity> trendingMoives;
+class PopularMoviesListView extends StatelessWidget {
+  const PopularMoviesListView({super.key, required this.popularMovies});
+  final List<PopularMoviesEntity> popularMovies;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.only(left: 20),
       child: SizedBox(
         height: 250,
         child: ListView.builder(
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
-            itemCount: trendingMoives.length,
+            itemCount: popularMovies.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.only(right: 12),
                 child: MoviesItem(
                   imageUrl: ApiEndPoints.imagebaseUrl +
-                      trendingMoives[index].moviePoster.toString(),
-                  movieTitle: trendingMoives[index].movieTitle,
+                      popularMovies[index].moviePoster.toString(),
+                  movieTitle: popularMovies[index].movieTitle,
                 ),
               );
             }),

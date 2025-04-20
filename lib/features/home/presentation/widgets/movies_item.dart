@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../core/utils/app_text_styles.dart';
 
-class PopularMoviesItem extends StatelessWidget {
-  const PopularMoviesItem({
+class MoviesItem extends StatelessWidget {
+  const MoviesItem({
     super.key,
     required this.imageUrl,
     required this.movieTitle,
