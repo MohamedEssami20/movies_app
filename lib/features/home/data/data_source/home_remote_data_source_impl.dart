@@ -3,6 +3,7 @@ import 'package:movies_app/features/home/data/data_source/home_data_source.dart'
 import 'package:movies_app/features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
 import 'package:movies_app/features/home/domain/entities/popular_movies_entity/popular_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/up_coming_movies_entity/up_coming_movies_entity.dart';
 import '../../../../core/func/save_movies_local.dart';
 import '../../../../core/services/api_services.dart';
 import '../../../../core/utils/api_end_points.dart';
@@ -11,6 +12,7 @@ import '../models/now_playing_movies_model.dart';
 import '../models/popular_movies_model.dart';
 import '../models/top_rating_movies_model.dart';
 import '../models/trending_movies_model.dart';
+import '../models/up_coming_movies_model.dart';
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   final ApiServices apiServices;
@@ -67,5 +69,20 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     await saveMoviesLocal(
         boxName: AppConstants.topRatingMovieKey, results: topRatingMovies);
     return topRatingMovies;
+  }
+
+  //implementation get upcoming movies;
+  @override
+  Future<List<UpComingMoviesEntity>> getUpcomingMovies() async {
+    final List<UpComingMoviesEntity> upComingMovies = [];
+    final results = await apiServices.get(ApiEndPoints.upComingMovies);
+    for (var movies in results['results']) {
+      upComingMovies.add(UpComingMoviesModel.fromJson(movies));
+    }
+    await saveMoviesLocal(
+      boxName: AppConstants.upComingMoviesKey,
+      results: upComingMovies,
+    );
+    return upComingMovies;
   }
 }
