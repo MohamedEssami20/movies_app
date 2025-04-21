@@ -3,7 +3,7 @@ import 'package:movies_app/features/home/domain/entities/top_rating_movies_entit
 class TopRatingMoviesModel extends TopRatingMoviesEntity{
 	bool? adult;
 	String? backdropPath;
-	List<int>? genreIds;
+	List<dynamic>? genreIds;
 	int? id;
 	String? originalLanguage;
 	String? originalTitle;
@@ -37,7 +37,7 @@ class TopRatingMoviesModel extends TopRatingMoviesEntity{
 		return TopRatingMoviesModel(
 			adult: json['adult'] as bool?,
 			backdropPath: json['backdrop_path'] as String?,
-			genreIds: json['genre_ids'] as List<int>?,
+			genreIds: json['genre_ids'] as List<dynamic>?,
 			id: json['id'] as int?,
 			originalLanguage: json['original_language'] as String?,
 			originalTitle: json['original_title'] as String?,
