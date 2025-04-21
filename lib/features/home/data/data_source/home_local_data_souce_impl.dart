@@ -5,6 +5,7 @@ import 'package:movies_app/features/home/domain/entities/top_rating_movies_entit
 import 'package:movies_app/features/home/domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
 
 import '../../../../core/utils/constant.dart';
+import '../../domain/entities/up_coming_movies_entity/up_coming_movies_entity.dart';
 import 'home_local_data_source.dart';
 
 class HomeLocalDataSouceImpl implements HomeLocalDataSource {
@@ -38,4 +39,13 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
     Box<TopRatingMoviesEntity> box = Hive.box(AppConstants.topRatingMovieKey);
     return box.values.toList();
   }
+
+  // implementation of get up coming movies from local storage;
+  @override
+  List<UpComingMoviesEntity> getUpComingMovies() {
+    Box<UpComingMoviesEntity> box =
+        Hive.box<UpComingMoviesEntity>(AppConstants.upComingMoviesKey);
+    return box.values.toList();
+  }
+  
 }

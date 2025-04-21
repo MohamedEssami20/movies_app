@@ -8,6 +8,7 @@ import 'package:movies_app/features/home/domain/entities/top_rating_movies_entit
 import 'package:movies_app/features/home/domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
 import 'package:movies_app/features/home/domain/home_repos/home_repos.dart';
 import '../../../../core/func/get_movies_data_impl.dart';
+import '../../domain/entities/up_coming_movies_entity/up_coming_movies_entity.dart';
 
 class HomeReposImpl implements HomeRepos {
   HomeRemoteDataSource homeDataSourceRepos;
@@ -63,6 +64,19 @@ class HomeReposImpl implements HomeRepos {
         homeDataSourceRepos.getTopRatedMovies();
     List<TopRatingMoviesEntity> homeLocalSource =
         homeLocalDataSource.getTopRatingMovies();
+    return getMoviesDataImpl(
+      homeRemoteDataSource: homeRemoteSource,
+      homeLocalDataSource: homeLocalSource,
+    );
+  }
+
+  // implementation get upcoming movies from repos;
+  @override
+  Future<Either<Failure, List<UpComingMoviesEntity>>> getUpComingMovies() {
+    Future<List<UpComingMoviesEntity>> homeRemoteSource =
+        homeDataSourceRepos.getUpcomingMovies();
+    List<UpComingMoviesEntity> homeLocalSource =
+        homeLocalDataSource.getUpComingMovies();
     return getMoviesDataImpl(
       homeRemoteDataSource: homeRemoteSource,
       homeLocalDataSource: homeLocalSource,
