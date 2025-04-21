@@ -4,6 +4,7 @@ import 'package:movies_app/features/home/data/data_source/home_data_source.dart'
 import 'package:movies_app/features/home/data/data_source/home_local_data_source.dart';
 import 'package:movies_app/features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
 import 'package:movies_app/features/home/domain/entities/popular_movies_entity/popular_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
 import 'package:movies_app/features/home/domain/home_repos/home_repos.dart';
 import '../../../../core/func/get_movies_data_impl.dart';
@@ -49,6 +50,19 @@ class HomeReposImpl implements HomeRepos {
         homeDataSourceRepos.getTrendingMovies();
     List<TrendingMoviesEntity> homeLocalSource =
         homeLocalDataSource.getTrendingMovies();
+    return getMoviesDataImpl(
+      homeRemoteDataSource: homeRemoteSource,
+      homeLocalDataSource: homeLocalSource,
+    );
+  }
+
+  // implementation get top rating movies form repos;
+  @override
+  Future<Either<Failure, List<TopRatingMoviesEntity>>> getTopRatingMovies() {
+    Future<List<TopRatingMoviesEntity>> homeRemoteSource =
+        homeDataSourceRepos.getTopRatedMovies();
+    List<TopRatingMoviesEntity> homeLocalSource =
+        homeLocalDataSource.getTopRatingMovies();
     return getMoviesDataImpl(
       homeRemoteDataSource: homeRemoteSource,
       homeLocalDataSource: homeLocalSource,
