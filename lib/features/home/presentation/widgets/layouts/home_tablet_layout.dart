@@ -54,9 +54,9 @@ class HomeTabletLayout extends StatelessWidget {
                 create: (context) => PopularMoviesCubit(
                   homeRepos: getIt.get<HomeRepos>(),
                 )..getPopularMovies(),
-    ),
+              ),
               BlocProvider(
-                create:(context)=>TrendingMoviesCubit(
+                create: (context) => TrendingMoviesCubit(
                   homeRepos: getIt.get<HomeRepos>(),
                 )..getTrendingMovies(),
               ),

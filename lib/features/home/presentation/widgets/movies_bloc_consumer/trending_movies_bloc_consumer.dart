@@ -32,7 +32,7 @@ class TrendingMoviesBlocConsumer extends StatelessWidget {
         }
       },
       listener: (context, state) {
-        if(state is TrendingMoviesFailure){
+        if (state is TrendingMoviesFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             customErrorSnackBar(
               context,

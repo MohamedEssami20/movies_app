@@ -43,7 +43,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
   // implement get trending movies;
   @override
-  Future<List<TrendingMoviesEntity>> getTrendingMovies()async {
+  Future<List<TrendingMoviesEntity>> getTrendingMovies() async {
     List<TrendingMoviesEntity> trendingMoviesEntity = [];
     final results = await apiServices.get(ApiEndPoints.trendingMovies);
     for (var movies in results['results']) {

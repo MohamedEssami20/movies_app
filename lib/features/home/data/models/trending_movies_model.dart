@@ -33,7 +33,10 @@ class TrendingMoviesModel extends TrendingMoviesEntity {
     this.video,
     this.voteAverage,
     this.voteCount,
-  }) :super(movieId: id??0, movieTitle: title??"", moviePoster:posterPath??"");
+  }) : super(
+            movieId: id ?? 0,
+            movieTitle: title ?? "",
+            moviePoster: posterPath ?? "");
 
   factory TrendingMoviesModel.fromJson(Map<String, dynamic> json) {
     return TrendingMoviesModel(

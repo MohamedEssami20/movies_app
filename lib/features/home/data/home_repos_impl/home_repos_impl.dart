@@ -53,5 +53,5 @@ class HomeReposImpl implements HomeRepos {
       homeRemoteDataSource: homeRemoteSource,
       homeLocalDataSource: homeLocalSource,
     );
-  } 
+  }
 }
