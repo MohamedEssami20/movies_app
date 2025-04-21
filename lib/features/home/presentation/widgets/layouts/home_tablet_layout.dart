@@ -7,6 +7,7 @@ import '../../../domain/home_repos/home_repos.dart';
 import '../../manager/now_playing_movies_cubit/now_playing_movies_cubit.dart';
 import '../../manager/top_rating_movies/top_rating_movies_cubit.dart';
 import '../../manager/trending_movies_cubit/trending_movies_cubit.dart';
+import '../../manager/up_coming_movies_cubit/up_coming_movies_cubit.dart';
 import '../categories_item_list_view.dart';
 import '../choosen_category_movies.dart';
 import '../custom_search_field.dart';
@@ -65,6 +66,11 @@ class HomeTabletLayout extends StatelessWidget {
                 create: (context) => TopRatingMoviesCubit(
                   getIt.get<HomeRepos>(),
                 )..getTopRatingMovies(),
+              ),
+              BlocProvider(
+                create: (context) => UpComingMoviesCubit(
+                  getIt.get<HomeRepos>(),
+                )..getUpComingMovies(),
               ),
             ],
             child: ChoosenCategoryViews(),

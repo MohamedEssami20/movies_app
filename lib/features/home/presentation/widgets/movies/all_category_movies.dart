@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/top_rating_movies_bloc_consumer.dart';
 import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/trending_movies_bloc_consumer.dart';
+import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/up_coming_movies_bloc_consumer.dart';
 import '../movies_bloc_consumer/popular_movies_bloc_consumer.dart';
 import '../now_playing.dart';
-import '../recomended_movies_list_view.dart';
 import '../title_of_categorie.dart';
 
 class AllCategories extends StatelessWidget {
@@ -46,7 +46,7 @@ class AllCategories extends StatelessWidget {
           SizedBox(
             height: 12,
           ),
-          RecommendedMoviesListView(),
+          UpComingMoviesBlocConsumer(),
           SizedBox(
             height: 40,
           ),
