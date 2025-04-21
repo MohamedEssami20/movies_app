@@ -41,7 +41,7 @@ class AllCategories extends StatelessWidget {
           ),
           TopRatingMoviesBlocConsumer(),
           const TitleOfCategorie(
-            title: 'Recommended',
+            title: 'Upcoming',
           ),
           SizedBox(
             height: 12,

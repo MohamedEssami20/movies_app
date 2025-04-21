@@ -20,8 +20,11 @@ class TopRatingListView extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.only(right: 16),
-                child: MoviesItem(movieTitle: topRatingMovies[index].movieTitle, 
-                imageUrl: ApiEndPoints.imagebaseUrl+topRatingMovies[index].moviePoster.toString(),),
+                child: MoviesItem(
+                  movieTitle: topRatingMovies[index].movieTitle,
+                  imageUrl: ApiEndPoints.imagebaseUrl +
+                      topRatingMovies[index].moviePoster.toString(),
+                ),
               );
             }),
       ),

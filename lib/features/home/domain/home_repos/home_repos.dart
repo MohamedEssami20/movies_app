@@ -7,7 +7,6 @@ import '../entities/now_palying_entity/now_playing_entity.dart';
 import '../entities/trending_movies_entity.dart/trending_movies_entity.dart';
 
 abstract class HomeRepos {
-
   // create method that get now playing movies;
   Future<Either<Failure, List<NowPlayingEntity>>> getNowPlayingMovies();
 
@@ -18,5 +17,5 @@ abstract class HomeRepos {
   Future<Either<Failure, List<TrendingMoviesEntity>>> getTrendingMovies();
 
   //create method that get top rating movies;
-  Future<Either<Failure,List<TopRatingMoviesEntity>>> getTopRatingMovies();
+  Future<Either<Failure, List<TopRatingMoviesEntity>>> getTopRatingMovies();
 }
