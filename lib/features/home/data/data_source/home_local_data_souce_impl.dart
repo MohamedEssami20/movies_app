@@ -1,6 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies_app/features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
 import 'package:movies_app/features/home/domain/entities/popular_movies_entity/popular_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
 
 import '../../../../core/utils/constant.dart';
@@ -28,6 +29,13 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
   List<TrendingMoviesEntity> getTrendingMovies() {
     Box<TrendingMoviesEntity> box =
         Hive.box<TrendingMoviesEntity>(AppConstants.trendingMovieKey);
+    return box.values.toList();
+  }
+
+  // implementation of get rating movies from local storage;
+  @override
+  List<TopRatingMoviesEntity> getTopRatingMovies() {
+    Box<TopRatingMoviesEntity> box = Hive.box(AppConstants.topRatingMovieKey);
     return box.values.toList();
   }
 }
