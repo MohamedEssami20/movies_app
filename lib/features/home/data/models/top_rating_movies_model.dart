@@ -1,4 +1,6 @@
-class TopRatingMoviesModel {
+import 'package:movies_app/features/home/domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
+
+class TopRatingMoviesModel extends TopRatingMoviesEntity{
 	bool? adult;
 	String? backdropPath;
 	List<int>? genreIds;
@@ -29,7 +31,7 @@ class TopRatingMoviesModel {
 		this.video, 
 		this.voteAverage, 
 		this.voteCount, 
-	});
+	}):super(movieId: id??0, moviePoster: posterPath??"", movieTitle: title??"");
 
 	factory TopRatingMoviesModel.fromJson(Map<String, dynamic> json) {
 		return TopRatingMoviesModel(
