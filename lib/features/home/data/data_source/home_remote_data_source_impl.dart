@@ -34,9 +34,9 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
   // ceate method that get trending movies form data source;
   @override
-  Future<List<PopularMoviesEntity>> getPopularMovies() async {
+  Future<List<PopularMoviesEntity>> getPopularMovies({int pageNumber=1}) async {
     List<PopularMoviesEntity> popularMoviesEntity = [];
-    final results = await apiServices.get(ApiEndPoints.popularMovies);
+    final results = await apiServices.get("${ApiEndPoints.popularMovies}&page=$pageNumber");
     for (var movies in results['results']) {
       popularMoviesEntity.add(PopularMoviesModel.fromJson(movies));
     }

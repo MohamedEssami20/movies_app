@@ -19,10 +19,17 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
 
   // implementation of get trending movies from local storage;
   @override
-  List<PopularMoviesEntity> getPopularMovies() {
+  List<PopularMoviesEntity> getPopularMovies({int pageNumber = 1}) {
+    int startIndex = pageNumber * 20;
+    int endIndex = (pageNumber + 1) * 20;
     Box<PopularMoviesEntity> box =
         Hive.box<PopularMoviesEntity>(AppConstants.popularMovieKey);
-    return box.values.toList();
+    int length = box.values.length;
+    if (startIndex >= length || endIndex > length) {
+      return [];
+      // check out of range;
+    }
+    return box.values.toList().sublist(startIndex, endIndex);
   }
 
   // implementation of get trending movies form local storage;
@@ -47,5 +54,4 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
         Hive.box<UpComingMoviesEntity>(AppConstants.upComingMoviesKey);
     return box.values.toList();
   }
-  
 }

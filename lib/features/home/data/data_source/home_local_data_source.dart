@@ -10,7 +10,7 @@ abstract class HomeLocalDataSource {
   List<NowPlayingEntity> getNowPlayingMovies();
 
   //create method that get popular movies from local storage;
-  List<PopularMoviesEntity> getPopularMovies();
+  List<PopularMoviesEntity> getPopularMovies({int pageNumber=1});
 
   // create method that get trending movies from local storage;
   List<TrendingMoviesEntity> getTrendingMovies();
