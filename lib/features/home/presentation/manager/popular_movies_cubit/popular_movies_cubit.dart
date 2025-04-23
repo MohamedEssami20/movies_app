@@ -12,29 +12,68 @@ class PopularMoviesCubit extends Cubit<PopularMoviesState> {
   final HomeRepos homeRepos;
   List<PopularMoviesEntity> currentPoupularMovies = [];
   // create method that return popular movies;
-  Future<void> getPopularMovies() async {
-    emit(PopularMoviesLoading());
+  Future<void> getPopularMovies({int pageNumber = 1}) async {
+   pageNumber==1?emit(PopularMoviesLoading(),):emit(PopularMoviesPaginationLoading(),);
 
-    final results = await homeRepos.getPopularMovies();
+    final results = await homeRepos.getPopularMovies(pageNumber: pageNumber);
     results.fold((failure) {
-      emit(
-        PopularMoviesFailure(errorMessage: failure.message),
-      );
+      if (pageNumber == 1) {
+        emit(
+          PopularMoviesFailure(
+            errorMessage: failure.message,
+          ),
+        );
+      } else {
+        emit(
+          PopularMoviesPaginationFailure(
+            errorMessage: failure.message,
+          ),
+        );
+      }
     }, (popularMovies) {
       final bool iscurrentMoviesEqualNewMovies =
           checkIfCurrentMoviesEqualNewMovies(
               currentPoupularMovies, popularMovies);
-      if (iscurrentMoviesEqualNewMovies) {
-        emit(
-          PopularMoviesSuccess(popularMovies: currentPoupularMovies),
-        );
-      } else {
-        currentPoupularMovies.clear();
-        currentPoupularMovies.addAll(popularMovies);
-        emit(
-          PopularMoviesSuccess(popularMovies: currentPoupularMovies),
-        );
+
+      if(pageNumber==1){
+        if(iscurrentMoviesEqualNewMovies){
+          emit(
+            PopularMoviesSuccess(popularMovies: currentPoupularMovies),
+          );
+        }
+        else{
+          currentPoupularMovies.clear();
+          currentPoupularMovies.addAll(popularMovies);
+          emit(
+            PopularMoviesSuccess(popularMovies: currentPoupularMovies),
+          );
+        }
       }
+      else{
+        if(iscurrentMoviesEqualNewMovies){
+          emit(
+            PopularMoviesPaginationSuccess(popularMovies: currentPoupularMovies),
+          );
+        }
+        else{
+          currentPoupularMovies.clear();
+          currentPoupularMovies.addAll(popularMovies);
+          emit(
+            PopularMoviesPaginationSuccess(popularMovies: currentPoupularMovies),
+          );
+        }
+      }
+      // if (iscurrentMoviesEqualNewMovies) {
+      //   emit(
+      //     PopularMoviesSuccess(popularMovies: currentPoupularMovies),
+      //   );
+      // } else {
+      //   currentPoupularMovies.clear();
+      //   currentPoupularMovies.addAll(popularMovies);
+      //   emit(
+      //     PopularMoviesSuccess(popularMovies: currentPoupularMovies),
+      //   );
+      // }
     });
   }
 }

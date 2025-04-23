@@ -12,7 +12,7 @@ abstract class HomeRepos {
   Future<Either<Failure, List<NowPlayingEntity>>> getNowPlayingMovies();
 
   // creat method that get popular movies;
-  Future<Either<Failure, List<PopularMoviesEntity>>> getPopularMovies();
+  Future<Either<Failure, List<PopularMoviesEntity>>> getPopularMovies({int pageNumber=1});
 
   // create method that get trending movies;
   Future<Either<Failure, List<TrendingMoviesEntity>>> getTrendingMovies();

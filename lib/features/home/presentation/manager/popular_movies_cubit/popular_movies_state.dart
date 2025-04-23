@@ -19,3 +19,18 @@ final class PopularMoviesFailure extends PopularMoviesState {
 
   PopularMoviesFailure({required this.errorMessage});
 }
+
+// create all state of popular movies pagination;
+final class PopularMoviesPaginationLoading extends PopularMoviesState {}
+
+final class PopularMoviesPaginationSuccess extends PopularMoviesState {
+  final List<PopularMoviesEntity> popularMovies;
+
+  PopularMoviesPaginationSuccess({required this.popularMovies});
+}
+
+final class PopularMoviesPaginationFailure extends PopularMoviesState {
+  final String errorMessage;
+
+  PopularMoviesPaginationFailure({required this.errorMessage});
+}
