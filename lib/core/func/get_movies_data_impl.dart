@@ -15,6 +15,7 @@ Future<Either<Failure, List<T>>> getMoviesDataImpl<T>({
     moviesEntity = await homeRemoteDataSource;
     return right(moviesEntity);
   } on DioException catch (error) {
+    log(" error from api is= $error");
     moviesEntity = homeLocalDataSource;
     if (moviesEntity.isNotEmpty) {
       return right(moviesEntity);

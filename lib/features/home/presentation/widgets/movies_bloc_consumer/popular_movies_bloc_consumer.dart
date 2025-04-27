@@ -12,10 +12,14 @@ class PopularMoviesBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<PopularMoviesCubit, PopularMoviesState>(
       builder: (context, state) {
-        if (state is PopularMoviesLoading || state is PopularMoviesSuccess) {
+        if (state is PopularMoviesSuccess ||
+            state is PopularMoviesPaginationSuccess ||
+            state is PopularMoviesPaginationLoading ||
+            state is PopularMoviesPaginationFailure) {
           return PopularMoviesListView(
             popularMovies:
                 context.read<PopularMoviesCubit>().currentPoupularMovies,
+            scrollController:context.read<PopularMoviesCubit>().scrollController,
           );
         } else if (state is PopularMoviesFailure) {
           return Center(
@@ -27,12 +31,21 @@ class PopularMoviesBlocConsumer extends StatelessWidget {
           );
         } else {
           return PopularMoviesListView(
-            popularMovies: [],
-          );
+              popularMovies: [],
+              scrollController: ScrollController(),
+              );
         }
       },
       listener: (context, state) {
         if (state is PopularMoviesFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            customErrorSnackBar(
+              context,
+              state.errorMessage.toString(),
+            ),
+          );
+        }
+        if (state is PopularMoviesPaginationFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             customErrorSnackBar(
               context,

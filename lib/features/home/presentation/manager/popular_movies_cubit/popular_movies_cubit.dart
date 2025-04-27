@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/features/home/domain/home_repos/home_repos.dart';
@@ -8,12 +10,27 @@ import '../../../domain/entities/popular_movies_entity/popular_movies_entity.dar
 part 'popular_movies_state.dart';
 
 class PopularMoviesCubit extends Cubit<PopularMoviesState> {
-  PopularMoviesCubit({required this.homeRepos}) : super(PopularMoviesInitial());
+  PopularMoviesCubit({required this.homeRepos})
+      : super(PopularMoviesInitial()) {
+    scrollController.addListener(popularMoviesPagination);
+  }
   final HomeRepos homeRepos;
   List<PopularMoviesEntity> currentPoupularMovies = [];
+  bool isPagination = false;
+  int nextPage = 1;
+  double oldMaxScroll = 0.0;
+  int oldMoviesLength = 0;
+  late ScrollController scrollController = ScrollController();
+
   // create method that return popular movies;
   Future<void> getPopularMovies({int pageNumber = 1}) async {
-   pageNumber==1?emit(PopularMoviesLoading(),):emit(PopularMoviesPaginationLoading(),);
+    pageNumber == 1
+        ? emit(
+            PopularMoviesLoading(),
+          )
+        : emit(
+            PopularMoviesPaginationLoading(),
+          );
 
     final results = await homeRepos.getPopularMovies(pageNumber: pageNumber);
     results.fold((failure) {
@@ -31,37 +48,29 @@ class PopularMoviesCubit extends Cubit<PopularMoviesState> {
         );
       }
     }, (popularMovies) {
-      final bool iscurrentMoviesEqualNewMovies =
-          checkIfCurrentMoviesEqualNewMovies(
-              currentPoupularMovies, popularMovies);
-
-      if(pageNumber==1){
-        if(iscurrentMoviesEqualNewMovies){
+      if (pageNumber == 1) {
+        final bool iscurrentMoviesEqualNewMovies =
+            checkIfCurrentMoviesEqualNewMovies(
+                currentPoupularMovies, popularMovies);
+        if (iscurrentMoviesEqualNewMovies) {
+          currentPoupularMovies.clear();
+          currentPoupularMovies.addAll(popularMovies);
           emit(
             PopularMoviesSuccess(popularMovies: currentPoupularMovies),
           );
-        }
-        else{
+        } else {
           currentPoupularMovies.clear();
           currentPoupularMovies.addAll(popularMovies);
           emit(
             PopularMoviesSuccess(popularMovies: currentPoupularMovies),
           );
         }
-      }
-      else{
-        if(iscurrentMoviesEqualNewMovies){
-          emit(
-            PopularMoviesPaginationSuccess(popularMovies: currentPoupularMovies),
-          );
-        }
-        else{
-          currentPoupularMovies.clear();
-          currentPoupularMovies.addAll(popularMovies);
-          emit(
-            PopularMoviesPaginationSuccess(popularMovies: currentPoupularMovies),
-          );
-        }
+      } else {
+        currentPoupularMovies.addAll(popularMovies);
+        log("length of popular movies in cubit= ${currentPoupularMovies.length}");
+        emit(
+          PopularMoviesPaginationSuccess(popularMovies: currentPoupularMovies),
+        );
       }
       // if (iscurrentMoviesEqualNewMovies) {
       //   emit(
@@ -75,5 +84,31 @@ class PopularMoviesCubit extends Cubit<PopularMoviesState> {
       //   );
       // }
     });
+  }
+
+// create method that create pagination of mvoies;
+  void popularMoviesPagination() async {
+    final currentScroll = scrollController.position.pixels;
+    final maxScroll = scrollController.position.maxScrollExtent;
+    if (currentScroll >= maxScroll * 0.7 &&
+        !isPagination &&
+        state is! PopularMoviesPaginationLoading &&
+        maxScroll >=
+            oldMaxScroll +
+                (152.4 * (currentPoupularMovies.length - oldMoviesLength))) {
+      isPagination = true;
+      oldMoviesLength = currentPoupularMovies.length;
+      final newPaginaiation = ++nextPage;
+      await getPopularMovies(pageNumber: newPaginaiation);
+      oldMaxScroll = maxScroll;
+      isPagination = false;
+    }
+  }
+
+  // close controller;
+  @override
+  Future<void> close() {
+    scrollController.dispose();
+    return super.close();
   }
 }

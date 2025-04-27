@@ -1,11 +1,13 @@
+
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/api_end_points.dart';
 import '../../domain/entities/popular_movies_entity/popular_movies_entity.dart';
 import 'movies_item.dart';
 
 class PopularMoviesListView extends StatelessWidget {
-  const PopularMoviesListView({super.key, required this.popularMovies});
+  const PopularMoviesListView({super.key, required this.popularMovies, required this.scrollController});
   final List<PopularMoviesEntity> popularMovies;
+  final ScrollController scrollController;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,6 +15,7 @@ class PopularMoviesListView extends StatelessWidget {
       child: SizedBox(
         height: 250,
         child: ListView.builder(
+            controller: scrollController,
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
             itemCount: popularMovies.length,
