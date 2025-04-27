@@ -1,4 +1,5 @@
 //import 'package:device_preview/device_preview.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:movies_app/core/services/get_it_service.dart';
 import 'package:movies_app/core/services/shared_pref_service.dart';
 import 'package:movies_app/core/utils/bloc_observer.dart';
 import 'package:movies_app/firebase_options.dart';
+import 'core/cubits/cubit/check_internnet_connection_cubit.dart';
 import 'core/services/hive_service.dart';
 import 'features/auth/domain/repos/auth_repos.dart';
 import 'features/auth/presentation/manager/Auth_cubit/auth_cubit.dart';
@@ -48,6 +50,11 @@ class MoviesApp extends StatelessWidget {
               create: (context) => AuthCubit(
                 getIt.get<AuthRepos>(),
               ),
+            ),
+            BlocProvider(
+              create: (context) => InternnetConnectionCubit(
+                Connectivity(),
+              )..checkInternetConnection(),
             ),
           ],
           child: MaterialApp(

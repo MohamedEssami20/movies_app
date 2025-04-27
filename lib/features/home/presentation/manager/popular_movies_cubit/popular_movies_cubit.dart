@@ -1,7 +1,7 @@
 import 'dart:developer';
-
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/core/cubits/cubit/check_internnet_connection_cubit.dart';
 import 'package:movies_app/features/home/domain/home_repos/home_repos.dart';
 
 import '../../../../../core/func/check_if_new_movies_equal_current_movies.dart';
@@ -10,11 +10,12 @@ import '../../../domain/entities/popular_movies_entity/popular_movies_entity.dar
 part 'popular_movies_state.dart';
 
 class PopularMoviesCubit extends Cubit<PopularMoviesState> {
-  PopularMoviesCubit({required this.homeRepos})
+  PopularMoviesCubit(this.context, {required this.homeRepos})
       : super(PopularMoviesInitial()) {
     scrollController.addListener(popularMoviesPagination);
   }
   final HomeRepos homeRepos;
+  final BuildContext context;
   List<PopularMoviesEntity> currentPoupularMovies = [];
   bool isPagination = false;
   int nextPage = 1;
@@ -90,6 +91,9 @@ class PopularMoviesCubit extends Cubit<PopularMoviesState> {
   void popularMoviesPagination() async {
     final currentScroll = scrollController.position.pixels;
     final maxScroll = scrollController.position.maxScrollExtent;
+    final isInternetConnceted =
+        BlocProvider.of<InternnetConnectionCubit>(context).state
+            is InternetConnectionSuccess;
     if (currentScroll >= maxScroll * 0.7 &&
         !isPagination &&
         state is! PopularMoviesPaginationLoading &&
@@ -99,7 +103,7 @@ class PopularMoviesCubit extends Cubit<PopularMoviesState> {
       isPagination = true;
       oldMoviesLength = currentPoupularMovies.length;
       final newPaginaiation = ++nextPage;
-      await getPopularMovies(pageNumber: newPaginaiation);
+      isInternetConnceted ? await getPopularMovies(pageNumber: newPaginaiation):null;
       oldMaxScroll = maxScroll;
       isPagination = false;
     }

@@ -27,6 +27,7 @@ class HomeBlocProviders extends StatelessWidget {
         BlocProvider(
           create: (context) => PopularMoviesCubit(
             homeRepos: getIt.get<HomeRepos>(),
+            context,
           )..getPopularMovies(),
         ),
         BlocProvider(
