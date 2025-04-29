@@ -47,9 +47,9 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
   // implement get trending movies;
   @override
-  Future<List<TrendingMoviesEntity>> getTrendingMovies() async {
+  Future<List<TrendingMoviesEntity>> getTrendingMovies({int pageNumber=1}) async {
     List<TrendingMoviesEntity> trendingMoviesEntity = [];
-    final results = await apiServices.get(ApiEndPoints.trendingMovies);
+    final results = await apiServices.get("${ApiEndPoints.trendingMovies}&page=$pageNumber");
     for (var movies in results['results']) {
       trendingMoviesEntity.add(TrendingMoviesModel.fromJson(movies));
     }
@@ -60,9 +60,9 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
   // implementation get top rated movies;
   @override
-  Future<List<TopRatingMoviesEntity>> getTopRatedMovies() async {
+  Future<List<TopRatingMoviesEntity>> getTopRatedMovies({int pageNumber=1}) async {
     List<TopRatingMoviesEntity> topRatingMovies = [];
-    final results = await apiServices.get(ApiEndPoints.topRatedMovies);
+    final results = await apiServices.get("${ApiEndPoints.topRatedMovies}&page=$pageNumber");
     for (var movies in results['results']) {
       topRatingMovies.add(TopRatingMoviesModel.fromJson(movies));
     }
@@ -73,9 +73,9 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
   //implementation get upcoming movies;
   @override
-  Future<List<UpComingMoviesEntity>> getUpcomingMovies() async {
+  Future<List<UpComingMoviesEntity>> getUpcomingMovies({int pageNumber=1}) async {
     final List<UpComingMoviesEntity> upComingMovies = [];
-    final results = await apiServices.get(ApiEndPoints.upComingMovies);
+    final results = await apiServices.get("${ApiEndPoints.upComingMovies}&page=$pageNumber");
     for (var movies in results['results']) {
       upComingMovies.add(UpComingMoviesModel.fromJson(movies));
     }
@@ -83,6 +83,6 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       boxName: AppConstants.upComingMoviesKey,
       results: upComingMovies,
     );
-    return upComingMovies;
+    return upComingMovies; 
   }
 }

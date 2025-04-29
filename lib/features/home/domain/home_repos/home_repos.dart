@@ -15,11 +15,11 @@ abstract class HomeRepos {
   Future<Either<Failure, List<PopularMoviesEntity>>> getPopularMovies({int pageNumber=1});
 
   // create method that get trending movies;
-  Future<Either<Failure, List<TrendingMoviesEntity>>> getTrendingMovies();
+  Future<Either<Failure, List<TrendingMoviesEntity>>> getTrendingMovies({int pageNumber=1});
 
   //create method that get top rating movies;
-  Future<Either<Failure, List<TopRatingMoviesEntity>>> getTopRatingMovies();
+  Future<Either<Failure, List<TopRatingMoviesEntity>>> getTopRatingMovies({int pageNumber=1});
 
   // create method that get up coming movies;
-  Future<Either<Failure, List<UpComingMoviesEntity>>> getUpComingMovies();
+  Future<Either<Failure, List<UpComingMoviesEntity>>> getUpComingMovies({int pageNumber=1});
 }

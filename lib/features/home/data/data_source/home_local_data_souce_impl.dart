@@ -4,6 +4,7 @@ import 'package:movies_app/features/home/domain/entities/popular_movies_entity/p
 import 'package:movies_app/features/home/domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
 
+import '../../../../core/func/check_out_of_range.dart';
 import '../../../../core/utils/constant.dart';
 import '../../domain/entities/up_coming_movies_entity/up_coming_movies_entity.dart';
 import 'home_local_data_source.dart';
@@ -20,38 +21,55 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
   // implementation of get trending movies from local storage;
   @override
   List<PopularMoviesEntity> getPopularMovies({int pageNumber = 1}) {
-    int startIndex = pageNumber * 20;
-    int endIndex = (pageNumber + 1) * 20;
     Box<PopularMoviesEntity> box =
         Hive.box<PopularMoviesEntity>(AppConstants.popularMovieKey);
-    int length = box.values.length;
-    if (startIndex >= length || endIndex > length) {
+    int startIndex = pageNumber * 20;
+    int endIndex = (pageNumber + 1) * 20;
+    bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
+    if (outOfRange) {
       return [];
-      // check out of range;
     }
     return box.values.toList().sublist(startIndex, endIndex);
   }
 
   // implementation of get trending movies form local storage;
   @override
-  List<TrendingMoviesEntity> getTrendingMovies() {
+  List<TrendingMoviesEntity> getTrendingMovies({int pageNumber = 1}) {
     Box<TrendingMoviesEntity> box =
         Hive.box<TrendingMoviesEntity>(AppConstants.trendingMovieKey);
-    return box.values.toList();
+    int startIndex = pageNumber * 20;
+    int endIndex = (pageNumber + 1) * 20;
+    bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
+    if (outOfRange) {
+      return [];
+    }
+    return box.values.toList().sublist(startIndex, endIndex);
   }
 
   // implementation of get rating movies from local storage;
   @override
-  List<TopRatingMoviesEntity> getTopRatingMovies() {
+  List<TopRatingMoviesEntity> getTopRatingMovies({int pageNumber = 1}) {
     Box<TopRatingMoviesEntity> box = Hive.box(AppConstants.topRatingMovieKey);
-    return box.values.toList();
+    int startIndex = pageNumber * 20;
+    int endIndex = (pageNumber + 1) * 20;
+    bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
+    if (outOfRange) {
+      return [];
+    }
+    return box.values.toList().sublist(startIndex, endIndex);
   }
 
   // implementation of get up coming movies from local storage;
   @override
-  List<UpComingMoviesEntity> getUpComingMovies() {
+  List<UpComingMoviesEntity> getUpComingMovies({int pageNumber = 1}) {
     Box<UpComingMoviesEntity> box =
         Hive.box<UpComingMoviesEntity>(AppConstants.upComingMoviesKey);
-    return box.values.toList();
+    int startIndex = pageNumber * 20;
+    int endIndex = (pageNumber + 1) * 20;
+    bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
+    if (outOfRange) {
+      return [];
+    }
+    return box.values.toList().sublist(startIndex, endIndex);
   }
 }

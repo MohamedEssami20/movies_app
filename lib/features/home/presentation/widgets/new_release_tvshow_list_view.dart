@@ -5,8 +5,9 @@ import 'package:movies_app/features/home/domain/entities/top_rating_movies_entit
 import 'movies_item.dart';
 
 class TopRatingListView extends StatelessWidget {
-  const TopRatingListView({super.key, required this.topRatingMovies});
+  const TopRatingListView({super.key, required this.topRatingMovies, required this.scrollController});
   final List<TopRatingMoviesEntity> topRatingMovies;
+  final ScrollController scrollController;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,6 +15,7 @@ class TopRatingListView extends StatelessWidget {
       child: SizedBox(
         height: 250,
         child: ListView.builder(
+            controller: scrollController,
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
             itemCount: topRatingMovies.length,

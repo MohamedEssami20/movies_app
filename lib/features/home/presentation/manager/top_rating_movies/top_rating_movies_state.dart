@@ -17,3 +17,17 @@ final class TopRatingMoviesFailure extends TopRatingMoviesState {
   final String errorMessage;
   TopRatingMoviesFailure({required this.errorMessage});
 }
+
+// create all states of pagination of top rating movies;
+
+final class TopRatingMoviesPaginationLoading extends TopRatingMoviesState {}
+
+final class TopRatingMoviesPaginationSuccess extends TopRatingMoviesState {
+  final List<TopRatingMoviesEntity> topRatingMoviesEntityList;
+  TopRatingMoviesPaginationSuccess({required this.topRatingMoviesEntityList});
+}
+
+final class TopRatingMoviesPaginationFailure extends TopRatingMoviesState {
+  final String errorMessage;
+  TopRatingMoviesPaginationFailure({required this.errorMessage});
+}

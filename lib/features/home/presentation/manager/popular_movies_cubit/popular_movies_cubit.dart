@@ -73,17 +73,6 @@ class PopularMoviesCubit extends Cubit<PopularMoviesState> {
           PopularMoviesPaginationSuccess(popularMovies: currentPoupularMovies),
         );
       }
-      // if (iscurrentMoviesEqualNewMovies) {
-      //   emit(
-      //     PopularMoviesSuccess(popularMovies: currentPoupularMovies),
-      //   );
-      // } else {
-      //   currentPoupularMovies.clear();
-      //   currentPoupularMovies.addAll(popularMovies);
-      //   emit(
-      //     PopularMoviesSuccess(popularMovies: currentPoupularMovies),
-      //   );
-      // }
     });
   }
 

@@ -46,11 +46,11 @@ class HomeReposImpl implements HomeRepos {
 
   // iplmentation of get trending movies;
   @override
-  Future<Either<Failure, List<TrendingMoviesEntity>>> getTrendingMovies() {
+  Future<Either<Failure, List<TrendingMoviesEntity>>> getTrendingMovies({int pageNumber=1}) {
     Future<List<TrendingMoviesEntity>> homeRemoteSource =
-        homeDataSourceRepos.getTrendingMovies();
+        homeDataSourceRepos.getTrendingMovies(pageNumber: pageNumber);
     List<TrendingMoviesEntity> homeLocalSource =
-        homeLocalDataSource.getTrendingMovies();
+        homeLocalDataSource.getTrendingMovies(pageNumber: pageNumber);
     return getMoviesDataImpl(
       homeRemoteDataSource: homeRemoteSource,
       homeLocalDataSource: homeLocalSource,
@@ -59,11 +59,11 @@ class HomeReposImpl implements HomeRepos {
 
   // implementation get top rating movies form repos;
   @override
-  Future<Either<Failure, List<TopRatingMoviesEntity>>> getTopRatingMovies() {
+  Future<Either<Failure, List<TopRatingMoviesEntity>>> getTopRatingMovies({int pageNumber=1}) {
     Future<List<TopRatingMoviesEntity>> homeRemoteSource =
-        homeDataSourceRepos.getTopRatedMovies();
+        homeDataSourceRepos.getTopRatedMovies(pageNumber:pageNumber);
     List<TopRatingMoviesEntity> homeLocalSource =
-        homeLocalDataSource.getTopRatingMovies();
+        homeLocalDataSource.getTopRatingMovies(pageNumber: pageNumber);
     return getMoviesDataImpl(
       homeRemoteDataSource: homeRemoteSource,
       homeLocalDataSource: homeLocalSource,
@@ -72,11 +72,11 @@ class HomeReposImpl implements HomeRepos {
 
   // implementation get upcoming movies from repos;
   @override
-  Future<Either<Failure, List<UpComingMoviesEntity>>> getUpComingMovies() {
+  Future<Either<Failure, List<UpComingMoviesEntity>>> getUpComingMovies({int pageNumber=1}) {
     Future<List<UpComingMoviesEntity>> homeRemoteSource =
-        homeDataSourceRepos.getUpcomingMovies();
+        homeDataSourceRepos.getUpcomingMovies(pageNumber: pageNumber);
     List<UpComingMoviesEntity> homeLocalSource =
-        homeLocalDataSource.getUpComingMovies();
+        homeLocalDataSource.getUpComingMovies(pageNumber: pageNumber);
     return getMoviesDataImpl(
       homeRemoteDataSource: homeRemoteSource,
       homeLocalDataSource: homeLocalSource,

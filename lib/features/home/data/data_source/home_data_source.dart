@@ -13,11 +13,11 @@ abstract class HomeRemoteDataSource {
   Future<List<PopularMoviesEntity>> getPopularMovies({int pageNumber = 1});
 
   //create method that get trending movies frome api services;
-  Future<List<TrendingMoviesEntity>> getTrendingMovies();
+  Future<List<TrendingMoviesEntity>> getTrendingMovies({int pageNumber= 1});
 
   // create method that get top rating movies from api;
-  Future<List<TopRatingMoviesEntity>> getTopRatedMovies();
+  Future<List<TopRatingMoviesEntity>> getTopRatedMovies({int pageNumber=1});
 
   // create method that get upcoming movies from api;
-  Future<List<UpComingMoviesEntity>> getUpcomingMovies();
+  Future<List<UpComingMoviesEntity>> getUpcomingMovies({int pageNumber=1});
 }
