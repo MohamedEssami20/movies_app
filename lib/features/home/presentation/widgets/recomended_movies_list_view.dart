@@ -5,8 +5,9 @@ import '../../../../core/utils/api_end_points.dart';
 import '../../domain/entities/up_coming_movies_entity/up_coming_movies_entity.dart';
 
 class UpComingMoviesListView extends StatelessWidget {
-  const UpComingMoviesListView({super.key, required this.upComingMovies});
+  const UpComingMoviesListView({super.key, required this.upComingMovies, required this.scrollController});
   final List<UpComingMoviesEntity> upComingMovies;
+  final ScrollController scrollController;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,6 +15,7 @@ class UpComingMoviesListView extends StatelessWidget {
       child: SizedBox(
         height: 250,
         child: ListView.builder(
+            controller: scrollController,
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
             itemCount: upComingMovies.length,

@@ -13,32 +13,45 @@ class UpComingMoviesBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<UpComingMoviesCubit, UpComingMoviesState>(
       builder: (context, state) {
-        if(state is UpComingMoviesSuccess || state is UpComingMoviesLoading) {
+        if (state is UpComingMoviesSuccess 
+        || state is UpComingMoviesPaginationSuccess ||
+        state is UpComingMoviesPaginationLoading ||
+        state is UpComingMoviesPaginationFailure) {
           return UpComingMoviesListView(
-            upComingMovies: context.read<UpComingMoviesCubit>().currentUpComingMovies,
+            upComingMovies:
+                context.read<UpComingMoviesCubit>().currentUpComingMovies,
+            scrollController: context.read<UpComingMoviesCubit>().scrollController,
           );
-        }
-        else if(state is UpComingMoviesFailure) {
+        } else if (state is UpComingMoviesFailure) {
           return Center(
             child: Text(
-              "${state.message.toString()}😢",
+              "${state.errorMessage.toString()}😢",
               style: AppTextStyles.regular12(context)
                   .copyWith(color: Colors.white),
             ),
           );
-        }
-        else {
+        } else {
           return UpComingMoviesListView(
             upComingMovies: [],
+            scrollController: ScrollController(),
           );
         }
       },
       listener: (context, state) {
-        if(state is UpComingMoviesFailure) {
+        if (state is UpComingMoviesFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             customErrorSnackBar(
               context,
-              state.message.toString(),
+              state.errorMessage.toString(),
+            ),
+          );
+        }
+
+        if (state is UpComingMoviesPaginationFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            customErrorSnackBar(
+              context,
+              state.errorMessage.toString(),
             ),
           );
         }

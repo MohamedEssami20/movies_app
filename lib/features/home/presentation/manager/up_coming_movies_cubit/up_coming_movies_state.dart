@@ -12,8 +12,21 @@ final class UpComingMoviesSuccess extends UpComingMoviesState {
 }
 
 final class UpComingMoviesFailure extends UpComingMoviesState {
-  final String message;
-  UpComingMoviesFailure({required this.message});
+  final String errorMessage;
+  UpComingMoviesFailure({required this.errorMessage});
 }
 
 final class UpComingMoviesLoading extends UpComingMoviesState {}
+
+// create all state of pagination of up coming movies;
+final class UpComingMoviesPaginationSuccess extends UpComingMoviesState {
+  final List<UpComingMoviesEntity> upComingMovies;
+  UpComingMoviesPaginationSuccess({required this.upComingMovies});
+}
+
+final class UpComingMoviesPaginationFailure extends UpComingMoviesState {
+  final String errorMessage;
+  UpComingMoviesPaginationFailure({required this.errorMessage});
+}
+
+final class UpComingMoviesPaginationLoading extends UpComingMoviesState {}

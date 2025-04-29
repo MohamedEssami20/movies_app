@@ -4,8 +4,9 @@ import '../../domain/entities/trending_movies_entity.dart/trending_movies_entity
 import 'movies_item.dart';
 
 class TrendingMoviesListView extends StatelessWidget {
-  const TrendingMoviesListView({super.key, required this.trendingMoives});
+  const TrendingMoviesListView({super.key, required this.trendingMoives, required this.scrollController});
   final List<TrendingMoviesEntity> trendingMoives;
+  final ScrollController scrollController;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,6 +14,7 @@ class TrendingMoviesListView extends StatelessWidget {
       child: SizedBox(
         height: 250,
         child: ListView.builder(
+            controller: scrollController,
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
             itemCount: trendingMoives.length,

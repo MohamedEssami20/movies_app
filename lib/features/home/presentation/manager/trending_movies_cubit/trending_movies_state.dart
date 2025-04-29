@@ -18,3 +18,16 @@ final class TrendingMoviesFailure extends TrendingMoviesState {
 }
 
 final class TrendingMoviesLoading extends TrendingMoviesState {}
+
+// create all state of pagination of trending movies;
+final class TrendingMoviesPaginationLoading extends TrendingMoviesState {}
+
+final class TrendingMoviesPaginationFailure extends TrendingMoviesState {
+  final String errorMessage;
+  TrendingMoviesPaginationFailure({required this.errorMessage});
+}
+
+final class TrendingMoviesPaginationSuccess extends TrendingMoviesState {
+  final List<TrendingMoviesEntity> trendingMoviesEntityList;
+  TrendingMoviesPaginationSuccess({required this.trendingMoviesEntityList});
+}
