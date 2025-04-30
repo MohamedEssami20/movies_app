@@ -52,7 +52,7 @@ class MoviesApp extends StatelessWidget {
               ),
             ),
             BlocProvider(
-              create: (context) => InternnetConnectionCubit(
+              create: (context) => InternetConnectionCubit(
                 Connectivity(),
               )..checkInternetConnection(),
             ),

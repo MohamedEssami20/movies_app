@@ -11,13 +11,6 @@ SnackBar customErrorSnackBar(BuildContext context, String message) {
     ),
     backgroundColor: AppColors.kPrimaryColor,
     duration: const Duration(seconds: 3),
-    action: SnackBarAction(
-      label: "Dismiss",
-      textColor: Colors.white,
-      onPressed: () {
-        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      },
-    ),
     behavior: SnackBarBehavior.floating,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12),

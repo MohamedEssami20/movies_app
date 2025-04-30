@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 
 part 'check_internnet_connection_state.dart';
 
-class InternnetConnectionCubit extends Cubit<InternetConnectionState> {
-  InternnetConnectionCubit(this._connectivity) : super(InternetConnectionInitial());
+class InternetConnectionCubit extends Cubit<InternetConnectionState> {
+  InternetConnectionCubit(this._connectivity)
+      : super(InternetConnectionInitial());
 
   // create method that check internet connection;
   final Connectivity _connectivity;
@@ -27,7 +28,7 @@ class InternnetConnectionCubit extends Cubit<InternetConnectionState> {
       }
     });
   }
- 
+
   @override
   Future<void> close() {
     connectivitySubscription?.cancel();

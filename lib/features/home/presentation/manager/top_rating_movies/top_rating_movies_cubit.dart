@@ -9,9 +9,9 @@ part 'top_rating_movies_state.dart';
 
 class TopRatingMoviesCubit extends Cubit<TopRatingMoviesState> {
   TopRatingMoviesCubit(this.homeRepos, this.context)
-      : super(TopRatingMoviesInitial()){
-        scrollController.addListener(paginationTopRatingMovies);
-      }
+      : super(TopRatingMoviesInitial()) {
+    scrollController.addListener(paginationTopRatingMovies);
+  }
   final HomeRepos homeRepos;
   final BuildContext context;
   final List<TopRatingMoviesEntity> currentTopRatingMovies =
@@ -71,7 +71,7 @@ class TopRatingMoviesCubit extends Cubit<TopRatingMoviesState> {
   Future<void> paginationTopRatingMovies() async {
     final currentScroll = scrollController.position.pixels;
     final maxScroll = scrollController.position.maxScrollExtent;
-    final isInternetConnected = context.read<InternnetConnectionCubit>().state
+    final isInternetConnected = context.read<InternetConnectionCubit>().state
         is InternetConnectionSuccess;
     if (!isPagination &&
         state is! TopRatingMoviesLoading &&

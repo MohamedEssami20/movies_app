@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/cubits/cubit/check_internnet_connection_cubit.dart';
@@ -10,9 +9,9 @@ part 'trending_movies_state.dart';
 
 class TrendingMoviesCubit extends Cubit<TrendingMoviesState> {
   TrendingMoviesCubit({required this.homeRepos, required this.context})
-      : super(TrendingMoviesInitial()){
-            scrollController.addListener(getNextPageOfTrendingMovies);
-      }
+      : super(TrendingMoviesInitial()) {
+    scrollController.addListener(getNextPageOfTrendingMovies);
+  }
 
   final HomeRepos homeRepos;
   final BuildContext context;
@@ -70,7 +69,7 @@ class TrendingMoviesCubit extends Cubit<TrendingMoviesState> {
   Future<void> getNextPageOfTrendingMovies() async {
     final currentScroll = scrollController.position.pixels;
     final maxScroll = scrollController.position.maxScrollExtent;
-    final isInternetConnected = context.read<InternnetConnectionCubit>().state
+    final isInternetConnected = context.read<InternetConnectionCubit>().state
         is InternetConnectionSuccess;
     if (currentScroll >= maxScroll * 0.7 &&
         !isPagination &&
@@ -88,6 +87,7 @@ class TrendingMoviesCubit extends Cubit<TrendingMoviesState> {
       isPagination = false;
     }
   }
+
   @override
   Future<void> close() {
     scrollController.dispose();

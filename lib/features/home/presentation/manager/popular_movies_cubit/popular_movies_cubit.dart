@@ -81,7 +81,7 @@ class PopularMoviesCubit extends Cubit<PopularMoviesState> {
     final currentScroll = scrollController.position.pixels;
     final maxScroll = scrollController.position.maxScrollExtent;
     final isInternetConnceted =
-        BlocProvider.of<InternnetConnectionCubit>(context).state
+        BlocProvider.of<InternetConnectionCubit>(context).state
             is InternetConnectionSuccess;
     if (currentScroll >= maxScroll * 0.7 &&
         !isPagination &&
@@ -92,7 +92,9 @@ class PopularMoviesCubit extends Cubit<PopularMoviesState> {
       isPagination = true;
       oldMoviesLength = currentPoupularMovies.length;
       final newPaginaiation = ++nextPage;
-      isInternetConnceted ? await getPopularMovies(pageNumber: newPaginaiation):null;
+      isInternetConnceted
+          ? await getPopularMovies(pageNumber: newPaginaiation)
+          : null;
       oldMaxScroll = maxScroll;
       isPagination = false;
     }

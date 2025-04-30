@@ -71,7 +71,7 @@ class UpComingMoviesCubit extends Cubit<UpComingMoviesState> {
   Future<void> getMoreUpComingMovies() async {
     final currentScroll = scrollController.position.pixels;
     final maxScroll = scrollController.position.maxScrollExtent;
-    final isInternetConnected = context.read<InternnetConnectionCubit>().state
+    final isInternetConnected = context.read<InternetConnectionCubit>().state
         is InternetConnectionSuccess;
     if (currentScroll >= maxScroll * 0.7 &&
         !isPagination &&

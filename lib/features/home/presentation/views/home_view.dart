@@ -6,6 +6,8 @@ import 'package:movies_app/features/home/presentation/widgets/custom_app_bar.dar
 import 'package:movies_app/features/home/presentation/widgets/custom_bottom_navigation_bar.dart';
 import 'package:movies_app/features/home/presentation/widgets/home_layout.dart';
 import 'package:movies_app/features/home/presentation/widgets/layouts/home_tablet_layout.dart';
+import '../../../../core/cubits/cubit/check_internnet_connection_cubit.dart';
+import '../../../../core/utils/custom_error_snack_bar.dart';
 import '../widgets/layouts/home_mobile_layout.dart';
 
 class HomeView extends StatelessWidget {
@@ -16,12 +18,34 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      body: BlocProvider(
-        create: (context) => CategoriesItemsCubit(),
-        child: HomeLayout(
-          mobileLayout: (context) => HomeMobileLayout(),
-          tabletLayout: (context) => HomeTabletLayout(),
-          desktopLayout: (context) => SizedBox(),
+      body: BlocListener<InternetConnectionCubit, InternetConnectionState>(
+        listener: (context, state) {
+          if (state is InternetConnectionFailure) {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              customErrorSnackBar(
+                context,
+                "No Internet Connection",
+              ),
+            );
+          }
+          if (state is InternetConnectionSuccess) {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              customErrorSnackBar(
+                context,
+                "Internet Connection Restored",
+              ),
+            );
+          }
+        },
+        child: BlocProvider(
+          create: (context) => CategoriesItemsCubit(),
+          child: HomeLayout(
+            mobileLayout: (context) => HomeMobileLayout(),
+            tabletLayout: (context) => HomeTabletLayout(),
+            desktopLayout: (context) => SizedBox(),
+          ),
         ),
       ),
       bottomNavigationBar: BlocProvider(
