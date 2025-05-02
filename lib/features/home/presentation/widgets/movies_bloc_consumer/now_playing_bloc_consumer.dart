@@ -1,8 +1,9 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/features/home/presentation/manager/now_playing_movies_cubit/now_playing_movies_cubit.dart';
+import '../../../../../core/func/custom_snack_bar.dart';
 import '../../../../../core/utils/app_text_styles.dart';
-import '../../../../../core/utils/custom_error_snack_bar.dart';
 import '../now_playing_poster.dart';
 
 class NowPlayingBlocConsumer extends StatelessWidget {
@@ -34,11 +35,10 @@ class NowPlayingBlocConsumer extends StatelessWidget {
       },
       listener: (context, state) {
         if (state is NowPlayingMoviesFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            customErrorSnackBar(
-              context,
-              state.errorMessage.toString(),
-            ),
+          showAnimatedSnackBar(
+            context,
+            message: state.errorMessage,
+            type: AnimatedSnackBarType.error,
           );
         }
       },

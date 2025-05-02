@@ -1,8 +1,8 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../../../../core/func/custom_snack_bar.dart';
 import '../../../../../core/utils/app_text_styles.dart';
-import '../../../../../core/utils/custom_error_snack_bar.dart';
 import '../../manager/up_coming_movies_cubit/up_coming_movies_cubit.dart';
 import '../recomended_movies_list_view.dart';
 
@@ -39,20 +39,18 @@ class UpComingMoviesBlocConsumer extends StatelessWidget {
       },
       listener: (context, state) {
         if (state is UpComingMoviesFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            customErrorSnackBar(
-              context,
-              state.errorMessage.toString(),
-            ),
+          showAnimatedSnackBar(
+            context,
+            message: state.errorMessage,
+            type: AnimatedSnackBarType.error,
           );
         }
 
         if (state is UpComingMoviesPaginationFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            customErrorSnackBar(
-              context,
-              state.errorMessage.toString(),
-            ),
+          showAnimatedSnackBar(
+            context,
+            message: state.errorMessage,
+            type: AnimatedSnackBarType.error,
           );
         }
       },

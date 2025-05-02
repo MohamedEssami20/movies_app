@@ -1,8 +1,8 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/features/home/presentation/widgets/new_release_tvshow_list_view.dart';
-
-import '../../../../../core/utils/custom_error_snack_bar.dart';
+import '../../../../../core/func/custom_snack_bar.dart';
 import '../../manager/top_rating_movies/top_rating_movies_cubit.dart';
 
 class TopRatingMoviesBlocConsumer extends StatelessWidget {
@@ -36,20 +36,18 @@ class TopRatingMoviesBlocConsumer extends StatelessWidget {
       },
       listener: (context, state) {
         if (state is TopRatingMoviesFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            customErrorSnackBar(
-              context,
-              state.errorMessage.toString(),
-            ),
+          showAnimatedSnackBar(
+            context,
+            message: state.errorMessage,
+            type: AnimatedSnackBarType.error,
           );
         }
 
         if(state is TopRatingMoviesPaginationFailure){
-          ScaffoldMessenger.of(context).showSnackBar(
-            customErrorSnackBar(
-              context,
-              state.errorMessage.toString(),
-            ),
+          showAnimatedSnackBar(
+            context,
+            message: state.errorMessage,
+            type: AnimatedSnackBarType.error,
           );
         }
       },
