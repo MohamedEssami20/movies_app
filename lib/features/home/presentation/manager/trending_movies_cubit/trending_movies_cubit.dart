@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/cubits/cubit/check_internnet_connection_cubit.dart';
 import '../../../../../core/func/check_if_new_movies_equal_current_movies.dart';
+import '../../../../../core/func/no_internet_at_end_of_list.dart';
 import '../../../domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
 import '../../../domain/home_repos/home_repos.dart';
 
@@ -10,7 +11,11 @@ part 'trending_movies_state.dart';
 class TrendingMoviesCubit extends Cubit<TrendingMoviesState> {
   TrendingMoviesCubit({required this.homeRepos, required this.context})
       : super(TrendingMoviesInitial()) {
-    scrollController.addListener(getNextPageOfTrendingMovies);
+    scrollController.addListener(() {
+      getNextPageOfTrendingMovies();
+      noInternetConnectionAtendOfList(
+          context: context, scrollController: scrollController);
+    });
   }
 
   final HomeRepos homeRepos;

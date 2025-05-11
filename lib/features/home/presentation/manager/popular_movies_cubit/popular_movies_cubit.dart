@@ -5,14 +5,18 @@ import 'package:movies_app/core/cubits/cubit/check_internnet_connection_cubit.da
 import 'package:movies_app/features/home/domain/home_repos/home_repos.dart';
 
 import '../../../../../core/func/check_if_new_movies_equal_current_movies.dart';
+import '../../../../../core/func/no_internet_at_end_of_list.dart';
 import '../../../domain/entities/popular_movies_entity/popular_movies_entity.dart';
-
 part 'popular_movies_state.dart';
 
 class PopularMoviesCubit extends Cubit<PopularMoviesState> {
   PopularMoviesCubit(this.context, {required this.homeRepos})
       : super(PopularMoviesInitial()) {
-    scrollController.addListener(popularMoviesPagination);
+    scrollController.addListener(() {
+      popularMoviesPagination();
+      noInternetConnectionAtendOfList(
+          context: context, scrollController: scrollController);
+    });
   }
   final HomeRepos homeRepos;
   final BuildContext context;

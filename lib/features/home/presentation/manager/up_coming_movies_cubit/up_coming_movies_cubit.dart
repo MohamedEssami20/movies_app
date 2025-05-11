@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/core/func/no_internet_at_end_of_list.dart';
 import '../../../../../core/cubits/cubit/check_internnet_connection_cubit.dart';
 import '../../../../../core/func/check_if_new_movies_equal_current_movies.dart';
 import '../../../domain/entities/up_coming_movies_entity/up_coming_movies_entity.dart';
@@ -11,6 +12,8 @@ class UpComingMoviesCubit extends Cubit<UpComingMoviesState> {
       : super(UpComingMoviesInitial()) {
     scrollController.addListener(() {
       getMoreUpComingMovies();
+      noInternetConnectionAtendOfList(
+          context: context, scrollController: scrollController);
     });
   }
   final HomeRepos homeRepos;

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/features/home/domain/home_repos/home_repos.dart';
 import '../../../../../core/cubits/cubit/check_internnet_connection_cubit.dart';
 import '../../../../../core/func/check_if_new_movies_equal_current_movies.dart';
+import '../../../../../core/func/no_internet_at_end_of_list.dart';
 import '../../../domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
 
 part 'top_rating_movies_state.dart';
@@ -10,7 +11,10 @@ part 'top_rating_movies_state.dart';
 class TopRatingMoviesCubit extends Cubit<TopRatingMoviesState> {
   TopRatingMoviesCubit(this.homeRepos, this.context)
       : super(TopRatingMoviesInitial()) {
-    scrollController.addListener(paginationTopRatingMovies);
+    scrollController.addListener((){
+      paginationTopRatingMovies();
+      noInternetConnectionAtendOfList(context: context, scrollController: scrollController);
+    });
   }
   final HomeRepos homeRepos;
   final BuildContext context;
