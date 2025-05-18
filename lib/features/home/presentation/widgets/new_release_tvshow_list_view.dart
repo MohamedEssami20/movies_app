@@ -15,6 +15,7 @@ class TopRatingListView extends StatelessWidget {
       child: SizedBox(
         height: 250,
         child: ListView.builder(
+            key: PageStorageKey("TopRatingListView"),
             controller: scrollController,
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
