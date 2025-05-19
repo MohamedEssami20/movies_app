@@ -8,32 +8,31 @@ class HomeMobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      scrollDirection: Axis.vertical,
-      physics: BouncingScrollPhysics(),
-      slivers: [
-        SliverToBoxAdapter(
-          child: Padding(
+    return SizedBox(
+      height: MediaQuery.sizeOf(context).height,
+      child: Column(
+        children: [
+          Padding(
             padding: const EdgeInsets.all(20),
             child: CustomSearchField(
               onChanged: (value) {},
             ),
           ),
-        ),
-        SliverToBoxAdapter(
-          child: SizedBox(
+          SizedBox(
             height: 50,
             child: Padding(
               padding: const EdgeInsets.only(left: 20),
               child: CategoriesItemListView(),
             ),
           ),
-        ),
-        SliverToBoxAdapter(
-          child: HomeBlocProviders(),
-        ),
-      ],
+          SizedBox(
+            height: 12,
+          ),
+          Expanded(
+            child: HomeBlocProviders(),
+          ),
+        ],
+      ),
     );
   }
 }
-

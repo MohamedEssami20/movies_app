@@ -10,23 +10,17 @@ class HomeTabletLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      scrollDirection: Axis.vertical,
-      scrollBehavior: const MaterialScrollBehavior().copyWith(
-        overscroll: false,
-        physics: BouncingScrollPhysics(),
-      ),
-      slivers: [
-        SliverToBoxAdapter(
-          child: Padding(
+    return SizedBox(
+      height: MediaQuery.sizeOf(context).height,
+      child: Column(
+        children: [
+          Padding(
             padding: const EdgeInsets.all(20),
             child: CustomSearchField(
               onChanged: (value) {},
             ),
           ),
-        ),
-        SliverToBoxAdapter(
-          child: SizedBox(
+          SizedBox(
             height: 50,
             child: BlocProvider(
               create: (context) => CategoriesItemsCubit(),
@@ -36,11 +30,14 @@ class HomeTabletLayout extends StatelessWidget {
               ),
             ),
           ),
-        ),
-        SliverToBoxAdapter(
-          child: HomeBlocProviders(),
-        ),
-      ],
+          SizedBox(
+            height: 14,
+          ),
+          Expanded(
+            child: HomeBlocProviders(),
+          ),
+        ],
+      ),
     );
   }
 }
