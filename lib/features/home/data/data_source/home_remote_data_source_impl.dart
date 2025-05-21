@@ -1,5 +1,6 @@
 import 'package:movies_app/core/utils/constant.dart';
 import 'package:movies_app/features/home/data/data_source/home_data_source.dart';
+import 'package:movies_app/features/home/domain/entities/action_movies_entity/action_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
 import 'package:movies_app/features/home/domain/entities/popular_movies_entity/popular_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
@@ -8,6 +9,7 @@ import '../../../../core/func/save_movies_local.dart';
 import '../../../../core/services/api_services.dart';
 import '../../../../core/utils/api_end_points.dart';
 import '../../domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
+import '../models/action_movies_model.dart';
 import '../models/now_playing_movies_model.dart';
 import '../models/popular_movies_model.dart';
 import '../models/top_rating_movies_model.dart';
@@ -92,5 +94,21 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       results: upComingMovies,
     );
     return upComingMovies;
+  }
+
+  // implementation get action movies ;
+  @override
+  Future<List<ActionMoviesEntity>> getActionMovies({int pageNumber = 1}) async {
+    final List<ActionMoviesEntity> actionMovies = [];
+    final results = await apiServices
+        .get("${ApiEndPoints.actionMovies}&page=$pageNumber");
+    for (var movies in results['results']) {
+      actionMovies.add(ActionMoviesModel.fromJson(movies));
+    }
+    await saveMoviesLocal(
+      boxName: AppConstants.actionMoviesKey,
+      results: actionMovies,
+    );
+    return actionMovies;
   }
 }

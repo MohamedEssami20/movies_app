@@ -5,4 +5,5 @@ class AppConstants {
   static const String trendingMovieKey = "trendingMovie";
   static const String topRatingMovieKey = "topRatingmovies";
   static const String upComingMoviesKey = "upComingMovies";
+  static const String actionMoviesKey = "actionMovies";
 }

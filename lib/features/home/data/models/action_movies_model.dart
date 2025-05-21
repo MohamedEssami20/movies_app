@@ -1,4 +1,6 @@
-class ActionMoviesModel {
+import '../../domain/entities/action_movies_entity/action_movies_entity.dart';
+
+class ActionMoviesModel extends ActionMoviesEntity {
   bool? adult;
   String? backdropPath;
   List<dynamic>? genreIds;
@@ -27,9 +29,9 @@ class ActionMoviesModel {
     this.releaseDate,
     this.title,
     this.video,
-    this.voteAverage,
+    this.voteAverage, 
     this.voteCount,
-  });
+  }):super(movieId: id??0, movieTitle: title??"", moviePoster: posterPath??"");
 
   factory ActionMoviesModel.fromJson(Map<String, dynamic> json) {
     return ActionMoviesModel(

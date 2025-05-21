@@ -1,3 +1,4 @@
+import 'package:movies_app/features/home/domain/entities/action_movies_entity/action_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
 import 'package:movies_app/features/home/domain/entities/popular_movies_entity/popular_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
@@ -20,4 +21,7 @@ abstract class HomeRemoteDataSource {
 
   // create method that get upcoming movies from api;
   Future<List<UpComingMoviesEntity>> getUpcomingMovies({int pageNumber = 1});
+
+  //create method that get action movies from api;
+  Future<List<ActionMoviesEntity>> getActionMovies({int pageNumber = 1});
 }
