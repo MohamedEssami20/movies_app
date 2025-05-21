@@ -3,8 +3,7 @@ part of 'popular_movies_cubit.dart';
 @immutable
 sealed class PopularMoviesState {}
 
-final class PopularMoviesInitial extends PopularMoviesState {
-}
+final class PopularMoviesInitial extends PopularMoviesState {}
 
 // create all states of Popular movies;
 final class PopularMoviesLoading extends PopularMoviesState {}

@@ -1,9 +1,8 @@
-
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies_app/features/home/domain/entities/base_movies_entity.dart';
 part 'up_coming_movies_entity.g.dart';
 
-@HiveType(typeId:4)
+@HiveType(typeId: 4)
 class UpComingMoviesEntity extends HiveObject implements BaseMoviesEntity {
   @HiveField(0)
   final int movieId;

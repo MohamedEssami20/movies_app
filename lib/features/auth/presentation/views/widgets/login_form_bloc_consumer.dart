@@ -19,7 +19,7 @@ class LoginFormBlocConsumer extends StatelessWidget {
         if (state is LoginSuccess) {
           Navigator.pushNamedAndRemoveUntil(
               context, HomeView.routeName, (_) => false);
-         showAnimatedSnackBar(
+          showAnimatedSnackBar(
             context,
             message: "Login Success",
             type: AnimatedSnackBarType.success,

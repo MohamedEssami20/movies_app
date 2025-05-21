@@ -1,6 +1,4 @@
-import 'package:movies_app/features/home/domain/entities/up_coming_movies_entity/up_coming_movies_entity.dart';
-
-class UpComingMoviesModel extends UpComingMoviesEntity {
+class ActionMoviesModel {
   bool? adult;
   String? backdropPath;
   List<dynamic>? genreIds;
@@ -16,7 +14,7 @@ class UpComingMoviesModel extends UpComingMoviesEntity {
   double? voteAverage;
   int? voteCount;
 
-  UpComingMoviesModel({
+  ActionMoviesModel({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -31,13 +29,10 @@ class UpComingMoviesModel extends UpComingMoviesEntity {
     this.video,
     this.voteAverage,
     this.voteCount,
-  }) : super(
-            movieId: id ?? 0,
-            moviePoster: posterPath ?? "",
-            movieTitle: title ?? "");
+  });
 
-  factory UpComingMoviesModel.fromJson(Map<String, dynamic> json) {
-    return UpComingMoviesModel(
+  factory ActionMoviesModel.fromJson(Map<String, dynamic> json) {
+    return ActionMoviesModel(
       adult: json['adult'] as bool?,
       backdropPath: json['backdrop_path'] as String?,
       genreIds: json['genre_ids'] as List<dynamic>?,

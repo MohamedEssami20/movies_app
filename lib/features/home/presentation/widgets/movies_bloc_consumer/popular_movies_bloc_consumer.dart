@@ -20,7 +20,8 @@ class PopularMoviesBlocConsumer extends StatelessWidget {
           return PopularMoviesListView(
             popularMovies:
                 context.read<PopularMoviesCubit>().currentPoupularMovies,
-            scrollController:context.read<PopularMoviesCubit>().scrollController,
+            scrollController:
+                context.read<PopularMoviesCubit>().scrollController,
           );
         } else if (state is PopularMoviesFailure) {
           return Center(
@@ -32,9 +33,9 @@ class PopularMoviesBlocConsumer extends StatelessWidget {
           );
         } else {
           return PopularMoviesListView(
-              popularMovies: [],
-              scrollController: ScrollController(),
-              );
+            popularMovies: [],
+            scrollController: ScrollController(),
+          );
         }
       },
       listener: (context, state) {

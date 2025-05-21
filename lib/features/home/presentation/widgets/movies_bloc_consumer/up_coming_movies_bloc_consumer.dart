@@ -13,14 +13,15 @@ class UpComingMoviesBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<UpComingMoviesCubit, UpComingMoviesState>(
       builder: (context, state) {
-        if (state is UpComingMoviesSuccess 
-        || state is UpComingMoviesPaginationSuccess ||
-        state is UpComingMoviesPaginationLoading ||
-        state is UpComingMoviesPaginationFailure) {
+        if (state is UpComingMoviesSuccess ||
+            state is UpComingMoviesPaginationSuccess ||
+            state is UpComingMoviesPaginationLoading ||
+            state is UpComingMoviesPaginationFailure) {
           return UpComingMoviesListView(
             upComingMovies:
                 context.read<UpComingMoviesCubit>().currentUpComingMovies,
-            scrollController: context.read<UpComingMoviesCubit>().scrollController,
+            scrollController:
+                context.read<UpComingMoviesCubit>().scrollController,
           );
         } else if (state is UpComingMoviesFailure) {
           return Center(

@@ -6,10 +6,14 @@ import 'package:movies_app/core/func/custom_snack_bar.dart';
 
 import '../cubits/cubit/check_internnet_connection_cubit.dart';
 
-void noInternetConnectionAtendOfList({required BuildContext context, required ScrollController scrollController}) {
+void noInternetConnectionAtendOfList(
+    {required BuildContext context,
+    required ScrollController scrollController}) {
   final currentScroll = scrollController.position.pixels;
   final maxScroll = scrollController.position.maxScrollExtent;
-  final bool isInternetConnceted = BlocProvider.of<InternetConnectionCubit>(context).state is InternetConnectionSuccess;
+  final bool isInternetConnceted =
+      BlocProvider.of<InternetConnectionCubit>(context).state
+          is InternetConnectionSuccess;
   if (currentScroll == maxScroll && isInternetConnceted == false) {
     showAnimatedSnackBar(
       context,
@@ -17,5 +21,4 @@ void noInternetConnectionAtendOfList({required BuildContext context, required Sc
       type: AnimatedSnackBarType.error,
     );
   }
-  
 }

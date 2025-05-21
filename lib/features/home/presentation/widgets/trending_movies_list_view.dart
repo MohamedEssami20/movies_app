@@ -4,7 +4,10 @@ import '../../domain/entities/trending_movies_entity.dart/trending_movies_entity
 import 'movies_item.dart';
 
 class TrendingMoviesListView extends StatelessWidget {
-  const TrendingMoviesListView({super.key, required this.trendingMoives, required this.scrollController});
+  const TrendingMoviesListView(
+      {super.key,
+      required this.trendingMoives,
+      required this.scrollController});
   final List<TrendingMoviesEntity> trendingMoives;
   final ScrollController scrollController;
   @override

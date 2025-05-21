@@ -13,13 +13,14 @@ class TopRatingMoviesBlocConsumer extends StatelessWidget {
     return BlocConsumer<TopRatingMoviesCubit, TopRatingMoviesState>(
       builder: (context, state) {
         if (state is TopRatingMoviesSuccess ||
-            state is TopRatingMoviesPaginationSuccess
-            || state is TopRatingMoviesPaginationLoading||
+            state is TopRatingMoviesPaginationSuccess ||
+            state is TopRatingMoviesPaginationLoading ||
             state is TopRatingMoviesPaginationFailure) {
           return TopRatingListView(
             topRatingMovies:
                 context.read<TopRatingMoviesCubit>().currentTopRatingMovies,
-            scrollController: context.read<TopRatingMoviesCubit>().scrollController,
+            scrollController:
+                context.read<TopRatingMoviesCubit>().scrollController,
           );
         } else if (state is TopRatingMoviesFailure) {
           return Center(
@@ -43,7 +44,7 @@ class TopRatingMoviesBlocConsumer extends StatelessWidget {
           );
         }
 
-        if(state is TopRatingMoviesPaginationFailure){
+        if (state is TopRatingMoviesPaginationFailure) {
           showAnimatedSnackBar(
             context,
             message: state.errorMessage,

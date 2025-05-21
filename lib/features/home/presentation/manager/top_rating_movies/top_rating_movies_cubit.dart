@@ -11,9 +11,10 @@ part 'top_rating_movies_state.dart';
 class TopRatingMoviesCubit extends Cubit<TopRatingMoviesState> {
   TopRatingMoviesCubit(this.homeRepos, this.context)
       : super(TopRatingMoviesInitial()) {
-    scrollController.addListener((){
+    scrollController.addListener(() {
       paginationTopRatingMovies();
-      noInternetConnectionAtendOfList(context: context, scrollController: scrollController);
+      noInternetConnectionAtendOfList(
+          context: context, scrollController: scrollController);
     });
   }
   final HomeRepos homeRepos;

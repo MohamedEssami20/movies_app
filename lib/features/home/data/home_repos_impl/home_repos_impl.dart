@@ -33,7 +33,8 @@ class HomeReposImpl implements HomeRepos {
 
   // implementation of get popular movies;
   @override
-  Future<Either<Failure, List<PopularMoviesEntity>>> getPopularMovies({int pageNumber=1}) {
+  Future<Either<Failure, List<PopularMoviesEntity>>> getPopularMovies(
+      {int pageNumber = 1}) {
     Future<List<PopularMoviesEntity>> homeRemoteSource =
         homeDataSourceRepos.getPopularMovies(pageNumber: pageNumber);
     List<PopularMoviesEntity> homeLocalSource =
@@ -46,7 +47,8 @@ class HomeReposImpl implements HomeRepos {
 
   // iplmentation of get trending movies;
   @override
-  Future<Either<Failure, List<TrendingMoviesEntity>>> getTrendingMovies({int pageNumber=1}) {
+  Future<Either<Failure, List<TrendingMoviesEntity>>> getTrendingMovies(
+      {int pageNumber = 1}) {
     Future<List<TrendingMoviesEntity>> homeRemoteSource =
         homeDataSourceRepos.getTrendingMovies(pageNumber: pageNumber);
     List<TrendingMoviesEntity> homeLocalSource =
@@ -59,9 +61,10 @@ class HomeReposImpl implements HomeRepos {
 
   // implementation get top rating movies form repos;
   @override
-  Future<Either<Failure, List<TopRatingMoviesEntity>>> getTopRatingMovies({int pageNumber=1}) {
+  Future<Either<Failure, List<TopRatingMoviesEntity>>> getTopRatingMovies(
+      {int pageNumber = 1}) {
     Future<List<TopRatingMoviesEntity>> homeRemoteSource =
-        homeDataSourceRepos.getTopRatedMovies(pageNumber:pageNumber);
+        homeDataSourceRepos.getTopRatedMovies(pageNumber: pageNumber);
     List<TopRatingMoviesEntity> homeLocalSource =
         homeLocalDataSource.getTopRatingMovies(pageNumber: pageNumber);
     return getMoviesDataImpl(
@@ -72,7 +75,8 @@ class HomeReposImpl implements HomeRepos {
 
   // implementation get upcoming movies from repos;
   @override
-  Future<Either<Failure, List<UpComingMoviesEntity>>> getUpComingMovies({int pageNumber=1}) {
+  Future<Either<Failure, List<UpComingMoviesEntity>>> getUpComingMovies(
+      {int pageNumber = 1}) {
     Future<List<UpComingMoviesEntity>> homeRemoteSource =
         homeDataSourceRepos.getUpcomingMovies(pageNumber: pageNumber);
     List<UpComingMoviesEntity> homeLocalSource =

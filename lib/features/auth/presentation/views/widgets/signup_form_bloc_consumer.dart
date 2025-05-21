@@ -13,7 +13,7 @@ class SignupFormBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       builder: (context, state) {
-        return SignupForm(signupKey: signupKey);  
+        return SignupForm(signupKey: signupKey);
       },
       listener: (context, state) {
         if (state is SignupSuccess ||
@@ -21,7 +21,7 @@ class SignupFormBlocConsumer extends StatelessWidget {
             state is LoginWithFacebookSuccess) {
           Navigator.pushNamedAndRemoveUntil(
               context, HomeView.routeName, (_) => false);
-         showAnimatedSnackBar(
+          showAnimatedSnackBar(
             context,
             message: "Signup Success",
             type: AnimatedSnackBarType.success,
@@ -33,12 +33,12 @@ class SignupFormBlocConsumer extends StatelessWidget {
           showAnimatedSnackBar(
             context,
             message: state is SignupFailure
-                  ? state.errorMessage
-                  : state is LoginWithGoogleFailure
-                      ? state.errorMessage
-                      : state is LoginWithFacebookFailure
-                          ? state.errorMessage
-                          : "there is an error, try later!",
+                ? state.errorMessage
+                : state is LoginWithGoogleFailure
+                    ? state.errorMessage
+                    : state is LoginWithFacebookFailure
+                        ? state.errorMessage
+                        : "there is an error, try later!",
             type: AnimatedSnackBarType.error,
           );
         }

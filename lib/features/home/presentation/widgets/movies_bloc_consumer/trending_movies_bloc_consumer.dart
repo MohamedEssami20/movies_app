@@ -40,7 +40,7 @@ class TrendingMoviesBlocConsumer extends StatelessWidget {
       },
       listener: (context, state) {
         if (state is TrendingMoviesFailure) {
-         showAnimatedSnackBar(
+          showAnimatedSnackBar(
             context,
             message: state.errorMessage,
             type: AnimatedSnackBarType.error,

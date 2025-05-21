@@ -12,7 +12,7 @@ class HomeTabletLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.sizeOf(context).height,
-      child: Column( 
+      child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(20),

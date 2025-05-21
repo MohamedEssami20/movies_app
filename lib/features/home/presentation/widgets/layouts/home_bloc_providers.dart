@@ -44,7 +44,7 @@ class HomeBlocProviders extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => UpComingMoviesCubit(
-            getIt.get<HomeRepos>(), 
+            getIt.get<HomeRepos>(),
             context,
           )..getUpComingMovies(),
         ),
