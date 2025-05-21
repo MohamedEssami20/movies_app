@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/features/home/domain/entities/action_movies_entity/action_movies_entity.dart';
 import 'package:movies_app/features/home/presentation/widgets/movies_item.dart';
 
+import '../../../../../core/utils/api_end_points.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
 class ActionMoviesView extends StatelessWidget {
-  const ActionMoviesView({super.key});
-
+  const ActionMoviesView({super.key, required this.actionMovies, required this.scrollController});
+  final List<ActionMoviesEntity> actionMovies;
+  final ScrollController scrollController;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
@@ -26,6 +29,9 @@ class ActionMoviesView extends StatelessWidget {
           ),
           Expanded(
             child: GridView.builder(
+              key: PageStorageKey("ActionMoviesListView"),
+              physics: const BouncingScrollPhysics(),
+              controller: scrollController,
               scrollDirection: Axis.vertical,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: width > 600 ? 4 : 2,
@@ -37,12 +43,12 @@ class ActionMoviesView extends StatelessWidget {
                   fit: BoxFit.fill,
                   child: MoviesItem(
                     imageUrl:
-                        "https://image.tmdb.org/t/p/original/yFHHfHcUgGAxziP1C3lLt0q2T4s.jpg",
-                    movieTitle: "Action Movies",
+                        ApiEndPoints.imagebaseUrl + actionMovies[index].moviePoster.toString(),
+                    movieTitle: actionMovies[index].movieTitle,
                   ),
                 );
               },
-              itemCount: 20,
+              itemCount: actionMovies.length,
             ),
           ),
         ],

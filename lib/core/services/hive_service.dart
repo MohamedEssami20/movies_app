@@ -1,5 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies_app/core/utils/constant.dart';
+import 'package:movies_app/features/home/domain/entities/action_movies_entity/action_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/up_coming_movies_entity/up_coming_movies_entity.dart';
 
@@ -25,6 +26,9 @@ class HiveService {
     Hive.registerAdapter(
       UpComingMoviesEntityAdapter(),
     );
+    Hive.registerAdapter(
+      ActionMoviesEntityAdapter(),
+    );
     await _initTypeAdapters();
     await _openAllBoxes();
   }
@@ -37,6 +41,7 @@ Future<void> _openAllBoxes() async {
   await Hive.openBox<TrendingMoviesEntity>(AppConstants.trendingMovieKey);
   await Hive.openBox<TopRatingMoviesEntity>(AppConstants.topRatingMovieKey);
   await Hive.openBox<UpComingMoviesEntity>(AppConstants.upComingMoviesKey);
+  await Hive.openBox<ActionMoviesEntity>(AppConstants.actionMoviesKey);
 }
 
 List<TypeAdapter> typeAdapters = <TypeAdapter>[
@@ -45,6 +50,7 @@ List<TypeAdapter> typeAdapters = <TypeAdapter>[
   TrendingMoviesEntityAdapter(),
   TopRatingMoviesEntityAdapter(),
   UpComingMoviesEntityAdapter(),
+  ActionMoviesEntityAdapter(),
 ];
 
 // create method that init all type adapters;

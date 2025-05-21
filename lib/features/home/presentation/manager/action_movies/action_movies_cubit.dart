@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/func/no_internet_at_end_of_list.dart';
 import 'package:movies_app/features/home/domain/entities/action_movies_entity/action_movies_entity.dart';
@@ -82,15 +84,17 @@ class ActionMoviesCubit extends Cubit<ActionMoviesState> {
     double maxScroll = scrollController.position.maxScrollExtent;
     final isInternetConnected = context.read<InternetConnectionCubit>().state
         is InternetConnectionSuccess;
+    log("max action movies scroll= $maxScroll");
     if (currentScroll >= maxScroll * 0.7 &&
         !isPagination &&
         state is! ActionMoviesPaginationLoading &&
         maxScroll >=
             oldMaxScroll +
-                (152.4 * (currentActionMovies.length - oldMoviesLength))) {
+                (73.1 * (currentActionMovies.length - oldMoviesLength))) {
       isPagination = true;
       oldMoviesLength = currentActionMovies.length;
       final newPaginaiation = ++nextPage;
+      log("************** iam in pagination in action movies **********");
       isInternetConnected
           ? await getActionMovies(pageNumber: newPaginaiation)
           : null;

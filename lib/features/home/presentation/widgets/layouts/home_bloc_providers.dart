@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/services/get_it_service.dart';
 import '../../../domain/home_repos/home_repos.dart';
+import '../../manager/action_movies/action_movies_cubit.dart';
 import '../../manager/now_playing_movies_cubit/now_playing_movies_cubit.dart';
 import '../../manager/popular_movies_cubit/popular_movies_cubit.dart';
 import '../../manager/top_rating_movies/top_rating_movies_cubit.dart';
@@ -47,6 +48,12 @@ class HomeBlocProviders extends StatelessWidget {
             getIt.get<HomeRepos>(),
             context,
           )..getUpComingMovies(),
+        ),
+        BlocProvider(
+          create: (context) => ActionMoviesCubit(
+            context: context,
+            homeRepos: getIt.get<HomeRepos>(),
+          )..getActionMovies(),
         ),
       ],
       child: ChoosenCategoryViews(),
