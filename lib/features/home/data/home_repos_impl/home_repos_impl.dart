@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:movies_app/core/errors/failure.dart';
 import 'package:movies_app/features/home/data/data_source/home_data_source.dart';
 import 'package:movies_app/features/home/data/data_source/home_local_data_source.dart';
+import 'package:movies_app/features/home/domain/entities/action_movies_entity/action_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
 import 'package:movies_app/features/home/domain/entities/popular_movies_entity/popular_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
@@ -81,6 +82,20 @@ class HomeReposImpl implements HomeRepos {
         homeDataSourceRepos.getUpcomingMovies(pageNumber: pageNumber);
     List<UpComingMoviesEntity> homeLocalSource =
         homeLocalDataSource.getUpComingMovies(pageNumber: pageNumber);
+    return getMoviesDataImpl(
+      homeRemoteDataSource: homeRemoteSource,
+      homeLocalDataSource: homeLocalSource,
+    );
+  }
+
+  // implementation get action movies from repos;
+  @override
+  Future<Either<Failure, List<ActionMoviesEntity>>> getActionMovies(
+      {int pageNumber = 1}) {
+    Future<List<ActionMoviesEntity>> homeRemoteSource =
+        homeDataSourceRepos.getActionMovies(pageNumber: pageNumber);
+    List<ActionMoviesEntity> homeLocalSource =
+        homeLocalDataSource.getActionMovies(pageNumber: pageNumber);
     return getMoviesDataImpl(
       homeRemoteDataSource: homeRemoteSource,
       homeLocalDataSource: homeLocalSource,
