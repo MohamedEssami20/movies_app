@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/action_movies_bloc_consumer.dart';
+import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/adventure_movies_bloc_consumer.dart';
 import '../manager/categories_items/categories_items_cubit.dart';
-import 'movies/adventure_movies_view.dart';
 import 'movies/all_category_movies.dart';
 import 'movies/animation_movies_view.dart';
 import 'movies/comedy_movies_view.dart';
@@ -56,7 +56,7 @@ class _ChoosenCategoryViewsState extends State<ChoosenCategoryViews> {
       case 1:
         return const ActionMoviesBlocConsumer(key: ValueKey(1));
       case 2:
-        return const AdventureMoviesView(key: ValueKey(2));
+        return const AdventureMoviesBlocConsumer(key: ValueKey(2));
       case 3:
         return const ComedyMoviesView(key: ValueKey(3));
       case 4:
