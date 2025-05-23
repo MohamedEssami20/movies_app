@@ -94,7 +94,6 @@ class ActionMoviesCubit extends Cubit<ActionMoviesState> {
       isPagination = true;
       oldMoviesLength = currentActionMovies.length;
       final newPaginaiation = ++nextPage;
-      log("************** iam in pagination in action movies **********");
       isInternetConnected
           ? await getActionMovies(pageNumber: newPaginaiation)
           : null;

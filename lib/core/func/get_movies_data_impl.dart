@@ -1,6 +1,5 @@
 // creat method that get movies from api and local storage ;
 import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:movies_app/core/errors/failure.dart';
@@ -26,6 +25,9 @@ Future<Either<Failure, List<T>>> getMoviesDataImpl<T>({
     }
   } catch (error) {
     moviesEntity = homeLocalDataSource;
+    if (moviesEntity.isNotEmpty) {
+      return right(moviesEntity);
+    }
     log(" error is= $error");
     return Left(
       Failure("Opps there was an error, try later."),

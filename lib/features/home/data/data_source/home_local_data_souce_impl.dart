@@ -24,8 +24,8 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
   List<PopularMoviesEntity> getPopularMovies({int pageNumber = 1}) {
     Box<PopularMoviesEntity> box =
         Hive.box<PopularMoviesEntity>(AppConstants.popularMovieKey);
-    int startIndex = pageNumber * 20;
-    int endIndex = (pageNumber + 1) * 20;
+    int startIndex = pageNumber * 0;
+    int endIndex = pageNumber  * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
@@ -38,8 +38,8 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
   List<TrendingMoviesEntity> getTrendingMovies({int pageNumber = 1}) {
     Box<TrendingMoviesEntity> box =
         Hive.box<TrendingMoviesEntity>(AppConstants.trendingMovieKey);
-    int startIndex = pageNumber * 20;
-    int endIndex = (pageNumber + 1) * 20;
+    int startIndex = pageNumber * 0;
+    int endIndex = pageNumber  * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
@@ -51,8 +51,8 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
   @override
   List<TopRatingMoviesEntity> getTopRatingMovies({int pageNumber = 1}) {
     Box<TopRatingMoviesEntity> box = Hive.box(AppConstants.topRatingMovieKey);
-    int startIndex = pageNumber * 20;
-    int endIndex = (pageNumber + 1) * 20;
+    int startIndex = pageNumber * 0;
+    int endIndex = pageNumber * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
@@ -65,8 +65,8 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
   List<UpComingMoviesEntity> getUpComingMovies({int pageNumber = 1}) {
     Box<UpComingMoviesEntity> box =
         Hive.box<UpComingMoviesEntity>(AppConstants.upComingMoviesKey);
-    int startIndex = pageNumber * 20;
-    int endIndex = (pageNumber + 1) * 20;
+    int startIndex = pageNumber * 0;
+    int endIndex = pageNumber  * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
@@ -79,8 +79,8 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
   List<ActionMoviesEntity> getActionMovies({int pageNumber = 1}) {
     Box<ActionMoviesEntity> box =
         Hive.box<ActionMoviesEntity>(AppConstants.actionMoviesKey);
-    int startIndex = pageNumber * 20;
-    int endIndex = (pageNumber + 1) * 20;
+    int startIndex = pageNumber * 0;
+    int endIndex = pageNumber  * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
