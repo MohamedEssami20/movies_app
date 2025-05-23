@@ -2,6 +2,7 @@ import 'package:movies_app/features/home/domain/entities/now_palying_entity/now_
 import 'package:movies_app/features/home/domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
 
 import '../../domain/entities/action_movies_entity/action_movies_entity.dart';
+import '../../domain/entities/adventure_movies_entity/adventure_movies_entity.dart';
 import '../../domain/entities/popular_movies_entity/popular_movies_entity.dart';
 import '../../domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
 import '../../domain/entities/up_coming_movies_entity/up_coming_movies_entity.dart';
@@ -24,4 +25,7 @@ abstract class HomeLocalDataSource {
 
   // create method that get action movies from local storage;
   List<ActionMoviesEntity> getActionMovies({int pageNumber = 1});
+
+  // create method that get adventure movies from local storage;
+  List<AdventureMoviesEntity> getAdventureMovies({int pageNumber = 1});
 }

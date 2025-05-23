@@ -1,5 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies_app/features/home/domain/entities/action_movies_entity/action_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/adventure_movies_entity/adventure_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
 import 'package:movies_app/features/home/domain/entities/popular_movies_entity/popular_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
@@ -79,6 +80,20 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
   List<ActionMoviesEntity> getActionMovies({int pageNumber = 1}) {
     Box<ActionMoviesEntity> box =
         Hive.box<ActionMoviesEntity>(AppConstants.actionMoviesKey);
+    int startIndex = pageNumber * 0;
+    int endIndex = pageNumber  * 20;
+    bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
+    if (outOfRange) {
+      return [];
+    }
+    return box.values.toList().sublist(startIndex, endIndex);
+  }
+  
+  // implementation of get adventure movies from local storage;
+  @override
+  List<AdventureMoviesEntity> getAdventureMovies({int pageNumber = 1}) {
+    Box<AdventureMoviesEntity> box =
+        Hive.box<AdventureMoviesEntity>(AppConstants.adventureMoviesKey);
     int startIndex = pageNumber * 0;
     int endIndex = pageNumber  * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);

@@ -4,6 +4,7 @@ import 'package:movies_app/features/home/domain/entities/popular_movies_entity/p
 import 'package:movies_app/features/home/domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
 import '../../../../core/errors/failure.dart';
 import '../entities/action_movies_entity/action_movies_entity.dart';
+import '../entities/adventure_movies_entity/adventure_movies_entity.dart';
 import '../entities/now_palying_entity/now_playing_entity.dart';
 import '../entities/trending_movies_entity.dart/trending_movies_entity.dart';
 import '../entities/up_coming_movies_entity/up_coming_movies_entity.dart';
@@ -30,5 +31,9 @@ abstract class HomeRepos {
 
   // create method that get action movries;
   Future<Either<Failure, List<ActionMoviesEntity>>> getActionMovies(
+      {int pageNumber = 1});
+
+  // create method that get adventure movies;
+  Future<Either<Failure, List<AdventureMoviesEntity>>> getAdventureMovies(
       {int pageNumber = 1});
 }
