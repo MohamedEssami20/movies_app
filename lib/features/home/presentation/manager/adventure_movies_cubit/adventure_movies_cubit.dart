@@ -96,4 +96,10 @@ class AdventureMoviesCubit extends Cubit<AdventureMoviesState> {
       isPagination = false;
     }
   }
+
+  @override
+  Future<void> close() {
+    scrollController.dispose();
+    return super.close();
+  }
 }
