@@ -1,9 +1,16 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies_app/core/utils/constant.dart';
 import 'package:movies_app/features/home/domain/entities/action_movies_entity/action_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/adventure_movies_entity/adventure_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/animations_movies_entity/animations_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/crime_movies_entity/crime_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/family_movies_entity/family_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/horror_movies_entity/horror_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/romance_movies_entity/romance_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/top_rating_movies_entity/top_rating_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/up_coming_movies_entity/up_coming_movies_entity.dart';
 
+import '../../features/home/domain/entities/drama_movies_entity/drama_movies_entity.dart';
 import '../../features/home/domain/entities/now_palying_entity/now_playing_entity.dart';
 import '../../features/home/domain/entities/popular_movies_entity/popular_movies_entity.dart';
 import '../../features/home/domain/entities/trending_movies_entity.dart/trending_movies_entity.dart';
@@ -11,7 +18,13 @@ import '../../features/home/domain/entities/trending_movies_entity.dart/trending
 class HiveService {
   static Future<void> init() async {
     await Hive.initFlutter();
-    Hive.registerAdapter(
+    registerAllAdapters();
+    await _initTypeAdapters();
+    await _openAllBoxes();
+  }
+
+  static void registerAllAdapters() {
+     Hive.registerAdapter(
       NowPlayingEntityAdapter(),
     );
     Hive.registerAdapter(
@@ -29,8 +42,27 @@ class HiveService {
     Hive.registerAdapter(
       ActionMoviesEntityAdapter(),
     );
-    await _initTypeAdapters();
-    await _openAllBoxes();
+    Hive.registerAdapter(
+      AdventureMoviesEntityAdapter(),
+    );
+    Hive.registerAdapter(
+      CrimeMoviesEntityAdapter(),
+    );
+    Hive.registerAdapter(
+      DramaMoviesEntityAdapter(),
+    );
+    Hive.registerAdapter(
+      FamilyMoviesEntityAdapter(),
+    );
+    Hive.registerAdapter(
+      AnimationsMoviesEntityAdapter(),
+    );
+    Hive.registerAdapter(
+      HorrorMoviesEntityAdapter(),
+    );
+    Hive.registerAdapter(
+      RomanceMoviesEntityAdapter(),
+    );
   }
 }
 
@@ -42,6 +74,13 @@ Future<void> _openAllBoxes() async {
   await Hive.openBox<TopRatingMoviesEntity>(AppConstants.topRatingMovieKey);
   await Hive.openBox<UpComingMoviesEntity>(AppConstants.upComingMoviesKey);
   await Hive.openBox<ActionMoviesEntity>(AppConstants.actionMoviesKey);
+  await Hive.openBox<AdventureMoviesEntity>(AppConstants.adventureMoviesKey);
+  await Hive.openBox<CrimeMoviesEntity>(AppConstants.crimeMoviesKey);
+  await Hive.openBox<DramaMoviesEntity>(AppConstants.dramaMoviesKey);
+  await Hive.openBox<FamilyMoviesEntity>(AppConstants.familyMoviesKey);
+  await Hive.openBox<AnimationsMoviesEntity>(AppConstants.animationMoviesKey);
+  await Hive.openBox<HorrorMoviesEntity>(AppConstants.horrorMoviesKey);
+  await Hive.openBox<RomanceMoviesEntity>(AppConstants.romanceMoviesKey);
 }
 
 List<TypeAdapter> typeAdapters = <TypeAdapter>[
@@ -51,6 +90,13 @@ List<TypeAdapter> typeAdapters = <TypeAdapter>[
   TopRatingMoviesEntityAdapter(),
   UpComingMoviesEntityAdapter(),
   ActionMoviesEntityAdapter(),
+  AdventureMoviesEntityAdapter(),
+  CrimeMoviesEntityAdapter(),
+  DramaMoviesEntityAdapter(),
+  FamilyMoviesEntityAdapter(),
+  AnimationsMoviesEntityAdapter(),
+  HorrorMoviesEntityAdapter(),
+  RomanceMoviesEntityAdapter(),
 ];
 
 // create method that init all type adapters;
