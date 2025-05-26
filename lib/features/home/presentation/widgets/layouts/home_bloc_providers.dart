@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/features/home/presentation/manager/adventure_movies_cubit/adventure_movies_cubit.dart';
+import 'package:movies_app/features/home/presentation/manager/animations_movies_cubit/animations_movies_cubit.dart';
+import 'package:movies_app/features/home/presentation/manager/comedy_movies_cubit/comedy_movies_cubit.dart';
+import 'package:movies_app/features/home/presentation/manager/crime_movies_cubit/crime_movies_cubit.dart';
+import 'package:movies_app/features/home/presentation/manager/drama_movies_cubit/drama_movies_cubit.dart';
+import 'package:movies_app/features/home/presentation/manager/family_movies/family_movies_cubit.dart';
+import 'package:movies_app/features/home/presentation/manager/horror_movies_cubit/horror_movies_cubit.dart';
+import 'package:movies_app/features/home/presentation/manager/romance_movies_cubit/romance_movies_cubit.dart';
 
 import '../../../../../core/services/get_it_service.dart';
 import '../../../domain/home_repos/home_repos.dart';
@@ -55,6 +63,56 @@ class HomeBlocProviders extends StatelessWidget {
             homeRepos: getIt.get<HomeRepos>(),
           )..getActionMovies(),
         ),
+       
+        BlocProvider(create: (context) {
+          return AdventureMoviesCubit(
+            homeRepos: getIt.get<HomeRepos>(),
+            context: context,
+          )..getAdventureMovies();
+        }),
+        BlocProvider(create: (context) {
+          return ComedyMoviesCubit(
+            homeRepos: getIt.get<HomeRepos>(),
+            context: context,
+          )..getComedyMovies();
+        }),
+         BlocProvider(create: (context) {
+          return CrimeMoviesCubit(
+            homeRepos: getIt.get<HomeRepos>(),
+            context: context,
+          )..getCrimeMovies();
+        }),
+         BlocProvider(create: (context) {
+          return AnimationsMoviesCubit(
+            homeRepos: getIt.get<HomeRepos>(),
+            context: context,
+          )..getAnimationsMovies();
+        }),
+        BlocProvider(create: (context) {
+          return DramaMoviesCubit(
+            homeRepos: getIt.get<HomeRepos>(),
+            context: context,
+          )..getDramaMovies();
+        }),
+        BlocProvider(create: (context) {
+          return FamilyMoviesCubit(
+            homeRepos: getIt.get<HomeRepos>(),
+            context: context,
+          )..getFamilyMovies();
+        }),
+        BlocProvider(create: (context) {
+          return HorrorMoviesCubit(
+            homeRepos: getIt.get<HomeRepos>(),
+            context: context,
+          )..getHorrorMovies();
+        }),
+        BlocProvider(create: (context) {
+          return RomanceMoviesCubit(
+            homeRepos: getIt.get<HomeRepos>(),
+            context: context,
+          )..getRomanceMovies();
+        }),
+
       ],
       child: ChoosenCategoryViews(),
     );

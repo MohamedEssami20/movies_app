@@ -21,7 +21,7 @@ class AdventureMoviesView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Action Movies",
+                "Adventure Movies",
                 style: AppTextStyles.semiBold16(context)
                     .copyWith(color: Colors.white),
               ),

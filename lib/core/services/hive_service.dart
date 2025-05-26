@@ -3,6 +3,7 @@ import 'package:movies_app/core/utils/constant.dart';
 import 'package:movies_app/features/home/domain/entities/action_movies_entity/action_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/adventure_movies_entity/adventure_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/animations_movies_entity/animations_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/comedy_movies_entity/comedy_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/crime_movies_entity/crime_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/family_movies_entity/family_movies_entity.dart';
 import 'package:movies_app/features/home/domain/entities/horror_movies_entity/horror_movies_entity.dart';
@@ -49,6 +50,9 @@ class HiveService {
       CrimeMoviesEntityAdapter(),
     );
     Hive.registerAdapter(
+      ComedyMoviesEntityAdapter(),
+    );
+    Hive.registerAdapter(
       DramaMoviesEntityAdapter(),
     );
     Hive.registerAdapter(
@@ -76,6 +80,7 @@ Future<void> _openAllBoxes() async {
   await Hive.openBox<ActionMoviesEntity>(AppConstants.actionMoviesKey);
   await Hive.openBox<AdventureMoviesEntity>(AppConstants.adventureMoviesKey);
   await Hive.openBox<CrimeMoviesEntity>(AppConstants.crimeMoviesKey);
+  await Hive.openBox<ComedyMoviesEntity>(AppConstants.comedyMoviesKey);
   await Hive.openBox<DramaMoviesEntity>(AppConstants.dramaMoviesKey);
   await Hive.openBox<FamilyMoviesEntity>(AppConstants.familyMoviesKey);
   await Hive.openBox<AnimationsMoviesEntity>(AppConstants.animationMoviesKey);
@@ -92,6 +97,7 @@ List<TypeAdapter> typeAdapters = <TypeAdapter>[
   ActionMoviesEntityAdapter(),
   AdventureMoviesEntityAdapter(),
   CrimeMoviesEntityAdapter(),
+  ComedyMoviesEntityAdapter(),
   DramaMoviesEntityAdapter(),
   FamilyMoviesEntityAdapter(),
   AnimationsMoviesEntityAdapter(),
