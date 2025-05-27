@@ -18,8 +18,7 @@ class ComedyMoviesBlocConsumer extends StatelessWidget {
             state is ComedyMoviesPaginationLoading ||
             state is ComedyMoviesPaginationFailure) {
           return ComedyMoviesView(
-            comedyMovies:
-                context.read<ComedyMoviesCubit>().currentComedyMovies,
+            comedyMovies: context.read<ComedyMoviesCubit>().currentComedyMovies,
             scrollController:
                 context.read<ComedyMoviesCubit>().scrollController,
           );

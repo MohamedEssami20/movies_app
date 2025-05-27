@@ -6,7 +6,8 @@ import '../../../../../core/utils/api_end_points.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
 class ActionMoviesView extends StatelessWidget {
-  const ActionMoviesView({super.key, required this.actionMovies, required this.scrollController});
+  const ActionMoviesView(
+      {super.key, required this.actionMovies, required this.scrollController});
   final List<ActionMoviesEntity> actionMovies;
   final ScrollController scrollController;
   @override
@@ -42,8 +43,8 @@ class ActionMoviesView extends StatelessWidget {
                 return FittedBox(
                   fit: BoxFit.fill,
                   child: MoviesItem(
-                    imageUrl:
-                        ApiEndPoints.imagebaseUrl + actionMovies[index].moviePoster.toString(),
+                    imageUrl: ApiEndPoints.imagebaseUrl +
+                        actionMovies[index].moviePoster.toString(),
                     movieTitle: actionMovies[index].movieTitle,
                   ),
                 );

@@ -1,6 +1,6 @@
-import '../../domain/entities/action_movies_entity/action_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/search_movies_entity/search_movies_entity.dart';
 
-class ActionMoviesModel extends ActionMoviesEntity {
+class SearchMoviesModel extends SearchMoviesEntity {
   bool? adult;
   String? backdropPath;
   List<dynamic>? genreIds;
@@ -16,7 +16,7 @@ class ActionMoviesModel extends ActionMoviesEntity {
   double? voteAverage;
   int? voteCount;
 
-  ActionMoviesModel({
+  SearchMoviesModel({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -33,11 +33,13 @@ class ActionMoviesModel extends ActionMoviesEntity {
     this.voteCount,
   }) : super(
             movieId: id ?? 0,
-            movieTitle: title ?? "",
-            moviePoster: posterPath ?? "");
+            movieTitle: title ?? '',
+            moviePoster: posterPath ?? '',
+            movieRating: voteAverage ?? 0.0,
+            movieRealseDate: releaseDate ?? '');
 
-  factory ActionMoviesModel.fromJson(Map<String, dynamic> json) {
-    return ActionMoviesModel(
+  factory SearchMoviesModel.fromJson(Map<String, dynamic> json) {
+    return SearchMoviesModel(
       adult: json['adult'] as bool?,
       backdropPath: json['backdrop_path'] as String?,
       genreIds: json['genre_ids'] as List<dynamic>?,

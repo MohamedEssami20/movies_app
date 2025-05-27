@@ -24,13 +24,13 @@ final class ActionMoviesFailure extends ActionMoviesState {
 final class ActionMoviesPaginationLoading extends ActionMoviesState {}
 
 final class ActionMoviesPaginationSuccess extends ActionMoviesState {
-  final List<ActionMoviesEntity> actionMovies;  
+  final List<ActionMoviesEntity> actionMovies;
 
   ActionMoviesPaginationSuccess({required this.actionMovies});
 }
 
 final class ActionMoviesPaginationFailure extends ActionMoviesState {
-  final String errorMessage;  
+  final String errorMessage;
 
   ActionMoviesPaginationFailure({required this.errorMessage});
 }

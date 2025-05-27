@@ -1,4 +1,4 @@
- import 'package:movies_app/features/home/domain/entities/romance_movies_entity/romance_movies_entity.dart';
+import 'package:movies_app/features/home/domain/entities/romance_movies_entity/romance_movies_entity.dart';
 
 class RomanceMoviesModel extends RomanceMoviesEntity {
   bool? adult;
@@ -29,9 +29,12 @@ class RomanceMoviesModel extends RomanceMoviesEntity {
     this.releaseDate,
     this.title,
     this.video,
-    this.voteAverage, 
+    this.voteAverage,
     this.voteCount,
-  }):super(movieId: id??0, movieTitle: title??"", moviePoster: posterPath??"");
+  }) : super(
+            movieId: id ?? 0,
+            movieTitle: title ?? "",
+            moviePoster: posterPath ?? "");
 
   factory RomanceMoviesModel.fromJson(Map<String, dynamic> json) {
     return RomanceMoviesModel(

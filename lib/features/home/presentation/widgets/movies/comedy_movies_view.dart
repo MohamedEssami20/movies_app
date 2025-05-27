@@ -6,7 +6,8 @@ import '../../../domain/entities/comedy_movies_entity/comedy_movies_entity.dart'
 import '../movies_item.dart';
 
 class ComedyMoviesView extends StatelessWidget {
-  const ComedyMoviesView({super.key, required this.comedyMovies, required this.scrollController});
+  const ComedyMoviesView(
+      {super.key, required this.comedyMovies, required this.scrollController});
   final List<ComedyMoviesEntity> comedyMovies;
   final ScrollController scrollController;
   @override

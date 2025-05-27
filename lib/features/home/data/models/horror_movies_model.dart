@@ -1,5 +1,4 @@
- import 'package:movies_app/features/home/domain/entities/horror_movies_entity/horror_movies_entity.dart';
-
+import 'package:movies_app/features/home/domain/entities/horror_movies_entity/horror_movies_entity.dart';
 
 class HorrorMoviesModel extends HorrorMoviesEntity {
   bool? adult;
@@ -30,9 +29,12 @@ class HorrorMoviesModel extends HorrorMoviesEntity {
     this.releaseDate,
     this.title,
     this.video,
-    this.voteAverage, 
+    this.voteAverage,
     this.voteCount,
-  }):super(movieId: id??0, movieTitle: title??"", moviePoster: posterPath??"");
+  }) : super(
+            movieId: id ?? 0,
+            movieTitle: title ?? "",
+            moviePoster: posterPath ?? "");
 
   factory HorrorMoviesModel.fromJson(Map<String, dynamic> json) {
     return HorrorMoviesModel(

@@ -16,7 +16,7 @@ class DramaMoviesEntity extends HiveObject implements BaseMoviesEntity {
       {required this.movieId,
       required this.movieTitle,
       required this.moviePoster});
-  
+
   @override
   int get baseMoviesId => movieId;
 }

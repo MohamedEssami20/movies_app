@@ -1,5 +1,4 @@
- import 'package:movies_app/features/home/domain/entities/family_movies_entity/family_movies_entity.dart';
-
+import 'package:movies_app/features/home/domain/entities/family_movies_entity/family_movies_entity.dart';
 
 class FamilyMoviesModel extends FamilyMoviesEntity {
   bool? adult;
@@ -30,9 +29,12 @@ class FamilyMoviesModel extends FamilyMoviesEntity {
     this.releaseDate,
     this.title,
     this.video,
-    this.voteAverage, 
+    this.voteAverage,
     this.voteCount,
-  }):super(movieId: id??0, movieTitle: title??"", moviePoster: posterPath??"");
+  }) : super(
+            movieId: id ?? 0,
+            movieTitle: title ?? "",
+            moviePoster: posterPath ?? "");
 
   factory FamilyMoviesModel.fromJson(Map<String, dynamic> json) {
     return FamilyMoviesModel(

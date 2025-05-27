@@ -29,9 +29,12 @@ class ComedyMoviesModel extends ComedyMoviesEntity {
     this.releaseDate,
     this.title,
     this.video,
-    this.voteAverage, 
+    this.voteAverage,
     this.voteCount,
-  }):super(movieId: id??0, movieTitle: title??"", moviePoster: posterPath??"");
+  }) : super(
+            movieId: id ?? 0,
+            movieTitle: title ?? "",
+            moviePoster: posterPath ?? "");
 
   factory ComedyMoviesModel.fromJson(Map<String, dynamic> json) {
     return ComedyMoviesModel(

@@ -8,7 +8,7 @@ final class AnimationsMoviesInitial extends AnimationsMoviesState {}
 // crate all state of animations movies;
 final class AnimationsMoviesSuccess extends AnimationsMoviesState {
   final List<AnimationsMoviesEntity> animationsMovies;
-   AnimationsMoviesSuccess({required this.animationsMovies});
+  AnimationsMoviesSuccess({required this.animationsMovies});
 }
 
 final class AnimationsMoviesFailure extends AnimationsMoviesState {
@@ -23,7 +23,7 @@ final class AnimationsMoviesPaginationLoading extends AnimationsMoviesState {}
 
 final class AnimationsMoviesPaginationSuccess extends AnimationsMoviesState {
   final List<AnimationsMoviesEntity> animationsMovies;
-   AnimationsMoviesPaginationSuccess({required this.animationsMovies});
+  AnimationsMoviesPaginationSuccess({required this.animationsMovies});
 }
 
 final class AnimationsMoviesPaginationFailure extends AnimationsMoviesState {

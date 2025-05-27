@@ -130,25 +130,28 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
   // implementation get adventure movies;
   @override
-  Future<List<AdventureMoviesEntity>> getAdventureMovies({int pageNumber = 1})async {
-   final List<AdventureMoviesEntity> adventureMovies = [];
-   final results =await apiServices.get("${ApiEndPoints.adventureMovies}&page=$pageNumber");
-   for(var movies in results['results']){
-     adventureMovies.add(AdventureMoviesModel.fromJson(movies));
-   }
-   await saveMoviesLocal(
-     boxName: AppConstants.adventureMoviesKey,
-     results: adventureMovies,
-   );
-   return adventureMovies;
+  Future<List<AdventureMoviesEntity>> getAdventureMovies(
+      {int pageNumber = 1}) async {
+    final List<AdventureMoviesEntity> adventureMovies = [];
+    final results = await apiServices
+        .get("${ApiEndPoints.adventureMovies}&page=$pageNumber");
+    for (var movies in results['results']) {
+      adventureMovies.add(AdventureMoviesModel.fromJson(movies));
+    }
+    await saveMoviesLocal(
+      boxName: AppConstants.adventureMoviesKey,
+      results: adventureMovies,
+    );
+    return adventureMovies;
   }
-  
+
   // implementation get animation movies
   @override
-  Future<List<AnimationsMoviesEntity>> getAnimationsMovies({int pageNumber = 1})async {
+  Future<List<AnimationsMoviesEntity>> getAnimationsMovies(
+      {int pageNumber = 1}) async {
     final List<AnimationsMoviesEntity> animationsMovies = [];
-    final results =
-       await apiServices.get("${ApiEndPoints.animationMovies}&page=$pageNumber");
+    final results = await apiServices
+        .get("${ApiEndPoints.animationMovies}&page=$pageNumber");
     for (var movies in results['results']) {
       animationsMovies.add(AnimationMoviesModel.fromJson(movies));
     }
@@ -160,7 +163,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<ComedyMoviesEntity>> getComedyMovies({int pageNumber = 1}) async{
+  Future<List<ComedyMoviesEntity>> getComedyMovies({int pageNumber = 1}) async {
     final List<ComedyMoviesEntity> comedyMovies = [];
     final results =
         await apiServices.get("${ApiEndPoints.comdyMovies}&page=$pageNumber");
@@ -175,7 +178,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<CrimeMoviesEntity>> getCrimeMovies({int pageNumber = 1})async {
+  Future<List<CrimeMoviesEntity>> getCrimeMovies({int pageNumber = 1}) async {
     final List<CrimeMoviesEntity> crimeMovies = [];
     final results =
         await apiServices.get("${ApiEndPoints.crimeMovies}&page=$pageNumber");
@@ -190,7 +193,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<DramaMoviesEntity>> getDramaMovies({int pageNumber = 1}) async{
+  Future<List<DramaMoviesEntity>> getDramaMovies({int pageNumber = 1}) async {
     final List<DramaMoviesEntity> dramaMovies = [];
     final results =
         await apiServices.get("${ApiEndPoints.dramaMovies}&page=$pageNumber");
@@ -205,7 +208,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<FamilyMoviesEntity>> getFamilyMovies({int pageNumber = 1}) async{
+  Future<List<FamilyMoviesEntity>> getFamilyMovies({int pageNumber = 1}) async {
     final List<FamilyMoviesEntity> familyMovies = [];
     final results =
         await apiServices.get("${ApiEndPoints.familyMovies}&page=$pageNumber");
@@ -220,7 +223,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<HorrorMoviesEntity>> getHorrorMovies({int pageNumber = 1})async {
+  Future<List<HorrorMoviesEntity>> getHorrorMovies({int pageNumber = 1}) async {
     final List<HorrorMoviesEntity> horrorMovies = [];
     final results =
         await apiServices.get("${ApiEndPoints.horrorMovies}&page=$pageNumber");
@@ -235,7 +238,8 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<RomanceMoviesEntity>> getRomanceMovies({int pageNumber = 1}) async{
+  Future<List<RomanceMoviesEntity>> getRomanceMovies(
+      {int pageNumber = 1}) async {
     final List<RomanceMoviesEntity> romanceMovies = [];
     final results =
         await apiServices.get("${ApiEndPoints.romanceMovies}&page=$pageNumber");

@@ -25,7 +25,7 @@ final class ComedyMoviesPaginationLoading extends ComedyMoviesState {}
 
 final class ComedyMoviesPaginationSuccess extends ComedyMoviesState {
   final List<ComedyMoviesEntity> comedyMovies;
-  ComedyMoviesPaginationSuccess({required this.comedyMovies});  
+  ComedyMoviesPaginationSuccess({required this.comedyMovies});
 }
 
 final class ComedyMoviesPaginationFailure extends ComedyMoviesState {

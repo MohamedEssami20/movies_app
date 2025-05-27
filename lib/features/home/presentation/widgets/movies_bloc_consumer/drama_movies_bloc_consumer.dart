@@ -18,10 +18,8 @@ class DramaMoviesBlocConsumer extends StatelessWidget {
             state is DramaMoviesPaginationLoading ||
             state is DramaMoviesPaginationFailure) {
           return DramaMoviesView(
-            dramaMovies:
-                context.read<DramaMoviesCubit>().currentDramaMovies,
-            scrollController:
-                context.read<DramaMoviesCubit>().scrollController,
+            dramaMovies: context.read<DramaMoviesCubit>().currentDramaMovies,
+            scrollController: context.read<DramaMoviesCubit>().scrollController,
           );
         } else if (state is DramaMoviesFailure) {
           return Center(

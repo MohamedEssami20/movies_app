@@ -1,6 +1,5 @@
 import 'package:movies_app/features/home/domain/entities/crime_movies_entity/crime_movies_entity.dart';
 
-
 class CrimeMoviesModel extends CrimeMoviesEntity {
   bool? adult;
   String? backdropPath;
@@ -30,9 +29,12 @@ class CrimeMoviesModel extends CrimeMoviesEntity {
     this.releaseDate,
     this.title,
     this.video,
-    this.voteAverage, 
+    this.voteAverage,
     this.voteCount,
-  }):super(movieId: id??0, movieTitle: title??"", moviePoster: posterPath??"");
+  }) : super(
+            movieId: id ?? 0,
+            movieTitle: title ?? "",
+            moviePoster: posterPath ?? "");
 
   factory CrimeMoviesModel.fromJson(Map<String, dynamic> json) {
     return CrimeMoviesModel(

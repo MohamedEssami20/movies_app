@@ -43,7 +43,8 @@ abstract class HomeRemoteDataSource {
   Future<List<CrimeMoviesEntity>> getCrimeMovies({int pageNumber = 1});
 
   // create method that get animation movies from api;
-  Future<List<AnimationsMoviesEntity>> getAnimationsMovies({int pageNumber = 1});
+  Future<List<AnimationsMoviesEntity>> getAnimationsMovies(
+      {int pageNumber = 1});
 
   // create method that get drama movies from api;
   Future<List<DramaMoviesEntity>> getDramaMovies({int pageNumber = 1});

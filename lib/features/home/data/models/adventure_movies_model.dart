@@ -1,4 +1,3 @@
-
 import '../../domain/entities/adventure_movies_entity/adventure_movies_entity.dart';
 
 class AdventureMoviesModel extends AdventureMoviesEntity {
@@ -30,12 +29,15 @@ class AdventureMoviesModel extends AdventureMoviesEntity {
     this.releaseDate,
     this.title,
     this.video,
-    this.voteAverage, 
+    this.voteAverage,
     this.voteCount,
-  }):super(movieId: id??0, movieTitle: title??"", moviePoster: posterPath??"");
+  }) : super(
+            movieId: id ?? 0,
+            movieTitle: title ?? "",
+            moviePoster: posterPath ?? "");
 
   factory AdventureMoviesModel.fromJson(Map<String, dynamic> json) {
-  return  AdventureMoviesModel(
+    return AdventureMoviesModel(
       adult: json['adult'] as bool?,
       backdropPath: json['backdrop_path'] as String?,
       genreIds: json['genre_ids'] as List<dynamic>?,

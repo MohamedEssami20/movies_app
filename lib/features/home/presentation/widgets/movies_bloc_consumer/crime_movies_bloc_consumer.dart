@@ -20,8 +20,7 @@ class CrimeMoviesBlocConsumer extends StatelessWidget {
           return CrimeMoviesView(
             crimeMoviesEntity:
                 context.read<CrimeMoviesCubit>().currentCrimeMovies,
-            scrollController:
-                context.read<CrimeMoviesCubit>().scrollController,
+            scrollController: context.read<CrimeMoviesCubit>().scrollController,
           );
         } else if (state is CrimeMoviesFailure) {
           return Center(

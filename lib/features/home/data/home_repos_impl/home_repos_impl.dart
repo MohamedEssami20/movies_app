@@ -109,10 +109,11 @@ class HomeReposImpl implements HomeRepos {
       homeLocalDataSource: homeLocalSource,
     );
   }
-  
+
   // implementation get adventure movies from repos;
   @override
-  Future<Either<Failure, List<AdventureMoviesEntity>>> getAdventureMovies({int pageNumber = 1}) {
+  Future<Either<Failure, List<AdventureMoviesEntity>>> getAdventureMovies(
+      {int pageNumber = 1}) {
     Future<List<AdventureMoviesEntity>> homeRemoteSource =
         homeDataSourceRepos.getAdventureMovies(pageNumber: pageNumber);
     List<AdventureMoviesEntity> homeLocalSource =
@@ -122,10 +123,11 @@ class HomeReposImpl implements HomeRepos {
       homeLocalDataSource: homeLocalSource,
     );
   }
-  
+
   // implementation get animations movies from repos;
   @override
-  Future<Either<Failure, List<AnimationsMoviesEntity>>> getAnimationsMovies({int pageNumber = 1}) {
+  Future<Either<Failure, List<AnimationsMoviesEntity>>> getAnimationsMovies(
+      {int pageNumber = 1}) {
     Future<List<AnimationsMoviesEntity>> homeRemoteSource =
         homeDataSourceRepos.getAnimationsMovies(pageNumber: pageNumber);
     List<AnimationsMoviesEntity> homeLocalSource =
@@ -135,10 +137,11 @@ class HomeReposImpl implements HomeRepos {
       homeLocalDataSource: homeLocalSource,
     );
   }
-  
+
   // implementation get comedy movies from repos;
   @override
-  Future<Either<Failure, List<ComedyMoviesEntity>>> getComedyMovies({int pageNumber = 1}) {
+  Future<Either<Failure, List<ComedyMoviesEntity>>> getComedyMovies(
+      {int pageNumber = 1}) {
     Future<List<ComedyMoviesEntity>> homeRemoteSource =
         homeDataSourceRepos.getComedyMovies(pageNumber: pageNumber);
     List<ComedyMoviesEntity> homeLocalSource =
@@ -148,10 +151,11 @@ class HomeReposImpl implements HomeRepos {
       homeLocalDataSource: homeLocalSource,
     );
   }
-  
+
   // implementation get crime movies from repos;
   @override
-  Future<Either<Failure, List<CrimeMoviesEntity>>> getCrimeMovies({int pageNumber = 1}) {
+  Future<Either<Failure, List<CrimeMoviesEntity>>> getCrimeMovies(
+      {int pageNumber = 1}) {
     Future<List<CrimeMoviesEntity>> homeRemoteSource =
         homeDataSourceRepos.getCrimeMovies(pageNumber: pageNumber);
     List<CrimeMoviesEntity> homeLocalSource =
@@ -161,10 +165,11 @@ class HomeReposImpl implements HomeRepos {
       homeLocalDataSource: homeLocalSource,
     );
   }
-  
+
   // implementation get drama movies from repos;
   @override
-  Future<Either<Failure, List<DramaMoviesEntity>>> getDramaMovies({int pageNumber = 1}) {
+  Future<Either<Failure, List<DramaMoviesEntity>>> getDramaMovies(
+      {int pageNumber = 1}) {
     Future<List<DramaMoviesEntity>> homeRemoteSource =
         homeDataSourceRepos.getDramaMovies(pageNumber: pageNumber);
     List<DramaMoviesEntity> homeLocalSource =
@@ -174,10 +179,11 @@ class HomeReposImpl implements HomeRepos {
       homeLocalDataSource: homeLocalSource,
     );
   }
-  
+
   // implementation get family movies from repos;
   @override
-  Future<Either<Failure, List<FamilyMoviesEntity>>> getFamilyMovies({int pageNumber = 1}) {
+  Future<Either<Failure, List<FamilyMoviesEntity>>> getFamilyMovies(
+      {int pageNumber = 1}) {
     Future<List<FamilyMoviesEntity>> homeRemoteSource =
         homeDataSourceRepos.getFamilyMovies(pageNumber: pageNumber);
     List<FamilyMoviesEntity> homeLocalSource =
@@ -187,10 +193,11 @@ class HomeReposImpl implements HomeRepos {
       homeLocalDataSource: homeLocalSource,
     );
   }
-  
+
   // implementation get horror movies from repos;
   @override
-  Future<Either<Failure, List<HorrorMoviesEntity>>> getHorrorMovies({int pageNumber = 1}) {
+  Future<Either<Failure, List<HorrorMoviesEntity>>> getHorrorMovies(
+      {int pageNumber = 1}) {
     Future<List<HorrorMoviesEntity>> homeRemoteSource =
         homeDataSourceRepos.getHorrorMovies(pageNumber: pageNumber);
     List<HorrorMoviesEntity> homeLocalSource =
@@ -200,10 +207,11 @@ class HomeReposImpl implements HomeRepos {
       homeLocalDataSource: homeLocalSource,
     );
   }
-  
+
   // implementation get romance movies from repos;
   @override
-  Future<Either<Failure, List<RomanceMoviesEntity>>> getRomanceMovies({int pageNumber = 1}) {
+  Future<Either<Failure, List<RomanceMoviesEntity>>> getRomanceMovies(
+      {int pageNumber = 1}) {
     Future<List<RomanceMoviesEntity>> homeRemoteSource =
         homeDataSourceRepos.getRomanceMovies(pageNumber: pageNumber);
     List<RomanceMoviesEntity> homeLocalSource =

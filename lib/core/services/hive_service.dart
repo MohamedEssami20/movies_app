@@ -25,7 +25,7 @@ class HiveService {
   }
 
   static void registerAllAdapters() {
-     Hive.registerAdapter(
+    Hive.registerAdapter(
       NowPlayingEntityAdapter(),
     );
     Hive.registerAdapter(

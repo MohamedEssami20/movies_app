@@ -33,7 +33,7 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
     Box<PopularMoviesEntity> box =
         Hive.box<PopularMoviesEntity>(AppConstants.popularMovieKey);
     int startIndex = pageNumber * 0;
-    int endIndex = pageNumber  * 20;
+    int endIndex = pageNumber * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
@@ -47,7 +47,7 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
     Box<TrendingMoviesEntity> box =
         Hive.box<TrendingMoviesEntity>(AppConstants.trendingMovieKey);
     int startIndex = pageNumber * 0;
-    int endIndex = pageNumber  * 20;
+    int endIndex = pageNumber * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
@@ -74,133 +74,133 @@ class HomeLocalDataSouceImpl implements HomeLocalDataSource {
     Box<UpComingMoviesEntity> box =
         Hive.box<UpComingMoviesEntity>(AppConstants.upComingMoviesKey);
     int startIndex = pageNumber * 0;
-    int endIndex = pageNumber  * 20;
+    int endIndex = pageNumber * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
     }
     return box.values.toList().sublist(startIndex, endIndex);
   }
-  
+
   // implementation of get action movies from local storage;
   @override
   List<ActionMoviesEntity> getActionMovies({int pageNumber = 1}) {
     Box<ActionMoviesEntity> box =
         Hive.box<ActionMoviesEntity>(AppConstants.actionMoviesKey);
     int startIndex = pageNumber * 0;
-    int endIndex = pageNumber  * 20;
+    int endIndex = pageNumber * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
     }
     return box.values.toList().sublist(startIndex, endIndex);
   }
-  
+
   // implementation of get adventure movies from local storage;
   @override
   List<AdventureMoviesEntity> getAdventureMovies({int pageNumber = 1}) {
     Box<AdventureMoviesEntity> box =
         Hive.box<AdventureMoviesEntity>(AppConstants.adventureMoviesKey);
     int startIndex = pageNumber * 0;
-    int endIndex = pageNumber  * 20;
+    int endIndex = pageNumber * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
     }
     return box.values.toList().sublist(startIndex, endIndex);
   }
-  
+
   // implementation of get animations movies from local storage;
   @override
   List<AnimationsMoviesEntity> getAnimationsMovies({int pageNumber = 1}) {
     Box<AnimationsMoviesEntity> box =
         Hive.box<AnimationsMoviesEntity>(AppConstants.animationMoviesKey);
     int startIndex = pageNumber * 0;
-    int endIndex = pageNumber  * 20;
+    int endIndex = pageNumber * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
     }
     return box.values.toList().sublist(startIndex, endIndex);
   }
-  
+
   // implementation of get comedy movies from local storage;
   @override
   List<ComedyMoviesEntity> getComedyMovies({int pageNumber = 1}) {
     Box<ComedyMoviesEntity> box =
         Hive.box<ComedyMoviesEntity>(AppConstants.comedyMoviesKey);
     int startIndex = pageNumber * 0;
-    int endIndex = pageNumber  * 20;
+    int endIndex = pageNumber * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
     }
     return box.values.toList().sublist(startIndex, endIndex);
   }
-  
+
   // implementation of get crime movies from local storage;
   @override
   List<CrimeMoviesEntity> getCrimeMovies({int pageNumber = 1}) {
     Box<CrimeMoviesEntity> box =
         Hive.box<CrimeMoviesEntity>(AppConstants.crimeMoviesKey);
     int startIndex = pageNumber * 0;
-    int endIndex = pageNumber  * 20;
+    int endIndex = pageNumber * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
     }
     return box.values.toList().sublist(startIndex, endIndex);
   }
-  
+
   // implementation of get drama movies from local storage;
   @override
   List<DramaMoviesEntity> getDramaMovies({int pageNumber = 1}) {
     Box<DramaMoviesEntity> box =
         Hive.box<DramaMoviesEntity>(AppConstants.dramaMoviesKey);
     int startIndex = pageNumber * 0;
-    int endIndex = pageNumber  * 20;
+    int endIndex = pageNumber * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
     }
     return box.values.toList().sublist(startIndex, endIndex);
   }
-  
+
   // implementation of get family movies from local storage;
   @override
   List<FamilyMoviesEntity> getFamilyMovies({int pageNumber = 1}) {
     Box<FamilyMoviesEntity> box =
         Hive.box<FamilyMoviesEntity>(AppConstants.familyMoviesKey);
     int startIndex = pageNumber * 0;
-    int endIndex = pageNumber  * 20;
+    int endIndex = pageNumber * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
     }
     return box.values.toList().sublist(startIndex, endIndex);
   }
-  
+
   // implementation of get horror movies from local storage;
   @override
   List<HorrorMoviesEntity> getHorrorMovies({int pageNumber = 1}) {
     Box<HorrorMoviesEntity> box =
         Hive.box<HorrorMoviesEntity>(AppConstants.horrorMoviesKey);
     int startIndex = pageNumber * 0;
-    int endIndex = pageNumber  * 20;
+    int endIndex = pageNumber * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];
     }
     return box.values.toList().sublist(startIndex, endIndex);
   }
-  
+
   // implementation of get romance movies from local storage;
   @override
   List<RomanceMoviesEntity> getRomanceMovies({int pageNumber = 1}) {
     Box<RomanceMoviesEntity> box =
         Hive.box<RomanceMoviesEntity>(AppConstants.romanceMoviesKey);
     int startIndex = pageNumber * 0;
-    int endIndex = pageNumber  * 20;
+    int endIndex = pageNumber * 20;
     bool outOfRange = checkOutOfRange(pageNumber: pageNumber, box: box);
     if (outOfRange) {
       return [];

@@ -1,4 +1,3 @@
-
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies_app/features/home/domain/entities/base_movies_entity.dart';
 
@@ -18,7 +17,6 @@ class ActionMoviesEntity extends HiveObject implements BaseMoviesEntity {
       required this.movieTitle,
       required this.moviePoster});
 
-@override
+  @override
   int get baseMoviesId => movieId;
-
 }

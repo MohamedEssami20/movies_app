@@ -6,7 +6,10 @@ import '../../../domain/entities/crime_movies_entity/crime_movies_entity.dart';
 import '../movies_item.dart';
 
 class CrimeMoviesView extends StatelessWidget {
-  const CrimeMoviesView({super.key, required this.crimeMoviesEntity, required this.scrollController});
+  const CrimeMoviesView(
+      {super.key,
+      required this.crimeMoviesEntity,
+      required this.scrollController});
   final List<CrimeMoviesEntity> crimeMoviesEntity;
   final ScrollController scrollController;
   @override
@@ -43,7 +46,7 @@ class CrimeMoviesView extends StatelessWidget {
                   fit: BoxFit.fill,
                   child: MoviesItem(
                     movieTitle: crimeMoviesEntity[index].movieTitle,
-                     imageUrl: ApiEndPoints.imagebaseUrl +
+                    imageUrl: ApiEndPoints.imagebaseUrl +
                         crimeMoviesEntity[index].moviePoster.toString(),
                   ),
                 );

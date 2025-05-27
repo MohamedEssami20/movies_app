@@ -34,7 +34,7 @@ class ComedyMoviesCubit extends Cubit<ComedyMoviesState> {
         ? emit(
             ComedyMoviesLoading(),
           )
-        : emit( 
+        : emit(
             ComedyMoviesPaginationLoading(),
           );
 

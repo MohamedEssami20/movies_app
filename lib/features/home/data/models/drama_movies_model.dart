@@ -1,4 +1,3 @@
-
 import '../../domain/entities/drama_movies_entity/drama_movies_entity.dart';
 
 class DramaMoviesModel extends DramaMoviesEntity {
@@ -30,9 +29,12 @@ class DramaMoviesModel extends DramaMoviesEntity {
     this.releaseDate,
     this.title,
     this.video,
-    this.voteAverage, 
+    this.voteAverage,
     this.voteCount,
-  }):super(movieId: id??0, movieTitle: title??"", moviePoster: posterPath??"");
+  }) : super(
+            movieId: id ?? 0,
+            movieTitle: title ?? "",
+            moviePoster: posterPath ?? "");
 
   factory DramaMoviesModel.fromJson(Map<String, dynamic> json) {
     return DramaMoviesModel(

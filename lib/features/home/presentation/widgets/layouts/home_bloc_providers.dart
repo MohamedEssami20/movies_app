@@ -63,7 +63,6 @@ class HomeBlocProviders extends StatelessWidget {
             homeRepos: getIt.get<HomeRepos>(),
           )..getActionMovies(),
         ),
-       
         BlocProvider(create: (context) {
           return AdventureMoviesCubit(
             homeRepos: getIt.get<HomeRepos>(),
@@ -76,13 +75,13 @@ class HomeBlocProviders extends StatelessWidget {
             context: context,
           )..getComedyMovies();
         }),
-         BlocProvider(create: (context) {
+        BlocProvider(create: (context) {
           return CrimeMoviesCubit(
             homeRepos: getIt.get<HomeRepos>(),
             context: context,
           )..getCrimeMovies();
         }),
-         BlocProvider(create: (context) {
+        BlocProvider(create: (context) {
           return AnimationsMoviesCubit(
             homeRepos: getIt.get<HomeRepos>(),
             context: context,
@@ -112,7 +111,6 @@ class HomeBlocProviders extends StatelessWidget {
             context: context,
           )..getRomanceMovies();
         }),
-
       ],
       child: ChoosenCategoryViews(),
     );

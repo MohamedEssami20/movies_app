@@ -6,7 +6,10 @@ import '../../../../../core/utils/app_text_styles.dart';
 import '../movies_item.dart';
 
 class AdventureMoviesView extends StatelessWidget {
-  const AdventureMoviesView({super.key, required this.adventureMovies, required this.scrollController});
+  const AdventureMoviesView(
+      {super.key,
+      required this.adventureMovies,
+      required this.scrollController});
   final List<AdventureMoviesEntity> adventureMovies;
   final ScrollController scrollController;
   @override
