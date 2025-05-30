@@ -23,7 +23,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             }
             if (homeStateNow == HomeStateNow.search) {
               return IconButton(
-                padding: EdgeInsets.only(left: 25),
                 onPressed: () {
                   context.read<HomeSearchCubit>().exitSearchMode();
                 },
