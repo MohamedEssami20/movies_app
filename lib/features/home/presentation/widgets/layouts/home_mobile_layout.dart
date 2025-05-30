@@ -16,6 +16,12 @@ class HomeMobileLayout extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: CustomSearchField(
               onChanged: (value) {},
+              onTap: () {
+                showSearch(
+                  context: context,
+                  delegate: SearchField(),
+                );
+              },
             ),
           ),
           SizedBox(
@@ -33,6 +39,44 @@ class HomeMobileLayout extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class SearchField extends SearchDelegate {
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.close, color: Colors.black),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back, color: Colors.black),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Center(
+      child: Text("results"),
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return Container(
+      color: Colors.white,
     );
   }
 }
