@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/features/home/presentation/manager/home_search_cubit/home_search_cubit.dart';
 import '../categories_item_list_view.dart';
 import '../custom_search_field.dart';
 import 'home_bloc_providers.dart';
@@ -16,11 +18,8 @@ class HomeMobileLayout extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: CustomSearchField(
               onChanged: (value) {},
-              onTap: () {
-                showSearch(
-                  context: context,
-                  delegate: SearchField(),
-                );
+              onSubmitted: (value) {
+                context.read<HomeSearchCubit>().enterSearchMode();
               },
             ),
           ),
@@ -39,44 +38,6 @@ class HomeMobileLayout extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class SearchField extends SearchDelegate {
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-        icon: const Icon(Icons.close, color: Colors.black),
-        onPressed: () {
-          query = '';
-        },
-      ),
-    ];
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.arrow_back, color: Colors.black),
-      onPressed: () {
-        close(context, null);
-      },
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return Center(
-      child: Text("results"),
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    return Container(
-      color: Colors.white,
     );
   }
 }

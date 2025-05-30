@@ -7,11 +7,14 @@ import '../../../../core/utils/app_text_styles.dart';
 class CustomSearchField extends StatelessWidget {
   const CustomSearchField({
     super.key,
-    required this.onChanged, this.onTap,
+    required this.onChanged,
+    this.onTap,
+    this.onSubmitted,
   });
 
   final ValueChanged<String?> onChanged;
   final void Function()? onTap;
+  final void Function(String?)? onSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +24,8 @@ class CustomSearchField extends StatelessWidget {
       ),
       onChanged: onChanged,
       onTap: onTap,
+      onSubmitted: onSubmitted,
+      textInputAction: TextInputAction.search,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.search, color: Colors.white),
         suffixIcon: SvgPicture.asset(
