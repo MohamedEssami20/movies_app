@@ -1,4 +1,4 @@
-import 'package:movies_app/features/home/domain/entities/search_movies_entity/search_movies_entity.dart';
+import 'package:movies_app/features/search/domain/entities/search_movies_entity/search_movies_entity.dart';
 
 class SearchMoviesModel extends SearchMoviesEntity {
   bool? adult;
