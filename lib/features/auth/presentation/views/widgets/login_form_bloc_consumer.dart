@@ -9,6 +9,7 @@ import '../../manager/Auth_cubit/auth_cubit.dart';
 class LoginFormBlocConsumer extends StatelessWidget {
   const LoginFormBlocConsumer({super.key, required this.loginKey});
   final GlobalKey<FormState> loginKey;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
@@ -19,11 +20,15 @@ class LoginFormBlocConsumer extends StatelessWidget {
         if (state is LoginSuccess) {
           Navigator.pushNamedAndRemoveUntil(
               context, HomeView.routeName, (_) => false);
-          showAnimatedSnackBar(
-            context,
-            message: "Login Success",
-            type: AnimatedSnackBarType.success,
-          );
+          
+            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+              showAnimatedSnackBar(
+                context,
+                message: "Login Success",
+                type: AnimatedSnackBarType.success,
+              );
+           
+          });
         }
         if (state is LoginFailure) {
           showAnimatedSnackBar(

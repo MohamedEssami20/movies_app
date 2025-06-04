@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -91,6 +93,7 @@ class SplashViewBodyState extends State<SplashViewBody> {
                               FirebaseAuth.instance.currentUser != null;
                           final bool isOnboardingShow =
                               SharedPrefService().showOnboarding();
+                          log("is boarding view= $isOnboardingShow");
                           if (!ifUserSignIn && !isOnboardingShow) {
                             Navigator.of(context)
                                 .pushReplacementNamed(OnBoardingView.routeName);

@@ -25,10 +25,12 @@ void showAnimatedSnackBar(
           messageText: message,
           type: type,
           backgroundColor: AppColors.kPrimaryColor,
-          titleTextStyle:
-              AppTextStyles.regular16(context).copyWith(color: Colors.white),
-          messageTextStyle:
-              AppTextStyles.regular16(context).copyWith(color: Colors.white),
+          titleTextStyle: AppTextStyles.regular16(context).copyWith(
+            color: Colors.white,
+          ),
+          messageTextStyle: AppTextStyles.regular16(context).copyWith(
+            color: Colors.white,
+          ),
           borderRadius: BorderRadius.circular(12),
         );
       }).show(context);

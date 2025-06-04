@@ -20,5 +20,5 @@ class SharedPrefService {
   }
 
   // create method that check if user show onboarding or not
-  bool showOnboarding() => _prefs.getBool(AppConstants.showBoardingKey) ?? true;
+  bool showOnboarding() => _prefs.getBool(AppConstants.showBoardingKey) ?? false;
 }

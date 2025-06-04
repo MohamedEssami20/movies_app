@@ -1,14 +1,16 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextStyles {
-  static TextStyle regular16(BuildContext context) {
+  static TextStyle regular16(BuildContext? context) {
     return TextStyle(
         fontSize: getResponsiveFont(context, fontSize: 16),
         fontWeight: FontWeight.w400);
   }
 
-  static TextStyle regular12(BuildContext context) {
+  static TextStyle regular12(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 12),
@@ -16,7 +18,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle medium16(BuildContext context) {
+  static TextStyle medium16(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 16),
@@ -24,7 +26,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle semiBold12(BuildContext context) {
+  static TextStyle semiBold12(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 12),
@@ -32,7 +34,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle semiBold16(BuildContext context) {
+  static TextStyle semiBold16(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 16),
@@ -40,7 +42,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle robotoRegular12(BuildContext context) {
+  static TextStyle robotoRegular12(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Roboto',
       fontSize: getResponsiveFont(context, fontSize: 12),
@@ -48,7 +50,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle medium14(BuildContext context) {
+  static TextStyle medium14(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 14),
@@ -56,7 +58,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle medium12(BuildContext context) {
+  static TextStyle medium12(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 12),
@@ -64,7 +66,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle semiBold24(BuildContext context) {
+  static TextStyle semiBold24(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 24),
@@ -72,7 +74,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle medium24(BuildContext context) {
+  static TextStyle medium24(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 24),
@@ -80,7 +82,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle regular10(BuildContext context) {
+  static TextStyle regular10(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 10),
@@ -88,7 +90,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle robotoMedium16(BuildContext context) {
+  static TextStyle robotoMedium16(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Roboto',
       fontSize: getResponsiveFont(context, fontSize: 16),
@@ -96,7 +98,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle regular24(BuildContext context) {
+  static TextStyle regular24(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 24),
@@ -104,7 +106,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle robotoBold48(BuildContext context) {
+  static TextStyle robotoBold48(BuildContext? context) {
     return TextStyle(
       color: Colors.white,
       fontSize: getResponsiveFont(context, fontSize: 48),
@@ -113,7 +115,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle semiBold24WithLineHeight(BuildContext context) {
+  static TextStyle semiBold24WithLineHeight(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 24),
@@ -122,7 +124,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle semiBold48(BuildContext context) {
+  static TextStyle semiBold48(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 48),
@@ -130,7 +132,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle bold16(BuildContext context) {
+  static TextStyle bold16(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 16),
@@ -138,7 +140,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle semiBold16WithLineHeight(BuildContext context) {
+  static TextStyle semiBold16WithLineHeight(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 16),
@@ -147,7 +149,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle medium32(BuildContext context) {
+  static TextStyle medium32(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 32),
@@ -155,7 +157,7 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle bold24(BuildContext context) {
+  static TextStyle bold24(BuildContext? context) {
     return TextStyle(
       fontFamily: 'Poppins',
       fontSize: getResponsiveFont(context, fontSize: 24),
@@ -192,9 +194,9 @@ class AppTextStyles {
 //   }
 // }
 
-double getResponsiveFont(BuildContext context, {required double fontSize}) {
+double getResponsiveFont(BuildContext? context, {required double fontSize}) {
   double scaleFactor =
-      getScaleFactor(context) * MediaQuery.of(context).textScaler.scale(1.5);
+      getScaleFactor() *ScreenUtil().textScaleFactor*1.5;
   double responsiveText = scaleFactor * fontSize;
 
   // وضع حد أدنى وأقصى لتجنب الخطوط الصغيرة جدًا أو الكبيرة جدًا
@@ -204,9 +206,9 @@ double getResponsiveFont(BuildContext context, {required double fontSize}) {
   return responsiveText.clamp(minFontSize, maxFontSize);
 }
 
-double getScaleFactor(BuildContext context) {
-  double width = MediaQuery.of(context).size.width;
-
+double getScaleFactor() {
+  double width = ScreenUtil().screenWidth;
+  log("width of screen in get scale = $width");
   if (width < 400.w) {
     return width / 500;
   } else if (width < 600.w) {
