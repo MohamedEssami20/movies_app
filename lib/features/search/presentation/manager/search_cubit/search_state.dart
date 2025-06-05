@@ -1,19 +1,19 @@
 part of 'search_cubit.dart';
 
 @immutable
-sealed class SearchState {}
+sealed class SearchMoviesState {}
 
-final class SearchInitial extends SearchState {}
+final class SearchMoviesInitial extends SearchMoviesState {}
 
 // create all state of search;
-final class SearchSuccess extends SearchState {
+final class SearchMoviesSuccess extends SearchMoviesState {
   final List<SearchMoviesEntity> searchMovies;
-  SearchSuccess({required this.searchMovies});
+  SearchMoviesSuccess({required this.searchMovies});
 }
 
-final class SearchFailure extends SearchState {
+final class SearchMoviesFailure extends SearchMoviesState {
   final String errorMessage;
-  SearchFailure({required this.errorMessage});
+  SearchMoviesFailure({required this.errorMessage});
 }
 
-final class SearchLoading extends SearchState {}
+final class SearchMoviesLoading extends SearchMoviesState {}

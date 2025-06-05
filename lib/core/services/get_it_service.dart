@@ -7,6 +7,10 @@ import 'package:movies_app/features/home/data/data_source/home_local_data_souce_
 import 'package:movies_app/features/home/data/data_source/home_remote_data_source_impl.dart';
 import 'package:movies_app/features/home/data/home_repos_impl/home_repos_impl.dart';
 import 'package:movies_app/features/home/domain/home_repos/home_repos.dart';
+import 'package:movies_app/features/search/data/search_data_source/search_remote_data_source.dart';
+import 'package:movies_app/features/search/data/search_data_source/search_remote_data_source_impl.dart';
+import 'package:movies_app/features/search/data/search_repos_impl/search_repos_impl.dart';
+import 'package:movies_app/features/search/domain/search_repos/search_repos.dart';
 
 import '../../features/auth/domain/repos/auth_repos.dart';
 import '../../features/home/data/data_source/home_local_data_source.dart';
@@ -37,6 +41,18 @@ void setupGetIt() {
     HomeReposImpl(
       homeDataSourceRepos: getIt.get<HomeRemoteDataSource>(),
       homeLocalDataSource: getIt.get<HomeLocalDataSource>(),
+    ),
+  );
+
+  getIt.registerSingleton<SearchRemoteDataSource>(
+    SearchRemoteDataSourceImpl(
+      apiServices: getIt.get<ApiServices>(),
+    ),
+  );
+
+  getIt.registerSingleton<SearchRepos>(
+    SearchReposImpl(
+      searchRemoteDataSource: getIt.get<SearchRemoteDataSource>(),
     ),
   );
 }

@@ -6,9 +6,9 @@ import '../../../../core/utils/assets.dart';
 
 class SearchMoviesDetails extends StatelessWidget {
   const SearchMoviesDetails({
-    super.key,
+    super.key, required this.movieTitle, required this.movieDate, required this.movieRating,
   });
-
+  final String movieTitle, movieDate, movieRating;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -18,7 +18,7 @@ class SearchMoviesDetails extends StatelessWidget {
           spacing: 8,
           children: [
             Text(
-              'Spider-man: Across the spider-Verse (2023)',
+              movieTitle,
               style: AppTextStyles.medium16(context).copyWith(
                 color: Colors.white,
               ),
@@ -33,7 +33,7 @@ class SearchMoviesDetails extends StatelessWidget {
                   Assets.assetsImagesCalenderIcon,
                 ),
                 Text(
-                  '2023',
+                  movieDate,
                   style: AppTextStyles.medium16(context).copyWith(
                     color: Colors.white,
                   ),
@@ -41,7 +41,7 @@ class SearchMoviesDetails extends StatelessWidget {
                 SizedBox(width: 6),
                 Icon(Icons.star, color: Colors.white, size: 20),
                 Text(
-                  '8.5',
+                  movieRating,
                   style: AppTextStyles.medium16(context).copyWith(
                     color: Colors.white,
                   ),

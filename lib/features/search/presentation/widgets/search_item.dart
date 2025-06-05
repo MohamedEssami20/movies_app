@@ -4,9 +4,9 @@ import 'search_movies_details_and_photo.dart';
 
 class SearchItems extends StatelessWidget {
   const SearchItems({
-    super.key,
+    super.key, required this.moviePoster, required this.movieName, required this.movieDate, required this.movieRating,
   });
-
+  final String moviePoster, movieName, movieDate , movieRating;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +22,12 @@ class SearchItems extends StatelessWidget {
         ),
         color: Colors.transparent,
       ),
-      child: SearchMoviesDetailsAndPhoto(),
+      child: SearchMoviesDetailsAndPhoto(
+        moviePoster: moviePoster,
+        movieName: movieName,
+        movieDate: movieDate,
+        movieRate: movieRating,
+      ),
     );
   }
 }

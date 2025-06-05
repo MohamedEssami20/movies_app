@@ -2,6 +2,7 @@ import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/func/custom_snack_bar.dart';
+import 'package:movies_app/core/services/get_it_service.dart';
 import 'package:movies_app/features/home/presentation/manager/bottom_bar_cubit/bottom_bar_cubit.dart';
 import 'package:movies_app/features/home/presentation/manager/categories_items/categories_items_cubit.dart';
 import 'package:movies_app/features/home/presentation/manager/home_search_cubit/home_search_cubit.dart';
@@ -9,7 +10,9 @@ import 'package:movies_app/features/home/presentation/widgets/custom_app_bar.dar
 import 'package:movies_app/features/home/presentation/widgets/custom_bottom_navigation_bar.dart';
 import 'package:movies_app/features/home/presentation/widgets/home_layout.dart';
 import 'package:movies_app/features/home/presentation/widgets/layouts/home_tablet_layout.dart';
+import 'package:movies_app/features/search/presentation/manager/search_cubit/search_cubit.dart';
 import '../../../../core/cubits/cubit/check_internnet_connection_cubit.dart';
+import '../../../search/domain/search_repos/search_repos.dart' show SearchRepos;
 import '../widgets/layouts/home_mobile_layout.dart';
 
 class HomeView extends StatelessWidget {
@@ -41,8 +44,17 @@ class HomeView extends StatelessWidget {
               );
             }
           },
-          child: BlocProvider(
-            create: (context) => CategoriesItemsCubit(),
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => CategoriesItemsCubit(),
+              ),
+              BlocProvider(
+                create: (context) => SearchMoviesCubit(
+                  searchRepos: getIt.get<SearchRepos>(),
+                ),
+              ),
+            ],
             child: HomeLayout(
               mobileLayout: (context) => HomeMobileLayout(),
               tabletLayout: (context) => HomeTabletLayout(),

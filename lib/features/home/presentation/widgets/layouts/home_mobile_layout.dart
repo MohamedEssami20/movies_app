@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/features/home/presentation/manager/home_search_cubit/home_search_cubit.dart';
+import 'package:movies_app/features/search/presentation/manager/search_cubit/search_cubit.dart';
 import 'package:movies_app/features/search/presentation/views/search_view.dart';
 import '../categories_item_list_view.dart';
 import '../custom_search_field.dart';
 import 'home_bloc_providers.dart';
 
-class HomeMobileLayout extends StatelessWidget {
+class HomeMobileLayout extends StatefulWidget {
   const HomeMobileLayout({super.key});
 
+  @override
+  State<HomeMobileLayout> createState() => _HomeMobileLayoutState();
+}
+
+GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+class _HomeMobileLayoutState extends State<HomeMobileLayout> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -17,11 +25,20 @@ class HomeMobileLayout extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(20),
-            child: CustomSearchField(
-              onChanged: (value) {},
-              onSubmitted: (value) {
-                context.read<HomeSearchCubit>().enterSearchMode();
-              },
+            child: Form(
+              key: formKey,
+              child: CustomSearchField(
+                onChanged: (value) {},
+                onSubmitted: (value) {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    context.read<HomeSearchCubit>().enterSearchMode();
+                    context
+                        .read<SearchMoviesCubit>()
+                        .searchMovies(query: value!);
+                  }
+                },
+              ),
             ),
           ),
           BlocBuilder<HomeSearchCubit, HomeSearchState>(

@@ -7,26 +7,24 @@ import '../../../domain/entities/search_movies_entity/search_movies_entity.dart'
 
 part 'search_state.dart';
 
-class SearchCubit extends Cubit<SearchState> {
-  SearchCubit({required this.searchRepos}) : super(SearchInitial());
+class SearchMoviesCubit extends Cubit<SearchMoviesState> {
+  SearchMoviesCubit({required this.searchRepos}) : super(SearchMoviesInitial());
 
   final SearchRepos searchRepos;
 
   //create method that search movies;
 
   Future<void> searchMovies({required String query}) async {
-    emit(SearchLoading());
+    emit(SearchMoviesLoading());
     final results = await searchRepos.getSearchMovies(query: query);
     results.fold((faliure) {
       emit(
-        SearchFailure(errorMessage: faliure.message),
+        SearchMoviesFailure(errorMessage: faliure.message),
       );
-    },
-    (movies){
+    }, (movies) {
       emit(
-        SearchSuccess(searchMovies: movies),
+        SearchMoviesSuccess(searchMovies: movies),
       );
-      }
-    );
+    });
   }
 }

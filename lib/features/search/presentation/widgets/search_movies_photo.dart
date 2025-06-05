@@ -1,11 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app/core/utils/api_end_points.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SearchMoviesPhoto extends StatelessWidget {
   const SearchMoviesPhoto({
-    super.key,
+    super.key, required this.moviePoster,
   });
+
+  final String moviePoster;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class SearchMoviesPhoto extends StatelessWidget {
           width: 124,
           child: CachedNetworkImage(
             imageUrl:
-                "https://image.tmdb.org/t/p/original/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg",
+               ApiEndPoints.imagebaseUrl+moviePoster,
             memCacheHeight: 150,
             memCacheWidth: 124,
             fit: BoxFit.fill,

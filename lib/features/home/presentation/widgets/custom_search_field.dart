@@ -18,13 +18,14 @@ class CustomSearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       style: AppTextStyles.medium16(context).copyWith(
         color: Colors.white,
       ),
+      validator: (value) => value!.isEmpty ? 'Enter movie name' : null,
       onChanged: onChanged,
       onTap: onTap,
-      onSubmitted: onSubmitted,
+      onFieldSubmitted: onSubmitted,
       textInputAction: TextInputAction.search,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.search, color: Colors.white),
@@ -39,14 +40,18 @@ class CustomSearchField extends StatelessWidget {
         border: buildBorder(),
         enabledBorder: buildBorder(),
         focusedBorder: buildBorder(),
+        errorBorder: buildBorder(Colors.red),
+        focusedErrorBorder: buildBorder(),
+        errorStyle: AppTextStyles.regular16(context).copyWith(color: Colors.red),
+        
       ),
     );
   }
 
-  OutlineInputBorder buildBorder() {
-    return const OutlineInputBorder(
+  OutlineInputBorder buildBorder([Color? color]) {
+    return  OutlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.white,
+        color: color?? Colors.white,
       ),
       borderRadius: BorderRadius.all(
         Radius.circular(16),
