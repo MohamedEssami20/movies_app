@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,7 +18,6 @@ class SplashViewBody extends StatefulWidget {
 
 class SplashViewBodyState extends State<SplashViewBody> {
   bool _isImageLoaded = false;
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -88,22 +86,26 @@ class SplashViewBodyState extends State<SplashViewBody> {
                         ],
                         displayFullTextOnTap: true,
                         totalRepeatCount: 2,
-                        onFinished: () {
-                          final ifUserSignIn =
-                              FirebaseAuth.instance.currentUser != null;
+                        onFinished: () async {
+                          await Future.delayed(
+                              const Duration(milliseconds: 200));
+                          final ifUserNotSignIn =
+                              FirebaseAuth.instance.currentUser == null;
                           final bool isOnboardingShow =
-                              SharedPrefService().showOnboarding();
-                          log("is boarding view= $isOnboardingShow");
-                          if (!ifUserSignIn && !isOnboardingShow) {
-                            Navigator.of(context)
-                                .pushReplacementNamed(OnBoardingView.routeName);
-                          } else if (ifUserSignIn && isOnboardingShow) {
-                            Navigator.of(context)
-                                .pushReplacementNamed(HomeView.routeName);
-                          } else if (!ifUserSignIn && isOnboardingShow) {
-                            Navigator.of(context)
-                                .pushReplacementNamed(AuthView.routeName);
-                          }
+                            SharedPrefService().showOnboarding();
+                          
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            if (ifUserNotSignIn && !isOnboardingShow) {
+                              Navigator.of(context).pushReplacementNamed(
+                                  OnBoardingView.routeName);
+                            } else if (ifUserNotSignIn && isOnboardingShow) {
+                              Navigator.of(context)
+                                  .pushReplacementNamed(AuthView.routeName);
+                            } else if (!ifUserNotSignIn && isOnboardingShow) {
+                              Navigator.of(context)
+                                  .pushReplacementNamed(HomeView.routeName);
+                            }
+                          });
                         },
                       ),
                       SizedBox(height: 20),
