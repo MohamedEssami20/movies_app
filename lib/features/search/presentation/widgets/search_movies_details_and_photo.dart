@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'search_movies_details.dart';
 import 'search_movies_photo.dart';
 
-class SearchMoviesItem extends StatelessWidget {
-  const SearchMoviesItem({
+class SearchMoviesDetailsAndPhoto extends StatelessWidget {
+  const SearchMoviesDetailsAndPhoto({
     super.key,
   });
 

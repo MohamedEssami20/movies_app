@@ -26,7 +26,8 @@ class SearchMoviesDetails extends StatelessWidget {
               overflow: TextOverflow.visible,
             ),
             Row(
-              spacing: 10,
+              mainAxisSize: MainAxisSize.min,
+              spacing: 8,
               children: [
                 SvgPicture.asset(
                   Assets.assetsImagesCalenderIcon,
@@ -37,7 +38,7 @@ class SearchMoviesDetails extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(width: 8),
+                SizedBox(width: 6),
                 Icon(Icons.star, color: Colors.white, size: 20),
                 Text(
                   '8.5',
