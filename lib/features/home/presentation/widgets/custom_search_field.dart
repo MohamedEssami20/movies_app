@@ -29,9 +29,12 @@ class CustomSearchField extends StatelessWidget {
       textInputAction: TextInputAction.search,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.search, color: Colors.white),
-        suffixIcon: SvgPicture.asset(
-          Assets.assetsImagesFilterListIcon,
-          fit: BoxFit.scaleDown,
+        suffixIcon: Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: SvgPicture.asset(
+            Assets.assetsImagesFilterListIcon,
+            fit: BoxFit.scaleDown,
+          ),
         ),
         hintText: 'Search movies...',
         hintStyle: AppTextStyles.regular16(context).copyWith(
@@ -42,16 +45,16 @@ class CustomSearchField extends StatelessWidget {
         focusedBorder: buildBorder(),
         errorBorder: buildBorder(Colors.red),
         focusedErrorBorder: buildBorder(),
-        errorStyle: AppTextStyles.regular16(context).copyWith(color: Colors.red),
-        
+        errorStyle:
+            AppTextStyles.regular16(context).copyWith(color: Colors.red),
       ),
     );
   }
 
   OutlineInputBorder buildBorder([Color? color]) {
-    return  OutlineInputBorder(
+    return OutlineInputBorder(
       borderSide: BorderSide(
-        color: color?? Colors.white,
+        color: color ?? Colors.white,
       ),
       borderRadius: BorderRadius.all(
         Radius.circular(16),

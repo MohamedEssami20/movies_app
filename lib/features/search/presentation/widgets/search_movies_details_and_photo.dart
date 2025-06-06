@@ -5,9 +5,13 @@ import 'search_movies_photo.dart';
 
 class SearchMoviesDetailsAndPhoto extends StatelessWidget {
   const SearchMoviesDetailsAndPhoto({
-    super.key, required this.moviePoster, required this.movieName, required this.movieRate, required this.movieDate,
+    super.key,
+    required this.moviePoster,
+    required this.movieName,
+    required this.movieRate,
+    required this.movieDate,
   });
-  final String moviePoster, movieName, movieRate , movieDate ;
+  final String moviePoster, movieName, movieRate, movieDate;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -17,7 +21,7 @@ class SearchMoviesDetailsAndPhoto extends StatelessWidget {
           moviePoster: moviePoster,
         ),
         SearchMoviesDetails(
-          movieRating: moviePoster,
+          movieRating: movieRate,
           movieTitle: movieName,
           movieDate: movieDate,
         ),

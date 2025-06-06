@@ -209,6 +209,7 @@ double getResponsiveFont(BuildContext? context, {required double fontSize}) {
 double getScaleFactor() {
   double width = ScreenUtil().screenWidth;
   log("width of screen in get scale = $width");
+  log("screen height in get scale = ${ScreenUtil().screenHeight}");
   if (width < 400.w) {
     return width / 500;
   } else if (width < 600.w) {

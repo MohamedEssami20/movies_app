@@ -1,3 +1,4 @@
+
 import 'package:movies_app/core/services/api_services.dart';
 import 'package:movies_app/features/search/domain/entities/search_movies_entity/search_movies_entity.dart';
 
@@ -10,9 +11,10 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
 
   SearchRemoteDataSourceImpl({required this.apiServices});
   @override
-  Future<List<SearchMoviesEntity>> searchMovies({required String query}) async{
+  Future<List<SearchMoviesEntity>> searchMovies({required String query}) async {
     List<SearchMoviesEntity> searchMovies = [];
-    final results= await ApiServices().get("${ApiEndPoints.searchMovies}&query=$query");
+    final results =
+        await ApiServices().get("${ApiEndPoints.searchMovies}&query=$query");
     for (var movies in results['results']) {
       searchMovies.add(SearchMoviesModel.fromJson(movies));
     }

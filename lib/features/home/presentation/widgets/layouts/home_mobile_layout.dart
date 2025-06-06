@@ -48,7 +48,7 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout> {
                 homeStateNow = state.mode;
               }
               if (homeStateNow == HomeStateNow.search) {
-                return SearchView();
+                return Expanded(child: SearchView());
               } else {
                 return Expanded(
                   child: Column(

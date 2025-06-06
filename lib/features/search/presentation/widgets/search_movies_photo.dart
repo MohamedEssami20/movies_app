@@ -5,7 +5,8 @@ import 'package:shimmer/shimmer.dart';
 
 class SearchMoviesPhoto extends StatelessWidget {
   const SearchMoviesPhoto({
-    super.key, required this.moviePoster,
+    super.key,
+    required this.moviePoster,
   });
 
   final String moviePoster;
@@ -20,11 +21,10 @@ class SearchMoviesPhoto extends StatelessWidget {
       child: FittedBox(
         fit: BoxFit.fill,
         child: SizedBox(
-          height: 150,
+          height: 130,
           width: 124,
           child: CachedNetworkImage(
-            imageUrl:
-               ApiEndPoints.imagebaseUrl+moviePoster,
+            imageUrl: ApiEndPoints.imagebaseUrl + moviePoster,
             memCacheHeight: 150,
             memCacheWidth: 124,
             fit: BoxFit.fill,

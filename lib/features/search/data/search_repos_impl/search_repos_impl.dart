@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:movies_app/core/errors/api_server_errors.dart';
@@ -19,11 +21,12 @@ class SearchReposImpl implements SearchRepos {
       final result = await searchRemoteDataSource.searchMovies(query: query);
       return right(result);
     } on DioException catch (error) {
+      log("search error from api is= $error");
       return left(
         ApiServerErrors.fromDioError(error),
       );
     } on Exception {
-      return left (Failure("Opps there was an error, try later."));
+      return left(Failure("Opps there was an error, try later."));
     }
   }
 }

@@ -6,7 +6,10 @@ import '../../../../core/utils/assets.dart';
 
 class SearchMoviesDetails extends StatelessWidget {
   const SearchMoviesDetails({
-    super.key, required this.movieTitle, required this.movieDate, required this.movieRating,
+    super.key,
+    required this.movieTitle,
+    required this.movieDate,
+    required this.movieRating,
   });
   final String movieTitle, movieDate, movieRating;
   @override
@@ -14,7 +17,6 @@ class SearchMoviesDetails extends StatelessWidget {
     return Expanded(
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
           spacing: 8,
           children: [
             Text(
@@ -26,14 +28,15 @@ class SearchMoviesDetails extends StatelessWidget {
               overflow: TextOverflow.visible,
             ),
             Row(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.max,
               spacing: 8,
               children: [
                 SvgPicture.asset(
                   Assets.assetsImagesCalenderIcon,
+                  
                 ),
                 Text(
-                  movieDate,
+                  movieDate.isEmpty ? 'N/A' : movieDate.substring(0, 4),
                   style: AppTextStyles.medium16(context).copyWith(
                     color: Colors.white,
                   ),
@@ -41,7 +44,7 @@ class SearchMoviesDetails extends StatelessWidget {
                 SizedBox(width: 6),
                 Icon(Icons.star, color: Colors.white, size: 20),
                 Text(
-                  movieRating,
+                  movieRating.substring(0, 3),
                   style: AppTextStyles.medium16(context).copyWith(
                     color: Colors.white,
                   ),
