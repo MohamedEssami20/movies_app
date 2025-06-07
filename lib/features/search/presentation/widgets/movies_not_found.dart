@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/core/utils/app_text_styles.dart';
@@ -8,87 +10,90 @@ class MoviesNotFound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 37, right: 37, top: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 200,
-              width: double.infinity,
-              child: Stack(
-                alignment: Alignment.center,
-                clipBehavior: Clip.none,
-                children: [
-                  // الخربشة فوق الرأس
-                  Positioned(
-                    top: -200,
-                    left: 90,
-                    bottom: 0,
-                    child: SvgPicture.asset(
-                      Assets.assetsImagesThinkFont,
-                      //height: 40,
-                    ),
+    final double width = MediaQuery.sizeOf(context).width;
+    log("width of screen = $width");
+    return Padding(
+      padding: const EdgeInsets.only(left: 37, right: 37, top: 30),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 200,
+            width: double.infinity,
+            child: Stack(
+              alignment: Alignment.center,
+              clipBehavior: Clip.none,
+              children: [
+                // الخربشة فوق الرأس
+                Positioned(
+                  top: -200,
+                  left: width < 450
+                      ? 75
+                      : width > 700
+                          ? 260
+                          : 130,
+                  bottom: 0,
+                  child: SvgPicture.asset(
+                    Assets.assetsImagesThinkFont,
+                    //height: 40,
                   ),
+                ),
+                // الجسم
+                Positioned(
+                  top: 80,
+                  child: SvgPicture.asset(
+                    Assets.assetsImagesBodyImage,
+                    //height: 80,
+                  ),
+                ),
+                // الرأس
+                Positioned(
+                  top: 5,
+                  left: 0,
+                  right: 0,
+                  child: SvgPicture.asset(
+                    Assets.assetsImagesHeadImage,
+                    //height: 60,
+                  ),
+                ),
 
-                  // الجسم
-                  Positioned(
-                    top: 80,
-                    child: SvgPicture.asset(
-                      Assets.assetsImagesBodyImage,
-                      //height: 80,
-                    ),
+                // الطاولة
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  top: 160,
+                  child: SvgPicture.asset(
+                    Assets.assetsImagesTableImage,
+                    // height: 30,
                   ),
-                  // الرأس
-                  Positioned(
-                    top: 5,
-                    left: 0,
-                    right: 0,
-                    child: SvgPicture.asset(
-                      Assets.assetsImagesHeadImage,
-                      //height: 60,
-                    ),
+                ),
+                // ظل اللاب توب
+                Positioned(
+                  top: 170,
+                  left: 0,
+                  right: 0,
+                  child: SvgPicture.asset(
+                    Assets.assetsImagesShadeLaptop,
+                    //height: 60,
                   ),
-
-                  // الطاولة
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    top: 160,
-                    child: SvgPicture.asset(
-                      Assets.assetsImagesTableImage,
-                      // height: 30,
-                    ),
+                ),
+                // اللابتوب
+                Positioned(
+                  top: 120,
+                  child: SvgPicture.asset(
+                    Assets.assetsImagesLapTopImage,
+                    //height: 60,
                   ),
-                  // ظل اللاب توب
-                  Positioned(
-                    top: 170,
-                    left: 0,
-                    right: 0,
-                    child: SvgPicture.asset(
-                      Assets.assetsImagesShadeLaptop,
-                      //height: 60,
-                    ),
-                  ),
-                  // اللابتوب
-                  Positioned(
-                    top: 120,
-                    child: SvgPicture.asset(
-                      Assets.assetsImagesLapTopImage,
-                      //height: 60,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-            const SizedBox(height: 15),
-            Expanded(child: const MoviesNotFoundDetails()),
-            const SizedBox(height: 10),
-          ],
-        ),
+          ),
+          const SizedBox(height: 15),
+          Expanded(child: const MoviesNotFoundDetails()),
+          const SizedBox(height: 10),
+        ],
       ),
     );
   }
