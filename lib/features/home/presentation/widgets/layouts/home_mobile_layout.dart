@@ -47,10 +47,12 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout> {
               if (state is HomeStateChanged) {
                 homeStateNow = state.mode;
               }
+
+              Widget child;
               if (homeStateNow == HomeStateNow.search) {
-                return Expanded(child: SearchView());
+                child = const Expanded(child: SearchView());
               } else {
-                return Expanded(
+                child = Expanded(
                   child: Column(
                     children: [
                       SizedBox(
@@ -70,6 +72,23 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout> {
                   ),
                 );
               }
+
+              return Expanded(
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 500),
+                  transitionBuilder:
+                      (Widget child, Animation<double> animation) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  },
+                  child: KeyedSubtree(
+                    key: ValueKey(homeStateNow),
+                    child: child,
+                  ),
+                ),
+              );
             },
           ),
         ],
