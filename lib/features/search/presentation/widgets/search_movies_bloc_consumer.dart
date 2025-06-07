@@ -1,4 +1,5 @@
-import 'package:animated_snack_bar/animated_snack_bar.dart' show AnimatedSnackBarType;
+import 'package:animated_snack_bar/animated_snack_bar.dart'
+    show AnimatedSnackBarType;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/utils/app_text_styles.dart';
@@ -13,44 +14,61 @@ class SearchMoviesBlocConsumer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SearchMoviesCubit, SearchMoviesState>(
-        builder: (context, state) {
-          if (state is SearchMoviesSuccess) {
-            if(state.searchMovies.isEmpty){
-              return Center(
-                child: Text(
-                  "No Movies Found",
-                  style: AppTextStyles.medium16(context)
-                      .copyWith(color: Colors.white),
-                ),
-              );
-            }else{
-              return SearchMoviesListView(searchMovies: state.searchMovies);
-            }
-          } else if (state is SearchMoviesFailure) {
+      builder: (context, state) {
+        final currentMovies =
+            context.read<SearchMoviesCubit>().currentSearchMovies;
+        if (state is SearchMoviesSuccess ||
+            state is SearchMoviesPaginationSuccess ||
+            state is SearchMoviesPaginationLoading ||
+            state is SearchMoviesPaginationFailure) {
+          if (currentMovies.isEmpty) {
             return Center(
               child: Text(
-                state.errorMessage,
+                "No Movies Found",
                 style: AppTextStyles.medium16(context)
                     .copyWith(color: Colors.white),
               ),
             );
-          }
-          else{
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.blue,
-              ),
+          } else {
+            return SearchMoviesListView(
+              searchMovies: currentMovies,
+              scrollController:
+                  context.read<SearchMoviesCubit>().scrollController,
             );
           }
-        },
-        listener: (context, state) {
-          if (state is SearchMoviesFailure) {
-            showAnimatedSnackBar(
-              context,
-              message: state.errorMessage,
-              type: AnimatedSnackBarType.error,
-            );
-          }
-        },);
+        } else if (state is SearchMoviesFailure) {
+          return Center(
+            child: Text(
+              state.errorMessage,
+              style:
+                  AppTextStyles.medium16(context).copyWith(color: Colors.white),
+            ),
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.blue,
+            ),
+          );
+        }
+      },
+      listener: (context, state) {
+        if (state is SearchMoviesFailure) {
+          showAnimatedSnackBar(
+            context,
+            message: state.errorMessage,
+            type: AnimatedSnackBarType.error,
+          );
+        }
+
+        if (state is SearchMoviesPaginationFailure) {
+          showAnimatedSnackBar(
+            context,
+            message: state.errorMessage,
+            type: AnimatedSnackBarType.error,
+          );
+        }
+      },
+    );
   }
 }

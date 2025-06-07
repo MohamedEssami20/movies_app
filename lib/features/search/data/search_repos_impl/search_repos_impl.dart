@@ -16,9 +16,10 @@ class SearchReposImpl implements SearchRepos {
   SearchReposImpl({required this.searchRemoteDataSource});
   @override
   Future<Either<Failure, List<SearchMoviesEntity>>> getSearchMovies(
-      {required String query}) async {
+      {required String query, int pageNumber = 1}) async {
     try {
-      final result = await searchRemoteDataSource.searchMovies(query: query);
+      final result = await searchRemoteDataSource.searchMovies(
+          query: query, pageNumber: pageNumber);
       return right(result);
     } on DioException catch (error) {
       log("search error from api is= $error");

@@ -17,3 +17,16 @@ final class SearchMoviesFailure extends SearchMoviesState {
 }
 
 final class SearchMoviesLoading extends SearchMoviesState {}
+
+// create all state of pagination of search;
+final class SearchMoviesPaginationSuccess extends SearchMoviesState {
+  final List<SearchMoviesEntity> searchMovies;
+  SearchMoviesPaginationSuccess({required this.searchMovies});
+}
+
+final class SearchMoviesPaginationFailure extends SearchMoviesState {
+  final String errorMessage;
+  SearchMoviesPaginationFailure({required this.errorMessage});
+}
+
+final class SearchMoviesPaginationLoading extends SearchMoviesState {}

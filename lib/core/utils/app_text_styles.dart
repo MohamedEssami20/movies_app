@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -195,8 +193,7 @@ class AppTextStyles {
 // }
 
 double getResponsiveFont(BuildContext? context, {required double fontSize}) {
-  double scaleFactor =
-      getScaleFactor() *ScreenUtil().textScaleFactor*1.5;
+  double scaleFactor = getScaleFactor() * ScreenUtil().textScaleFactor * 1.5;
   double responsiveText = scaleFactor * fontSize;
 
   // وضع حد أدنى وأقصى لتجنب الخطوط الصغيرة جدًا أو الكبيرة جدًا
@@ -208,8 +205,6 @@ double getResponsiveFont(BuildContext? context, {required double fontSize}) {
 
 double getScaleFactor() {
   double width = ScreenUtil().screenWidth;
-  log("width of screen in get scale = $width");
-  log("screen height in get scale = ${ScreenUtil().screenHeight}");
   if (width < 400.w) {
     return width / 500;
   } else if (width < 600.w) {

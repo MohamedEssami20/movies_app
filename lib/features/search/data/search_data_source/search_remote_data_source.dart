@@ -4,5 +4,5 @@ abstract class SearchRemoteDataSource {
 
   // create method that search movies;
 
-  Future<List<SearchMoviesEntity>> searchMovies({required String query});
+  Future<List<SearchMoviesEntity>> searchMovies({required String query, int pageNumber = 1});
 }

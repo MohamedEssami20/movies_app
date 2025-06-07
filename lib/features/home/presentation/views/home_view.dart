@@ -52,6 +52,7 @@ class HomeView extends StatelessWidget {
               BlocProvider(
                 create: (context) => SearchMoviesCubit(
                   searchRepos: getIt.get<SearchRepos>(),
+                  context: context,
                 ),
               ),
             ],

@@ -6,17 +6,18 @@ import 'search_item.dart';
 class SearchMoviesListView extends StatelessWidget {
   const SearchMoviesListView({
     super.key,
-    required this.searchMovies,
+    required this.searchMovies, required this.scrollController,
   });
 
   final List<SearchMoviesEntity> searchMovies;
-
+  final ScrollController scrollController ;
   @override
   Widget build(BuildContext context) {
     //final screenHeight = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.only(right: 25, left: 25),
       child: ListView.builder(
+        controller: scrollController,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 14),
