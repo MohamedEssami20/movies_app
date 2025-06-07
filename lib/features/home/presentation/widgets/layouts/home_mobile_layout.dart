@@ -47,7 +47,6 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout> {
               if (state is HomeStateChanged) {
                 homeStateNow = state.mode;
               }
-
               Widget child;
               if (homeStateNow == HomeStateNow.search) {
                 child = const Expanded(child: SearchView());

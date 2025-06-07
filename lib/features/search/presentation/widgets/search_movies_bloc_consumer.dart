@@ -7,6 +7,7 @@ import 'package:movies_app/features/search/presentation/manager/search_cubit/sea
 import 'package:movies_app/features/search/presentation/widgets/search_movies_list_view.dart';
 
 import '../../../../core/func/custom_snack_bar.dart' show showAnimatedSnackBar;
+import 'movies_not_found.dart';
 
 class SearchMoviesBlocConsumer extends StatelessWidget {
   const SearchMoviesBlocConsumer({super.key});
@@ -22,13 +23,7 @@ class SearchMoviesBlocConsumer extends StatelessWidget {
             state is SearchMoviesPaginationLoading ||
             state is SearchMoviesPaginationFailure) {
           if (currentMovies.isEmpty) {
-            return Center(
-              child: Text(
-                "No Movies Found",
-                style: AppTextStyles.medium16(context)
-                    .copyWith(color: Colors.white),
-              ),
-            );
+            return const MoviesNotFound();
           } else {
             return SearchMoviesListView(
               searchMovies: currentMovies,
