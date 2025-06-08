@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/api_end_points.dart';
+import 'package:movies_app/features/details_movies/presentation/views/movies_details_view.dart';
 import '../../domain/entities/popular_movies_entity/popular_movies_entity.dart';
 import 'movies_item.dart';
 
@@ -25,10 +26,15 @@ class PopularMoviesListView extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.only(right: 12),
-                child: MoviesItem(
-                  imageUrl: ApiEndPoints.imagebaseUrl +
-                      popularMovies[index].moviePoster.toString(),
-                  movieTitle: popularMovies[index].movieTitle,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, MoviesDetailsView.routeName);
+                  },
+                  child: MoviesItem(
+                    imageUrl: ApiEndPoints.imagebaseUrl +
+                        popularMovies[index].moviePoster.toString(),
+                    movieTitle: popularMovies[index].movieTitle,
+                  ),
                 ),
               );
             }),

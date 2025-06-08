@@ -51,24 +51,22 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout> {
               if (homeStateNow == HomeStateNow.search) {
                 child = const Expanded(child: SearchView());
               } else {
-                child = Expanded(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 50,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: CategoriesItemListView(),
-                        ),
+                child = Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: CategoriesItemListView(),
                       ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      Expanded(
-                        child: HomeBlocProviders(),
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Expanded(
+                      child: HomeBlocProviders(),
+                    ),
+                  ],
                 );
               }
 

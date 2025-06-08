@@ -14,6 +14,10 @@ class Assets {
   /// assets/images/calender_icon.svg
   static const String assetsImagesCalenderIcon = "assets/images/calender_icon.svg";
 
+  /// Assets for assetsImagesDownloadIcon
+  /// assets/images/download_icon.svg
+  static const String assetsImagesDownloadIcon = "assets/images/download_icon.svg";
+
   /// Assets for assetsImagesFacebookIcon
   /// assets/images/facebook_icon.svg
   static const String assetsImagesFacebookIcon = "assets/images/facebook_icon.svg";
@@ -69,6 +73,10 @@ class Assets {
   /// Assets for assetsImagesThinkFont
   /// assets/images/think_font.svg
   static const String assetsImagesThinkFont = "assets/images/think_font.svg";
+
+  /// Assets for assetsImagesTimeMoviesIcon
+  /// assets/images/time_movies_icon.svg
+  static const String assetsImagesTimeMoviesIcon = "assets/images/time_movies_icon.svg";
 
   /// Assets for assetsImagesVideoIcon
   /// assets/images/video_icon.svg
