@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/features/details_movies/presentation/views/widgets/movie_overview.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import 'movies_other_details.dart';
 import 'movies_relase_date_and_reviews.dart';
 import 'movies_type_and_time.dart';
 import 'watch_trailler_and_add_watch_list_buttons.dart';
@@ -33,6 +34,14 @@ class MoviesTitleAndOtherDetails extends StatelessWidget {
             WatchTrailerAndAddToWatchListButtons(),
             const SizedBox(height: 20),
             MovieOverView(),
+            const SizedBox(height: 20),
+            Text(
+              "Details",
+              style: AppTextStyles.semiBold16(context)
+                  .copyWith(color: Colors.white),
+            ),
+            const SizedBox(height: 10),
+            MoviesOtherDetails(),
           ],
         ),
       ),
