@@ -4,6 +4,7 @@ import '../../../../../core/utils/app_text_styles.dart';
 import 'movies_other_details.dart';
 import 'movies_relase_date_and_reviews.dart';
 import 'movies_type_and_time.dart';
+import 'top_casting_list_view.dart';
 import 'watch_trailler_and_add_watch_list_buttons.dart';
 
 class MoviesTitleAndOtherDetails extends StatelessWidget {
@@ -42,6 +43,15 @@ class MoviesTitleAndOtherDetails extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             MoviesOtherDetails(),
+            const SizedBox(height: 20),
+            Text(
+              "Top Cast",
+              style: AppTextStyles.semiBold16(context)
+                  .copyWith(color: Colors.white),
+            ),
+            const SizedBox(height: 10),
+            TopCastingListView(),
+            const SizedBox(height: 40),
           ],
         ),
       ),
