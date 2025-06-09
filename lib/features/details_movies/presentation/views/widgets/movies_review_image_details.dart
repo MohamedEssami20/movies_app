@@ -1,11 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../../../../core/utils/app_text_styles.dart' show AppTextStyles;
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/custom_shimmer_widget.dart'
     show CustomShimmer;
+import 'custom_details_movies_button.dart';
 
 class MoviesImageReviewDetails extends StatelessWidget {
   const MoviesImageReviewDetails({
@@ -69,73 +68,25 @@ class MoviesImageReviewDetails extends StatelessWidget {
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                child: ElevatedButton(
+                child: CustomDetailsMoviesButton(
                   onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                    backgroundColor: const Color(0xFFFF1700),
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                  title: 'Watch Now',
+                  icon: SvgPicture.asset(
+                    Assets.assetsImagesVideoIcon,
+                    height: 28,
                   ),
-                  child: Row(
-                    spacing: 12,
-                    children: [
-                      Expanded(
-                        flex: 4,
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            'Watch Now',
-                            style: AppTextStyles.regular16(context)
-                                .copyWith(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: SvgPicture.asset(
-                          Assets.assetsImagesVideoIcon,
-                          height: 28,
-                        ),
-                      )
-                    ],
-                  ),
+                  color: Color(0xFFFF1700),
                 ),
               ),
               Expanded(
-                child: ElevatedButton(
+                child: CustomDetailsMoviesButton(
                   onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                    backgroundColor: const Color(0xFFFF1700),
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                  title: 'Download',
+                  icon: SvgPicture.asset(
+                    Assets.assetsImagesDownloadIcon,
+                    height: 28,
                   ),
-                  child: Row(
-                    spacing: 12,
-                    children: [
-                      Expanded(
-                        flex: 4,
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            'Download',
-                            style: AppTextStyles.regular16(context)
-                                .copyWith(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: SvgPicture.asset(
-                          Assets.assetsImagesDownloadIcon,
-                          height: 28,
-                        ),
-                      )
-                    ],
-                  ),
+                  color: Color(0xFFFF1700),
                 ),
               ),
             ],
