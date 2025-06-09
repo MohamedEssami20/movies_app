@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../../../core/utils/assets.dart';
 import 'custom_details_movies_button.dart';
 
@@ -13,7 +12,8 @@ class WatchTrailerAndAddToWatchListButtons extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       spacing: 16,
       children: [
-        Expanded(
+        Flexible(
+          fit: FlexFit.loose,
           child: CustomDetailsMoviesButton(
             title: 'Watch Trailer',
             icon: SvgPicture.asset(
@@ -24,7 +24,8 @@ class WatchTrailerAndAddToWatchListButtons extends StatelessWidget {
             onPressed: () {},
           ),
         ),
-        Expanded(
+        Flexible(
+          fit: FlexFit.loose,
           child: CustomDetailsMoviesButton(
             title: 'Add to Watchlist',
             icon: const Icon(

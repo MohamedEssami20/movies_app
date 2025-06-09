@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../movie_title_and_other_details.dart';
 import '../movies_review_image_details.dart' show MoviesImageReviewDetails;
@@ -13,7 +12,7 @@ class MoviesDetailsMobile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         MoviesImageReviewDetails(),
-        MoviesTitleAndOtherDetails(),
+        Expanded(child: MoviesTitleAndOtherDetails()),
       ],
     );
   }
