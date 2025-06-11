@@ -21,6 +21,7 @@ class MoviesImageReviewDetails extends StatelessWidget {
               "https://image.tmdb.org/t/p/original/yBDvgpyynDsbMyK21FoQu1c2wYR.jpg",
           fit: BoxFit.fill,
           height: 0.40 * height,
+          width: double.infinity,
           errorWidget: (context, url, error) {
             return Icon(
               Icons.error_outline,

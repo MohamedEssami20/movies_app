@@ -12,7 +12,6 @@ class MoviesTitleAndOtherDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.sizeOf(context).width;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SingleChildScrollView(
@@ -28,7 +27,7 @@ class MoviesTitleAndOtherDetails extends StatelessWidget {
                   .copyWith(color: Colors.white),
             ),
             const SizedBox(height: 8),
-            MoviesTypeAndTime(width: width),
+            MoviesTypeAndTime(),
             const SizedBox(height: 18),
             MovieRelaseDateAndReviews(),
             const SizedBox(height: 20),

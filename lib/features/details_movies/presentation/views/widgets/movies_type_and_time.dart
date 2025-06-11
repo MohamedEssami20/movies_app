@@ -8,13 +8,11 @@ import 'movie_type_item_details.dart';
 class MoviesTypeAndTime extends StatelessWidget {
   const MoviesTypeAndTime({
     super.key,
-    required this.width,
   });
-
-  final double width;
 
   @override
   Widget build(BuildContext context) {
+  final  double width = MediaQuery.sizeOf(context).width;
     return Row(
       spacing: 8,
       children: [
