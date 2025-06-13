@@ -1,9 +1,11 @@
+import 'package:movies_app/features/details_movies/domain/movies_details_entity/movies_details_entity.dart';
+
 import 'genre.dart';
 import 'production_company.dart';
 import 'production_country.dart';
 import 'spoken_language.dart';
 
-class MoviesDetailsModel {
+class MoviesDetailsModel extends MoviesDetailsEntity {
   bool? adult;
   String? backdropPath;
   dynamic belongsToCollection;
@@ -58,7 +60,19 @@ class MoviesDetailsModel {
     this.video,
     this.voteAverage,
     this.voteCount,
-  });
+  }): super(
+    movieImage: backdropPath??"",
+    movieTitle: title??"",
+    movieGenres: genres??[],
+    movieDuration: runtime??0,
+    moiveDate: releaseDate??"",
+    movieRating: voteAverage??0,
+    movieVoteCount: voteCount??0,
+    movieOverview: overview??"",
+    movieOriginCountry: originCountry??[],
+    movieDateRelease: releaseDate??"",
+    movieProductionCompanies: productionCompanies??[],
+  );
 
   factory MoviesDetailsModel.fromJson(Map<String, dynamic> json) {
     return MoviesDetailsModel(

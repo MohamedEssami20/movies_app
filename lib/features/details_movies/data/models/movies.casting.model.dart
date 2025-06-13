@@ -1,4 +1,6 @@
-class MoviesCastingModel {
+import 'package:movies_app/features/details_movies/domain/movies_details_entity/movies_casting_entity.dart';
+
+class MoviesCastingModel extends MoviesCastingEntity{
   bool? adult;
   int? gender;
   int? id;
@@ -25,7 +27,11 @@ class MoviesCastingModel {
     this.character,
     this.creditId,
     this.order,
-  });
+  }):super(
+    movieCastId: id??0,
+    castName: name??'',
+    castpProfilePath: profilePath??'',
+  );
 
   factory MoviesCastingModel.fromJson(Map<String, dynamic> json) => MoviesCastingModel(
         adult: json['adult'] as bool?,
