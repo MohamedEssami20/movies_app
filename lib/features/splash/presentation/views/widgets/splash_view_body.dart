@@ -1,4 +1,3 @@
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -92,8 +91,8 @@ class SplashViewBodyState extends State<SplashViewBody> {
                           final ifUserNotSignIn =
                               FirebaseAuth.instance.currentUser == null;
                           final bool isOnboardingShow =
-                            SharedPrefService().showOnboarding();
-                          
+                              SharedPrefService().showOnboarding();
+
                           WidgetsBinding.instance.addPostFrameCallback((_) {
                             if (ifUserNotSignIn && !isOnboardingShow) {
                               Navigator.of(context).pushReplacementNamed(

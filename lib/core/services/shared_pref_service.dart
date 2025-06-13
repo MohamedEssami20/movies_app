@@ -5,7 +5,6 @@ import 'package:movies_app/core/utils/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefService {
-
   static final SharedPrefService _instance = SharedPrefService._internal();
   factory SharedPrefService() => _instance;
   SharedPrefService._internal();
@@ -26,8 +25,7 @@ class SharedPrefService {
     log("save true ***");
   }
   
-  
-  
   // create method that check if user show onboarding or not
-  bool showOnboarding() => _prefs.getBool(AppConstants.showBoardingKey) ?? false;
+  bool showOnboarding() =>
+      _prefs.getBool(AppConstants.showBoardingKey) ?? false;
 }

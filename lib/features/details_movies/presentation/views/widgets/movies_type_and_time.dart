@@ -12,7 +12,7 @@ class MoviesTypeAndTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  final  double width = MediaQuery.sizeOf(context).width;
+    final double width = MediaQuery.sizeOf(context).width;
     return Row(
       spacing: 8,
       children: [

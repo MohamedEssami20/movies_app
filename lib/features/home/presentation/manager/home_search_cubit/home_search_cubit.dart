@@ -14,5 +14,4 @@ class HomeSearchCubit extends Cubit<HomeSearchState> {
   void exitSearchMode() {
     emit(HomeStateChanged(mode: HomeStateNow.normal));
   }
-  
 }

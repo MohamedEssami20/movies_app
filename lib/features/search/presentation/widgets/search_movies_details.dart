@@ -33,7 +33,6 @@ class SearchMoviesDetails extends StatelessWidget {
               children: [
                 SvgPicture.asset(
                   Assets.assetsImagesCalenderIcon,
-                  
                 ),
                 Text(
                   movieDate.isEmpty ? 'N/A' : movieDate.substring(0, 4),

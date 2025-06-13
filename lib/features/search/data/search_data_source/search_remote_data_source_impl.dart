@@ -1,4 +1,3 @@
-
 import 'package:movies_app/core/services/api_services.dart';
 import 'package:movies_app/features/search/domain/entities/search_movies_entity/search_movies_entity.dart';
 import '../../../../core/utils/api_end_points.dart';

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/top_rating_movies_bloc_consumer.dart';
 import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/trending_movies_bloc_consumer.dart';

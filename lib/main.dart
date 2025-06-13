@@ -18,9 +18,8 @@ import 'features/auth/domain/repos/auth_repos.dart';
 import 'features/auth/presentation/manager/Auth_cubit/auth_cubit.dart';
 
 void main() async {
- 
   WidgetsFlutterBinding.ensureInitialized();
-   //close orentation of landscape;
+  //close orentation of landscape;
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp,

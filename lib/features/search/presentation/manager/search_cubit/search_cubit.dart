@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/features/search/domain/search_repos/search_repos.dart';
@@ -33,7 +32,8 @@ class SearchMoviesCubit extends Cubit<SearchMoviesState> {
     pageNumber == 1
         ? emit(SearchMoviesLoading())
         : emit(SearchMoviesPaginationLoading());
-    final results = await searchRepos.getSearchMovies(query: query, pageNumber: pageNumber);
+    final results =
+        await searchRepos.getSearchMovies(query: query, pageNumber: pageNumber);
     results.fold((faliure) {
       if (pageNumber == 1) {
         emit(SearchMoviesFailure(errorMessage: faliure.message));

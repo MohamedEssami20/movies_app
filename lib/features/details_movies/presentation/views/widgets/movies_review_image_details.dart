@@ -44,10 +44,13 @@ class MoviesImageReviewDetails extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                  size: height * 0.04,
+                GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: height * 0.04,
+                  ),
                 ),
                 Icon(
                   Icons.notifications_outlined,

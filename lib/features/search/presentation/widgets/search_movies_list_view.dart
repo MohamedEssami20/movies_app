@@ -6,11 +6,12 @@ import 'search_item.dart';
 class SearchMoviesListView extends StatelessWidget {
   const SearchMoviesListView({
     super.key,
-    required this.searchMovies, required this.scrollController,
+    required this.searchMovies,
+    required this.scrollController,
   });
 
   final List<SearchMoviesEntity> searchMovies;
-  final ScrollController scrollController ;
+  final ScrollController scrollController;
   @override
   Widget build(BuildContext context) {
     //final screenHeight = MediaQuery.of(context).size.height;
