@@ -2,6 +2,9 @@
 import 'package:get_it/get_it.dart';
 import 'package:movies_app/core/services/firebase_auth_service.dart';
 import 'package:movies_app/features/auth/data/auth_repos_impl/auth_repos_impl.dart';
+import 'package:movies_app/features/details_movies/data/movies_details_data_source/movies_details_remote_data_src.dart';
+import 'package:movies_app/features/details_movies/data/repos_impl/movies_details_repo_impl.dart';
+import 'package:movies_app/features/details_movies/domain/repos/details_movies_repos.dart';
 import 'package:movies_app/features/home/data/data_source/home_data_source.dart';
 import 'package:movies_app/features/home/data/data_source/home_local_data_souce_impl.dart';
 import 'package:movies_app/features/home/data/data_source/home_remote_data_source_impl.dart';
@@ -13,6 +16,7 @@ import 'package:movies_app/features/search/data/search_repos_impl/search_repos_i
 import 'package:movies_app/features/search/domain/search_repos/search_repos.dart';
 
 import '../../features/auth/domain/repos/auth_repos.dart';
+import '../../features/details_movies/data/movies_details_data_source_impl.dart/movies_details_remote_data_src_impl.dart';
 import '../../features/home/data/data_source/home_local_data_source.dart';
 import 'api_services.dart';
 import 'database_service.dart';
@@ -53,6 +57,16 @@ void setupGetIt() {
   getIt.registerSingleton<SearchRepos>(
     SearchReposImpl(
       searchRemoteDataSource: getIt.get<SearchRemoteDataSource>(),
+    ),
+  );
+
+  getIt.registerSingleton<MoviesDetailsRemoteDataSource>(
+    MoviesDetailsRemoteDataSrcImpl(apiServices: getIt.get<ApiServices>(),),
+  );
+
+  getIt.registerSingleton<DetailsMoviesRepos>(
+    MoviesDetailsRepoImpl(
+      moviesDetailsRemoteDataSource: getIt.get<MoviesDetailsRemoteDataSource>(),
     ),
   );
 }

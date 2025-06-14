@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/features/home/presentation/widgets/movies_item.dart';
 
 import '../../../../core/utils/api_end_points.dart';
+import '../../../details_movies/presentation/manager/movies_details_cubit/movies_details_cubit.dart';
+import '../../../details_movies/presentation/views/movies_details_view.dart';
 import '../../domain/entities/up_coming_movies_entity/up_coming_movies_entity.dart';
 
 class UpComingMoviesListView extends StatelessWidget {
@@ -26,10 +29,21 @@ class UpComingMoviesListView extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.only(right: 16),
-                child: MoviesItem(
-                  movieTitle: upComingMovies[index].movieTitle,
-                  imageUrl: ApiEndPoints.imagebaseUrl +
-                      upComingMovies[index].moviePoster.toString(),
+                child: GestureDetector(
+                  onTap: () {
+                    final movieDetailsCubit =
+                        context.read<MoviesDetailsCubit>();
+                    context.read<MoviesDetailsCubit>().getMoviesDetails(
+                          movieId: upComingMovies[index].movieId,
+                        );
+                    Navigator.pushNamed(context, MoviesDetailsView.routeName,
+                        arguments: movieDetailsCubit);
+                  },
+                  child: MoviesItem(
+                    movieTitle: upComingMovies[index].movieTitle,
+                    imageUrl: ApiEndPoints.imagebaseUrl +
+                        upComingMovies[index].moviePoster.toString(),
+                  ),
                 ),
               );
             }),

@@ -18,9 +18,7 @@ class MoviesDetailsRemoteDataSrcImpl implements MoviesDetailsRemoteDataSource {
     final List<MoviesDetailsEntity> moviesDetails = [];
     final Map<String, dynamic> results =
         await apiServices.get("movie/$movieId?language=en-US");
-    for (Map<String, dynamic> details in results.values) {
-      moviesDetails.add(MoviesDetailsModel.fromJson(details));
-    }
+    moviesDetails.add(MoviesDetailsModel.fromJson(results));
     return moviesDetails;
   }
 

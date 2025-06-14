@@ -16,10 +16,7 @@ final class MoviesDetailsFailure extends MoviesDetailsState {
 
 final class MoviesDetailsSuccess extends MoviesDetailsState {
   final List<MoviesDetailsEntity> moviesDetailsEntity;
-  MoviesDetailsSuccess({required this.moviesDetailsEntity});
-}
-
-final class MoviesCastingSuccess extends MoviesDetailsState {
   final List<MoviesCastingEntity> moviesCastingEntity;
-  MoviesCastingSuccess({required this.moviesCastingEntity});
+  MoviesDetailsSuccess(
+      {required this.moviesCastingEntity, required this.moviesDetailsEntity});
 }

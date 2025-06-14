@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/core/services/get_it_service.dart';
+import 'package:movies_app/features/details_movies/presentation/manager/movies_details_cubit/movies_details_cubit.dart';
 import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/action_movies_bloc_consumer.dart';
 import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/adventure_movies_bloc_consumer.dart';
 import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/animations_movies_bloc_consumer.dart';
@@ -7,6 +9,7 @@ import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consum
 import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/family_movies_bloc_consumer.dart';
 import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/horror_movies_bloc_consumer.dart';
 import 'package:movies_app/features/home/presentation/widgets/movies_bloc_consumer/romance_movies_bloc_consumer.dart';
+import '../../../details_movies/domain/repos/details_movies_repos.dart';
 import '../manager/categories_items/categories_items_cubit.dart';
 import 'movies/all_category_movies.dart';
 import 'movies_bloc_consumer/comedy_movies_bloc_consumer.dart';
@@ -24,28 +27,34 @@ class _ChoosenCategoryViewsState extends State<ChoosenCategoryViews> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoriesItemsCubit, int>(
-      builder: (context, state) {
-        final bool isForward = state > _previousIndex;
-        _previousIndex = state;
+    return BlocProvider(
+      create: (context) => MoviesDetailsCubit(
+        detailsMoviesRepos: getIt.get<DetailsMoviesRepos>(),
+      ),
+      child: BlocBuilder<CategoriesItemsCubit, int>(
+        builder: (context, state) {
+          final bool isForward = state > _previousIndex;
+          _previousIndex = state;
 
-        return AnimatedSwitcher(
-          duration: const Duration(milliseconds: 400),
-          transitionBuilder: (child, animation) {
-            final offsetAnimation = Tween<Offset>(
-              begin:
-                  isForward ? const Offset(1.0, 0.0) : const Offset(-1.0, 0.0),
-              end: Offset.zero,
-            ).animate(animation);
+          return AnimatedSwitcher(
+            duration: const Duration(milliseconds: 400),
+            transitionBuilder: (child, animation) {
+              final offsetAnimation = Tween<Offset>(
+                begin: isForward
+                    ? const Offset(1.0, 0.0)
+                    : const Offset(-1.0, 0.0),
+                end: Offset.zero,
+              ).animate(animation);
 
-            return SlideTransition(
-              position: offsetAnimation,
-              child: child,
-            );
-          },
-          child: _buildCategoryView(state),
-        );
-      },
+              return SlideTransition(
+                position: offsetAnimation,
+                child: child,
+              );
+            },
+            child: _buildCategoryView(state),
+          );
+        },
+      ),
     );
   }
 

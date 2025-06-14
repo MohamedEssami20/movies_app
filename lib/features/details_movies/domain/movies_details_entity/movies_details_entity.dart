@@ -10,7 +10,7 @@ class MoviesDetailsEntity {
   final double movieRating;
   final int movieVoteCount;
   final String movieOverview;
-  final List<String> movieOriginCountry;
+  final List<dynamic> movieOriginCountry;
   final String movieDateRelease;
   final List<ProductionCompany> movieProductionCompanies;
 

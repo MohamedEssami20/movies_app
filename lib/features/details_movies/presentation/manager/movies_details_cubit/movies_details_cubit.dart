@@ -18,29 +18,18 @@ class MoviesDetailsCubit extends Cubit<MoviesDetailsState> {
     final castingResults =
         await detailsMoviesRepos.getMoviesCasting(movieId: movieId);
 
-    results.fold(
-      (failure) {
-        emit(MoviesDetailsFailure(errorMessage: failure.message));
-      },
-      (moviesDetails) {
-        emit(
-          MoviesDetailsSuccess(
-            moviesDetailsEntity: moviesDetails,
-          ),
-        );
-      },
-    );
-    castingResults.fold(
-      (failure) {
-        emit(MoviesDetailsFailure(errorMessage: failure.message));
-      },
-      (moviesCasting) {
-        emit(
-          MoviesCastingSuccess(
-            moviesCastingEntity: moviesCasting,
-          ),
-        );
-      },
-    );
+    final failure = results.fold((f) => f, (r) => null) ??
+        castingResults.fold((f) => f, (r) => null);
+
+    if (failure != null) {
+      emit(
+        MoviesDetailsFailure(errorMessage: failure.message),
+      );
+    } else {
+      emit(MoviesDetailsSuccess(
+        moviesDetailsEntity: results.getOrElse(() => []),
+        moviesCastingEntity: castingResults.getOrElse(() => []),
+      ));
+    }
   }
 }

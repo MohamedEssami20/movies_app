@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -25,10 +27,12 @@ class MoviesDetailsRepoImpl implements DetailsMoviesRepos {
           movieId: movieId);
       return right(results);
     } on DioException catch (error) {
+      log("error in details movies Dio Error= $error");
       return left(
         ApiServerErrors.fromDioError(error),
       );
     } catch (error) {
+      log("error in details movies in catch= $error");
       return left(
         Failure("Opps there was an error, try later."),
       );
@@ -44,10 +48,12 @@ class MoviesDetailsRepoImpl implements DetailsMoviesRepos {
           movieId: movieId);
       return right(results);
     } on DioException catch (error) {
+      log("error in details movies casting Dio Error= $error");
       return left(
         ApiServerErrors.fromDioError(error),
       );
     } catch (error) {
+      log("error in details movies casting in catch= $error");
       return left(
         Failure("Opps there was an error, try later."),
       );

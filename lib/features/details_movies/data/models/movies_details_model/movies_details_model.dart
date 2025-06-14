@@ -14,7 +14,7 @@ class MoviesDetailsModel extends MoviesDetailsEntity {
   String? homepage;
   int? id;
   String? imdbId;
-  List<String>? originCountry;
+  List<dynamic>? originCountry;
   String? originalLanguage;
   String? originalTitle;
   String? overview;
@@ -60,19 +60,19 @@ class MoviesDetailsModel extends MoviesDetailsEntity {
     this.video,
     this.voteAverage,
     this.voteCount,
-  }): super(
-    movieImage: backdropPath??"",
-    movieTitle: title??"",
-    movieGenres: genres??[],
-    movieDuration: runtime??0,
-    moiveDate: releaseDate??"",
-    movieRating: voteAverage??0,
-    movieVoteCount: voteCount??0,
-    movieOverview: overview??"",
-    movieOriginCountry: originCountry??[],
-    movieDateRelease: releaseDate??"",
-    movieProductionCompanies: productionCompanies??[],
-  );
+  }) : super(
+          movieImage: backdropPath ?? "",
+          movieTitle: title ?? "",
+          movieGenres: genres ?? [],
+          movieDuration: runtime ?? 0,
+          moiveDate: releaseDate ?? "",
+          movieRating: voteAverage ?? 0,
+          movieVoteCount: voteCount ?? 0,
+          movieOverview: overview ?? "",
+          movieOriginCountry: originCountry ?? [],
+          movieDateRelease: releaseDate ?? "",
+          movieProductionCompanies: productionCompanies ?? [],
+        );
 
   factory MoviesDetailsModel.fromJson(Map<String, dynamic> json) {
     return MoviesDetailsModel(
@@ -86,7 +86,7 @@ class MoviesDetailsModel extends MoviesDetailsEntity {
       homepage: json['homepage'] as String?,
       id: json['id'] as int?,
       imdbId: json['imdb_id'] as String?,
-      originCountry: json['origin_country'] as List<String>?,
+      originCountry: json['origin_country'] as List<dynamic>?,
       originalLanguage: json['original_language'] as String?,
       originalTitle: json['original_title'] as String?,
       overview: json['overview'] as String?,

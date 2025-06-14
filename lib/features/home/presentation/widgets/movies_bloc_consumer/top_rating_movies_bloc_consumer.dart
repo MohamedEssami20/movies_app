@@ -1,7 +1,7 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/features/home/presentation/widgets/new_release_tvshow_list_view.dart';
+import 'package:movies_app/features/home/presentation/widgets/top_rating_movies_list_view.dart';
 import '../../../../../core/func/custom_snack_bar.dart';
 import '../../manager/top_rating_movies/top_rating_movies_cubit.dart';
 
