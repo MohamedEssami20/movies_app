@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -21,13 +20,15 @@ class MoviesTypeAndTime extends StatelessWidget {
       spacing: 8,
       children: [
         Row(
+          spacing: 8,
           children: moviesGenres.isNotEmpty
               ? moviesGenres
+                  .take(2)
                   .map((elemnent) => MoviesTypeItemDetails(title: elemnent))
                   .toList()
               : [],
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: 10),
         Expanded(
           child: FittedBox(
             fit: BoxFit.scaleDown,

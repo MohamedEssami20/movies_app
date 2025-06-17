@@ -37,7 +37,7 @@ class MovieRelaseDateAndReviews extends StatelessWidget {
           children: [
             Icon(Icons.star, color: Colors.white, size: 18),
             Text(
-              voteAverage.toString(),
+              voteAverage.toString().substring(0, 3),
               style: AppTextStyles.medium16(context)
                   .copyWith()
                   .copyWith(color: Colors.white),
@@ -48,7 +48,7 @@ class MovieRelaseDateAndReviews extends StatelessWidget {
         Flexible(
           flex: 3,
           child: Text(
-           voteCount==0? "0 reviews": "${voteCount}k Reviews",
+            voteCount == 0 ? "0 Reviews" : "${voteCount}k Reviews",
             style:
                 AppTextStyles.regular16(context).copyWith(color: Colors.white),
           ),

@@ -9,7 +9,7 @@ class TopCastingListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 130,
+      height: 140,
       child: ListView.builder(
         shrinkWrap: true,
         clipBehavior: Clip.none,

@@ -1,8 +1,6 @@
-import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/api_end_points.dart';
-
 import '../../../../../core/utils/app_text_styles.dart' show AppTextStyles;
 import '../../../../../core/widgets/custom_shimmer_widget.dart';
 
@@ -12,10 +10,9 @@ class TopCastItems extends StatelessWidget {
   final String castImage, castTiltle;
   @override
   Widget build(BuildContext context) {
-    log("images of cast= ${ApiEndPoints.baseUrl + castImage} + castTiltle= $castTiltle");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: 6,
+      spacing: 8,
       children: [
         CircleAvatar(
           radius: 45,
@@ -42,12 +39,22 @@ class TopCastItems extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 10),
-        Text(
-          textAlign: TextAlign.center,
-          castTiltle,
-          style: AppTextStyles.regular12(context).copyWith(color: Colors.white),
-        )
+        Expanded(
+          flex: 2,
+          child: SizedBox(
+            width: 100,
+            height: 90,
+            child: Text(
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.clip,
+              maxLines: null,
+              castTiltle,
+              style: AppTextStyles.regular12(context).copyWith(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
