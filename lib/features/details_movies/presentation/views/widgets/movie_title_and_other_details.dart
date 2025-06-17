@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/features/details_movies/domain/movies_details_entity/movies_casting_entity.dart';
+import 'package:movies_app/features/details_movies/domain/movies_details_entity/movies_details_entity.dart';
 import 'package:movies_app/features/details_movies/presentation/views/widgets/movie_overview.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import 'movies_other_details.dart';
@@ -8,8 +10,10 @@ import 'top_casting_list_view.dart';
 import 'watch_trailler_and_add_watch_list_buttons.dart';
 
 class MoviesTitleAndOtherDetails extends StatelessWidget {
-  const MoviesTitleAndOtherDetails({super.key});
-
+  const MoviesTitleAndOtherDetails(
+      {super.key, required this.movieDetails, required this.moviesCasting});
+  final MoviesDetailsEntity movieDetails;
+  final List<MoviesCastingEntity> moviesCasting;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,19 +25,28 @@ class MoviesTitleAndOtherDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'The Dark Knight Rises',
+              movieDetails.movieTitle,
               textAlign: TextAlign.left,
               style: AppTextStyles.semiBold24(context)
                   .copyWith(color: Colors.white),
             ),
             const SizedBox(height: 8),
-            MoviesTypeAndTime(),
+            MoviesTypeAndTime(
+              moviesDuration: movieDetails.movieDuration,
+              moviesGenres: movieDetails.movieGenres,
+            ),
             const SizedBox(height: 18),
-            MovieRelaseDateAndReviews(),
+            MovieRelaseDateAndReviews(
+              relaseDate: movieDetails.movieDateRelease,
+              voteAverage: movieDetails.movieRating,
+              voteCount: movieDetails.movieVoteCount,
+            ),
             const SizedBox(height: 20),
             WatchTrailerAndAddToWatchListButtons(),
             const SizedBox(height: 20),
-            MovieOverView(),
+            MovieOverView(
+              movieOverView: movieDetails.movieOverview,
+            ),
             const SizedBox(height: 20),
             Text(
               "Details",
@@ -41,7 +54,12 @@ class MoviesTitleAndOtherDetails extends StatelessWidget {
                   .copyWith(color: Colors.white),
             ),
             const SizedBox(height: 10),
-            MoviesOtherDetails(),
+            MoviesOtherDetails(
+              genres: movieDetails.movieGenres,
+              relaseDate: movieDetails.movieDateRelease,
+              orignalCountry: movieDetails.movieOriginCountry,
+              productionCompanies: movieDetails.movieProductionCompanies,
+            ),
             const SizedBox(height: 20),
             Text(
               "Top Cast",
@@ -49,7 +67,9 @@ class MoviesTitleAndOtherDetails extends StatelessWidget {
                   .copyWith(color: Colors.white),
             ),
             const SizedBox(height: 10),
-            TopCastingListView(),
+            TopCastingListView(
+              moviesCasting: moviesCasting,
+            ),
             const SizedBox(height: 40),
           ],
         ),

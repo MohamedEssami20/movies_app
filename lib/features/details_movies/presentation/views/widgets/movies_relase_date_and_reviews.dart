@@ -5,8 +5,14 @@ import '../../../../../core/utils/app_text_styles.dart' show AppTextStyles;
 import '../../../../../core/utils/assets.dart';
 
 class MovieRelaseDateAndReviews extends StatelessWidget {
-  const MovieRelaseDateAndReviews({super.key});
-
+  const MovieRelaseDateAndReviews(
+      {super.key,
+      required this.relaseDate,
+      required this.voteCount,
+      required this.voteAverage});
+  final String relaseDate;
+  final int voteCount;
+  final double voteAverage;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,7 +24,7 @@ class MovieRelaseDateAndReviews extends StatelessWidget {
           children: [
             SvgPicture.asset(Assets.assetsImagesCalenderIcon, height: 18),
             Text(
-              '2012',
+              relaseDate.substring(0, 4),
               style: AppTextStyles.medium16(context)
                   .copyWith()
                   .copyWith(color: Colors.white),
@@ -31,7 +37,7 @@ class MovieRelaseDateAndReviews extends StatelessWidget {
           children: [
             Icon(Icons.star, color: Colors.white, size: 18),
             Text(
-              '8.4',
+              voteAverage.toString(),
               style: AppTextStyles.medium16(context)
                   .copyWith()
                   .copyWith(color: Colors.white),
@@ -42,7 +48,7 @@ class MovieRelaseDateAndReviews extends StatelessWidget {
         Flexible(
           flex: 3,
           child: Text(
-            '450K Reviews',
+           voteCount==0? "0 reviews": "${voteCount}k Reviews",
             style:
                 AppTextStyles.regular16(context).copyWith(color: Colors.white),
           ),

@@ -1,10 +1,8 @@
-import 'package:movies_app/features/details_movies/data/models/movies_details_model/genre.dart';
-import 'package:movies_app/features/details_movies/data/models/movies_details_model/production_company.dart';
 
 class MoviesDetailsEntity {
   final String movieImage;
   final String movieTitle;
-  final List<Genre> movieGenres;
+  final List<String> movieGenres;
   final int movieDuration;
   final String moiveDate;
   final double movieRating;
@@ -12,7 +10,7 @@ class MoviesDetailsEntity {
   final String movieOverview;
   final List<dynamic> movieOriginCountry;
   final String movieDateRelease;
-  final List<ProductionCompany> movieProductionCompanies;
+  final List<String> movieProductionCompanies;
 
   MoviesDetailsEntity({
     required this.movieImage,

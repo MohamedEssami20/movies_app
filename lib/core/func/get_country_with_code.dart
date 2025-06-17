@@ -1,0 +1,73 @@
+const Map<String, String> countryCodes = {
+  'US': 'United States',
+  'GB': 'United Kingdom',
+  'CA': 'Canada',
+  'AU': 'Australia',
+  'DE': 'Germany',
+  'FR': 'France',
+  'IT': 'Italy',
+  'ES': 'Spain',
+  'CN': 'China',
+  'HK': 'Hong Kong',
+  'JP': 'Japan',
+  'KR': 'South Korea',
+  'IN': 'India',
+  'RU': 'Russia',
+  'BR': 'Brazil',
+  'MX': 'Mexico',
+  'AR': 'Argentina',
+  'CO': 'Colombia',
+  'CL': 'Chile',
+  'ZA': 'South Africa',
+  'EG': 'Egypt',
+  'NG': 'Nigeria',
+  'KE': 'Kenya',
+  'MA': 'Morocco',
+  'DZ': 'Algeria',
+  'TN': 'Tunisia',
+  'TR': 'Turkey',
+  'SA': 'Saudi Arabia',
+  'AE': 'United Arab Emirates',
+  'IL': 'Israel',
+  'IR': 'Iran',
+  'IQ': 'Iraq',
+  'SY': 'Syria',
+  'JO': 'Jordan',
+  'QA': 'Qatar',
+  'KW': 'Kuwait',
+  'OM': 'Oman',
+  'YE': 'Yemen',
+  'SE': 'Sweden',
+  'NO': 'Norway',
+  'FI': 'Finland',
+  'DK': 'Denmark',
+  'NL': 'Netherlands',
+  'BE': 'Belgium',
+  'CH': 'Switzerland',
+  'AT': 'Austria',
+  'PL': 'Poland',
+  'GR': 'Greece',
+  'TH': 'Thailand',
+  'VN': 'Vietnam',
+  'ID': 'Indonesia',
+  'MY': 'Malaysia',
+  'SG': 'Singapore',
+  'PH': 'Philippines',
+  'PK': 'Pakistan',
+  'BD': 'Bangladesh',
+  'NZ': 'New Zealand',
+  'UA': 'Ukraine',
+  'CZ': 'Czech Republic',
+  'PT': 'Portugal',
+};
+
+String getCountryWithCode(List<dynamic> codes) {
+  String countryName = 'Unknown';
+  for (String code in codes) {
+    if (countryCodes.containsKey(code)) {
+      countryName = countryCodes[code] ?? 'Unknown';
+      break;
+    }
+  }
+  return countryName;
+}

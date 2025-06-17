@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:movies_app/core/utils/api_end_points.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/custom_shimmer_widget.dart'
     show CustomShimmer;
@@ -9,16 +10,16 @@ import 'custom_details_movies_button.dart';
 class MoviesImageReviewDetails extends StatelessWidget {
   const MoviesImageReviewDetails({
     super.key,
+    required this.imageUrl,
   });
-
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.sizeOf(context).height;
     return Stack(
       children: [
         CachedNetworkImage(
-          imageUrl:
-              "https://image.tmdb.org/t/p/original/yBDvgpyynDsbMyK21FoQu1c2wYR.jpg",
+          imageUrl: ApiEndPoints.imagebaseUrl + imageUrl,
           fit: BoxFit.fill,
           height: 0.40 * height,
           width: double.infinity,
