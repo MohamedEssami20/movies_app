@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/func/navigate_to_details_view.dart';
 import '../../../../../core/utils/api_end_points.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../domain/entities/comedy_movies_entity/comedy_movies_entity.dart';
@@ -42,10 +43,18 @@ class ComedyMoviesView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return FittedBox(
                   fit: BoxFit.fill,
-                  child: MoviesItem(
-                    movieTitle: comedyMovies[index].movieTitle,
-                    imageUrl: ApiEndPoints.imagebaseUrl +
-                        comedyMovies[index].moviePoster.toString(),
+                  child: GestureDetector(
+                    onTap: () {
+                      navigateToDetailsView(
+                        context,
+                        comedyMovies[index].movieId,
+                      );
+                    },
+                    child: MoviesItem(
+                      movieTitle: comedyMovies[index].movieTitle,
+                      imageUrl: ApiEndPoints.imagebaseUrl +
+                          comedyMovies[index].moviePoster.toString(),
+                    ),
                   ),
                 );
               },

@@ -21,51 +21,74 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeSearchCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => HomeSearchCubit(),
+        ),
+        BlocProvider(
+          create: (context) => BottomBarCubit(),
+        ),
+      ],
       child: Scaffold(
         appBar: CustomAppBar(),
-        body: BlocListener<InternetConnectionCubit, InternetConnectionState>(
-          listener: (context, state) {
-            if (state is InternetConnectionFailure) {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              showAnimatedSnackBar(
-                context,
-                message: "No Internet Connection",
-                type: AnimatedSnackBarType.error,
-              );
-            }
-            if (state is InternetConnectionSuccess) {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              showAnimatedSnackBar(
-                context,
-                message: "Internet Connection Restored",
-                type: AnimatedSnackBarType.success,
-              );
-            }
-          },
-          child: MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                create: (context) => CategoriesItemsCubit(),
-              ),
-              BlocProvider(
-                create: (context) => SearchMoviesCubit(
-                  searchRepos: getIt.get<SearchRepos>(),
-                  context: context,
-                ),
-              ),
-            ],
-            child: HomeLayout(
-              mobileLayout: (context) => HomeMobileLayout(),
-              tabletLayout: (context) => HomeTabletLayout(),
-              desktopLayout: (context) => SizedBox(),
+        body: HomeViewBody(),
+        bottomNavigationBar: CustomBottomNavigationBar(),
+      ),
+    );
+  }
+}
+
+// create watch List View;
+// create download View;
+// create profile View;
+
+// add Bloc Builder<BottomBarCubit,BottomBarState> in body of scafold of Home View;
+// compare with index in cubit with switch case to show different layout;
+// add animated swither when change latout;
+
+class HomeViewBody extends StatelessWidget {
+  const HomeViewBody({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<InternetConnectionCubit, InternetConnectionState>(
+      listener: (context, state) {
+        if (state is InternetConnectionFailure) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          showAnimatedSnackBar(
+            context,
+            message: "No Internet Connection",
+            type: AnimatedSnackBarType.error,
+          );
+        }
+        if (state is InternetConnectionSuccess) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          showAnimatedSnackBar(
+            context,
+            message: "Internet Connection Restored",
+            type: AnimatedSnackBarType.success,
+          );
+        }
+      },
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => CategoriesItemsCubit(),
+          ),
+          BlocProvider(
+            create: (context) => SearchMoviesCubit(
+              searchRepos: getIt.get<SearchRepos>(),
+              context: context,
             ),
           ),
-        ),
-        bottomNavigationBar: BlocProvider(
-          create: (context) => BottomBarCubit(),
-          child: CustomBottomNavigationBar(),
+        ],
+        child: HomeLayout(
+          mobileLayout: (context) => HomeMobileLayout(),
+          tabletLayout: (context) => HomeTabletLayout(),
+          desktopLayout: (context) => SizedBox(),
         ),
       ),
     );

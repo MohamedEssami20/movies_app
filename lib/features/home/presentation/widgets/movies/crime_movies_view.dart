@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/func/navigate_to_details_view.dart';
 import '../../../../../core/utils/api_end_points.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../domain/entities/crime_movies_entity/crime_movies_entity.dart';
@@ -44,10 +45,18 @@ class CrimeMoviesView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return FittedBox(
                   fit: BoxFit.fill,
-                  child: MoviesItem(
-                    movieTitle: crimeMoviesEntity[index].movieTitle,
-                    imageUrl: ApiEndPoints.imagebaseUrl +
-                        crimeMoviesEntity[index].moviePoster.toString(),
+                  child: GestureDetector(
+                    onTap: () {
+                      navigateToDetailsView(
+                        context,
+                        crimeMoviesEntity[index].movieId,
+                      );
+                    },
+                    child: MoviesItem(
+                      movieTitle: crimeMoviesEntity[index].movieTitle,
+                      imageUrl: ApiEndPoints.imagebaseUrl +
+                          crimeMoviesEntity[index].moviePoster.toString(),
+                    ),
                   ),
                 );
               },

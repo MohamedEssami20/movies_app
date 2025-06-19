@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/features/home/domain/entities/action_movies_entity/action_movies_entity.dart';
 import 'package:movies_app/features/home/presentation/widgets/movies_item.dart';
-
+import '../../../../../core/func/navigate_to_details_view.dart';
 import '../../../../../core/utils/api_end_points.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
@@ -42,10 +42,16 @@ class ActionMoviesView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return FittedBox(
                   fit: BoxFit.fill,
-                  child: MoviesItem(
-                    imageUrl: ApiEndPoints.imagebaseUrl +
-                        actionMovies[index].moviePoster.toString(),
-                    movieTitle: actionMovies[index].movieTitle,
+                  child: GestureDetector(
+                    onTap: () {
+                      navigateToDetailsView(
+                          context, actionMovies[index].movieId);
+                    },
+                    child: MoviesItem(
+                      imageUrl: ApiEndPoints.imagebaseUrl +
+                          actionMovies[index].moviePoster.toString(),
+                      movieTitle: actionMovies[index].movieTitle,
+                    ),
                   ),
                 );
               },

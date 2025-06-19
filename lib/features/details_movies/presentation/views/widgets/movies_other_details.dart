@@ -42,7 +42,7 @@ class MoviesOtherDetails extends StatelessWidget {
 
 String getGenres(List<String> genres) {
   if (genres.isNotEmpty) {
-    return genres.take(3).join(', ');
+    return genres.take(2).join(', ');
   } else {
     return 'No Genres';
   }

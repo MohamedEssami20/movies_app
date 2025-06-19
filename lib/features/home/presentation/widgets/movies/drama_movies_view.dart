@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/core/func/navigate_to_details_view.dart';
 import 'package:movies_app/features/home/domain/entities/drama_movies_entity/drama_movies_entity.dart';
 
 import '../../../../../core/utils/api_end_points.dart';
@@ -42,10 +43,18 @@ class DramaMoviesView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return FittedBox(
                   fit: BoxFit.fill,
-                  child: MoviesItem(
-                    movieTitle: dramaMovies[index].movieTitle,
-                    imageUrl: ApiEndPoints.imagebaseUrl +
-                        dramaMovies[index].moviePoster.toString(),
+                  child: GestureDetector(
+                    onTap: () {
+                      navigateToDetailsView(
+                        context,
+                        dramaMovies[index].movieId,
+                      );
+                    },
+                    child: MoviesItem(
+                      movieTitle: dramaMovies[index].movieTitle,
+                      imageUrl: ApiEndPoints.imagebaseUrl +
+                          dramaMovies[index].moviePoster.toString(),
+                    ),
                   ),
                 );
               },

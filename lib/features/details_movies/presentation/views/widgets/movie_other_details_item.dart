@@ -17,9 +17,13 @@ class MoviesOtherDetailsItem extends StatelessWidget {
           "$title     : ",
           style: AppTextStyles.regular16(context).copyWith(color: Colors.white),
         ),
-        Text(
-          subTitle,
-          style: AppTextStyles.regular16(context).copyWith(color: Colors.white),
+        Expanded(
+          child: Text(
+            maxLines: null,
+            subTitle,
+            style:
+                AppTextStyles.regular16(context).copyWith(color: Colors.white),
+          ),
         ),
       ],
     );

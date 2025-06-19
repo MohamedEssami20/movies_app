@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/func/navigate_to_details_view.dart';
 import '../../domain/entities/search_movies_entity/search_movies_entity.dart';
 import 'search_item.dart';
 
@@ -22,11 +23,16 @@ class SearchMoviesListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 14),
-            child: SearchItems(
-              moviePoster: searchMovies[index].moviePoster.toString(),
-              movieName: searchMovies[index].movieTitle,
-              movieDate: searchMovies[index].movieRealseDate,
-              movieRating: searchMovies[index].movieRating.toString(),
+            child: GestureDetector(
+              onTap: () {
+                navigateToDetailsView(context, searchMovies[index].movieId);
+              },
+              child: SearchItems(
+                moviePoster: searchMovies[index].moviePoster.toString(),
+                movieName: searchMovies[index].movieTitle,
+                movieDate: searchMovies[index].movieRealseDate,
+                movieRating: searchMovies[index].movieRating.toString(),
+              ),
             ),
           );
         },

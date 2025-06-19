@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/core/func/navigate_to_details_view.dart';
 import 'package:movies_app/features/home/domain/entities/horror_movies_entity/horror_movies_entity.dart';
 
 import '../../../../../core/utils/api_end_points.dart';
@@ -42,10 +43,18 @@ class HorrorMoviesView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return FittedBox(
                   fit: BoxFit.fill,
-                  child: MoviesItem(
-                    movieTitle: horrorMovies[index].movieTitle,
-                    imageUrl: ApiEndPoints.imagebaseUrl +
-                        horrorMovies[index].moviePoster.toString(),
+                  child: GestureDetector(
+                    onTap: () {
+                      navigateToDetailsView(
+                        context,
+                        horrorMovies[index].movieId,
+                      );
+                    },
+                    child: MoviesItem(
+                      movieTitle: horrorMovies[index].movieTitle,
+                      imageUrl: ApiEndPoints.imagebaseUrl +
+                          horrorMovies[index].moviePoster.toString(),
+                    ),
                   ),
                 );
               },
