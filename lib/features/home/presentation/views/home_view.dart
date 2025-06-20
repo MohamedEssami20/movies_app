@@ -1,23 +1,36 @@
-import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/core/func/custom_snack_bar.dart';
-import 'package:movies_app/core/services/get_it_service.dart';
 import 'package:movies_app/features/home/presentation/manager/bottom_bar_cubit/bottom_bar_cubit.dart';
-import 'package:movies_app/features/home/presentation/manager/categories_items/categories_items_cubit.dart';
 import 'package:movies_app/features/home/presentation/manager/home_search_cubit/home_search_cubit.dart';
+import 'package:movies_app/features/home/presentation/views/download_view.dart';
+import 'package:movies_app/features/home/presentation/views/profile_view.dart';
+import 'package:movies_app/features/home/presentation/views/watch_list_view.dart';
 import 'package:movies_app/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:movies_app/features/home/presentation/widgets/custom_bottom_navigation_bar.dart';
-import 'package:movies_app/features/home/presentation/widgets/home_layout.dart';
-import 'package:movies_app/features/home/presentation/widgets/layouts/home_tablet_layout.dart';
-import 'package:movies_app/features/search/presentation/manager/search_cubit/search_cubit.dart';
-import '../../../../core/cubits/cubit/check_internnet_connection_cubit.dart';
-import '../../../search/domain/search_repos/search_repos.dart' show SearchRepos;
-import '../widgets/layouts/home_mobile_layout.dart';
+import 'home_view_body.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
   static const routeName = 'home';
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,64 +45,27 @@ class HomeView extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: CustomAppBar(),
-        body: HomeViewBody(),
-        bottomNavigationBar: CustomBottomNavigationBar(),
-      ),
-    );
-  }
-}
-
-// create watch List View;
-// create download View;
-// create profile View;
-
-// add Bloc Builder<BottomBarCubit,BottomBarState> in body of scafold of Home View;
-// compare with index in cubit with switch case to show different layout;
-// add animated swither when change latout;
-
-class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener<InternetConnectionCubit, InternetConnectionState>(
-      listener: (context, state) {
-        if (state is InternetConnectionFailure) {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          showAnimatedSnackBar(
-            context,
-            message: "No Internet Connection",
-            type: AnimatedSnackBarType.error,
-          );
-        }
-        if (state is InternetConnectionSuccess) {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          showAnimatedSnackBar(
-            context,
-            message: "Internet Connection Restored",
-            type: AnimatedSnackBarType.success,
-          );
-        }
-      },
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => CategoriesItemsCubit(),
+        body: BlocListener<BottomBarCubit, int>(
+          listener: (context, state) {
+            _pageController.animateToPage(
+              state,
+              duration: const Duration(milliseconds: 400),
+              curve: Curves.easeInOut,
+            );
+          },
+          child: PageView(
+            controller: _pageController,
+            physics:
+                const NeverScrollableScrollPhysics(), // فقط تغيير عبر bottom bar
+            children: const [
+              HomeViewBody(),
+              WatchListView(),
+              DownloadListView(),
+              ProfileView(),
+            ],
           ),
-          BlocProvider(
-            create: (context) => SearchMoviesCubit(
-              searchRepos: getIt.get<SearchRepos>(),
-              context: context,
-            ),
-          ),
-        ],
-        child: HomeLayout(
-          mobileLayout: (context) => HomeMobileLayout(),
-          tabletLayout: (context) => HomeTabletLayout(),
-          desktopLayout: (context) => SizedBox(),
         ),
+        bottomNavigationBar: CustomBottomNavigationBar(),
       ),
     );
   }

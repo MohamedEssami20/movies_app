@@ -1,4 +1,3 @@
-
 import 'package:movies_app/features/details_movies/domain/movies_details_entity/movies_details_entity.dart';
 
 import 'genre.dart';
@@ -64,7 +63,7 @@ class MoviesDetailsModel extends MoviesDetailsEntity {
   }) : super(
           movieImage: backdropPath ?? "",
           movieTitle: title ?? "",
-          movieGenres: genres?.map((e)=>e.name??"").toList()??[],
+          movieGenres: genres?.map((e) => e.name ?? "").toList() ?? [],
           movieDuration: runtime ?? 0,
           moiveDate: releaseDate ?? "",
           movieRating: voteAverage ?? 0,
@@ -72,7 +71,9 @@ class MoviesDetailsModel extends MoviesDetailsEntity {
           movieOverview: overview ?? "",
           movieOriginCountry: originCountry ?? [],
           movieDateRelease: releaseDate ?? "",
-          movieProductionCompanies: productionCompanies?.map((e)=>e.name??"").toList()??[],
+          movieProductionCompanies:
+              productionCompanies?.map((e) => e.name ?? "").toList() ??
+                  ["No Data"],
         );
 
   factory MoviesDetailsModel.fromJson(Map<String, dynamic> json) {
