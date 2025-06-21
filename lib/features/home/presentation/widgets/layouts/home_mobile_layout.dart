@@ -49,7 +49,7 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout> {
               }
               Widget child;
               if (homeStateNow == HomeStateNow.search) {
-                child = const Expanded(child: SearchView());
+                child = SearchView();
               } else {
                 child = Column(
                   children: [
@@ -82,7 +82,11 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout> {
                   },
                   child: KeyedSubtree(
                     key: ValueKey(homeStateNow),
-                    child: child,
+                    child: Column(
+                      children: [
+                        Expanded(child: child),
+                      ],
+                    ),
                   ),
                 ),
               );

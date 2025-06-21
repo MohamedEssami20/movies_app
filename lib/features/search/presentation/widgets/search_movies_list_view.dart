@@ -15,7 +15,6 @@ class SearchMoviesListView extends StatelessWidget {
   final ScrollController scrollController;
   @override
   Widget build(BuildContext context) {
-    //final screenHeight = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.only(right: 25, left: 25),
       child: ListView.builder(

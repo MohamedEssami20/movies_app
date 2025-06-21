@@ -19,6 +19,7 @@ class TrendingMoviesListView extends StatelessWidget {
         height: 250,
         child: ListView.builder(
             key: PageStorageKey("TrendingMoviesListView"),
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             controller: scrollController,
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,

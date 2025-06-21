@@ -17,6 +17,7 @@ class PopularMoviesListView extends StatelessWidget {
         height: 250,
         child: ListView.builder(
             key: PageStorageKey("PopularMoviesListView"),
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             addAutomaticKeepAlives: true,
             physics: const BouncingScrollPhysics(),
             controller: scrollController,

@@ -20,6 +20,7 @@ class UpComingMoviesListView extends StatelessWidget {
         height: 250,
         child: ListView.builder(
             key: PageStorageKey("UpComingMoviesListView"),
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             controller: scrollController,
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,

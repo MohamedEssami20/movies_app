@@ -32,6 +32,7 @@ class DramaMoviesView extends StatelessWidget {
           Expanded(
             child: GridView.builder(
               key: PageStorageKey("DramaMoviesListView"),
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               physics: const BouncingScrollPhysics(),
               controller: scrollController,
               scrollDirection: Axis.vertical,

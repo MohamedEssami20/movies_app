@@ -14,6 +14,7 @@ class AllCategories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       key: PageStorageKey('All_Categories'),
       physics: BouncingScrollPhysics(),
       child: Column(
