@@ -4,7 +4,7 @@ import 'package:movies_app/features/home/presentation/manager/bottom_bar_cubit/b
 import 'package:movies_app/features/home/presentation/manager/home_search_cubit/home_search_cubit.dart';
 import 'package:movies_app/features/home/presentation/views/download_view.dart';
 import 'package:movies_app/features/home/presentation/views/profile_view.dart';
-import 'package:movies_app/features/home/presentation/views/watch_list_view.dart';
+import 'package:movies_app/features/watch_list/presentation/views/watch_list_view.dart';
 import 'package:movies_app/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:movies_app/features/home/presentation/widgets/custom_bottom_navigation_bar.dart';
 import 'home_view_body.dart';
