@@ -1,5 +1,6 @@
 
 class MoviesDetailsEntity {
+  final int movieId;
   final String movieImage;
   final String movieTitle;
   final List<String> movieGenres;
@@ -12,7 +13,7 @@ class MoviesDetailsEntity {
   final String movieDateRelease;
   final List<String> movieProductionCompanies;
 
-  MoviesDetailsEntity({
+  MoviesDetailsEntity(this.movieId, {
     required this.movieImage,
     required this.movieTitle,
     required this.movieGenres,
