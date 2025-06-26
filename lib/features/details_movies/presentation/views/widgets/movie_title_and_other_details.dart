@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/core/services/get_it_service.dart';
 import 'package:movies_app/features/details_movies/domain/movies_details_entity/movies_casting_entity.dart';
 import 'package:movies_app/features/details_movies/domain/movies_details_entity/movies_details_entity.dart';
 import 'package:movies_app/features/details_movies/presentation/views/widgets/movie_overview.dart';
+import 'package:movies_app/features/watch_list/presentation/manager/cubit/watch_list_movies_cubit.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../watch_list/domain/watch_list_repos/watch_list_repos.dart';
 import 'movies_other_details.dart';
 import 'movies_relase_date_and_reviews.dart';
 import 'movies_type_and_time.dart';
@@ -42,7 +46,14 @@ class MoviesTitleAndOtherDetails extends StatelessWidget {
               voteCount: movieDetails.movieVoteCount,
             ),
             const SizedBox(height: 20),
-            WatchTrailerAndAddToWatchListButtons(),
+            BlocProvider(
+              create: (context) => WatchListMoviesCubit(
+                watchListRepos: getIt.get<WatchListRepos>(),
+              ),
+              child: WatchTrailerAndAddToWatchListButtons(
+                moviesDetailsEntity: movieDetails,
+              ),
+            ),
             const SizedBox(height: 20),
             MovieOverView(
               movieOverView: movieDetails.movieOverview,

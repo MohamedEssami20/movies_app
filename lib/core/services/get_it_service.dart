@@ -14,10 +14,14 @@ import 'package:movies_app/features/search/data/search_data_source/search_remote
 import 'package:movies_app/features/search/data/search_data_source/search_remote_data_source_impl.dart';
 import 'package:movies_app/features/search/data/search_repos_impl/search_repos_impl.dart';
 import 'package:movies_app/features/search/domain/search_repos/search_repos.dart';
+import 'package:movies_app/features/watch_list/data/watch_list_repo_impl/watch_list_repo_impl.dart';
 
 import '../../features/auth/domain/repos/auth_repos.dart';
 import '../../features/details_movies/data/movies_details_data_source_impl.dart/movies_details_remote_data_src_impl.dart';
 import '../../features/home/data/data_source/home_local_data_source.dart';
+import '../../features/watch_list/data/watch_list_remote_data_source/watch_list_remote_data_source.dart';
+import '../../features/watch_list/data/watch_list_remote_data_source/watch_list_remote_data_source_impl.dart';
+import '../../features/watch_list/domain/watch_list_repos/watch_list_repos.dart';
 import 'api_services.dart';
 import 'database_service.dart';
 import 'firebase_firestore_service.dart';
@@ -61,12 +65,30 @@ void setupGetIt() {
   );
 
   getIt.registerSingleton<MoviesDetailsRemoteDataSource>(
-    MoviesDetailsRemoteDataSrcImpl(apiServices: getIt.get<ApiServices>(),),
+    MoviesDetailsRemoteDataSrcImpl(
+      apiServices: getIt.get<ApiServices>(),
+    ),
   );
 
   getIt.registerSingleton<DetailsMoviesRepos>(
     MoviesDetailsRepoImpl(
       moviesDetailsRemoteDataSource: getIt.get<MoviesDetailsRemoteDataSource>(),
+    ),
+  );
+
+  getIt.registerSingleton<FirebaseFirestoreService>(
+    FirebaseFirestoreService(),
+  );
+
+  getIt.registerSingleton<WatchListRemoteDataSource>(
+    WatchListRemoteDataSourceImpl(
+      firebaseFirestoreService: getIt.get<FirebaseFirestoreService>(),
+    ),
+  );
+
+  getIt.registerSingleton<WatchListRepos>(
+    WatchListRepoImpl(
+      watchListRemoteDataSource: getIt.get<WatchListRemoteDataSource>(),
     ),
   );
 }

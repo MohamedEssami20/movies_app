@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:movies_app/features/details_movies/domain/movies_details_entity/movies_details_entity.dart';
 import '../../../../../core/utils/assets.dart';
+import '../../../../watch_list/presentation/manager/cubit/watch_list_movies_cubit.dart';
 import 'custom_details_movies_button.dart';
 
 class WatchTrailerAndAddToWatchListButtons extends StatelessWidget {
-  const WatchTrailerAndAddToWatchListButtons({super.key});
-
+  const WatchTrailerAndAddToWatchListButtons(
+      {super.key, required this.moviesDetailsEntity});
+  final MoviesDetailsEntity moviesDetailsEntity;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -34,7 +38,12 @@ class WatchTrailerAndAddToWatchListButtons extends StatelessWidget {
               size: 20,
             ),
             color: Color(0xFF385A64),
-            onPressed: () {},
+            onPressed: () async {
+              await context.read<WatchListMoviesCubit>().addMovieToWatchList(
+                    docsId: moviesDetailsEntity.movieId,
+                    data: moviesDetailsEntity.toFireStore(),
+                  );
+            },
           ),
         ),
       ],

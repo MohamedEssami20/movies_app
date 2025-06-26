@@ -1,4 +1,4 @@
-import 'package:movies_app/features/details_movies/domain/movies_details_entity/movies_details_entity.dart';
+
 import 'package:movies_app/features/watch_list/domain/watch_list_entity/watch_list_entity.dart';
 
 class WatchListModel extends WatchListEntity {
@@ -28,7 +28,7 @@ class WatchListModel extends WatchListEntity {
           movieGenres: genres ?? [],
         );
 
-  factory WatchListModel.fromJson(Map<String, dynamic> json) {
+  factory WatchListModel.formFireStore(Map<String, dynamic> json) {
     return WatchListModel(
       id: json['id'],
       title: json['title'],
@@ -36,19 +36,11 @@ class WatchListModel extends WatchListEntity {
       relaseDate: json['release_date'],
       voteAverage: json['vote_average'],
       runtime: json['runtime'],
-      genres: List<String>.from(json['genres'].map((e) => e['name'])),
-    );
-  }
-
-  factory WatchListModel.fromFirebase(MoviesDetailsEntity moviesDetailsEntity) {
-    return WatchListModel(
-      id: moviesDetailsEntity.movieId,
-      title: moviesDetailsEntity.movieTitle,
-      posterPath: moviesDetailsEntity.movieImage,
-      relaseDate: moviesDetailsEntity.movieDateRelease,
-      voteAverage: moviesDetailsEntity.movieRating,
-      runtime: moviesDetailsEntity.movieDuration,
-      genres: moviesDetailsEntity.movieGenres,
+      genres: List<String>.from(
+        json['genres'].map(
+          (e) => e['name'],
+        ),
+      ),
     );
   }
 }

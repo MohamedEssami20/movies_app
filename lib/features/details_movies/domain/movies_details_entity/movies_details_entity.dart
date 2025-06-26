@@ -1,3 +1,4 @@
+import 'package:movies_app/core/utils/api_end_points.dart';
 
 class MoviesDetailsEntity {
   final int movieId;
@@ -13,7 +14,8 @@ class MoviesDetailsEntity {
   final String movieDateRelease;
   final List<String> movieProductionCompanies;
 
-  MoviesDetailsEntity(this.movieId, {
+  MoviesDetailsEntity(
+    this.movieId, {
     required this.movieImage,
     required this.movieTitle,
     required this.movieGenres,
@@ -26,4 +28,15 @@ class MoviesDetailsEntity {
     required this.movieDateRelease,
     required this.movieProductionCompanies,
   });
+
+  // create method that return map to use it to upload to fireStore;
+  Map<String, dynamic> toFireStore() => {
+        'id': movieId,
+        'title': movieTitle,
+        'poster_path': ApiEndPoints.imagebaseUrl + movieImage,
+        'release_date': movieDateRelease,
+        'vote_average': movieRating,
+        'runtime': movieDuration,
+        'genres': movieGenres
+      };
 }
