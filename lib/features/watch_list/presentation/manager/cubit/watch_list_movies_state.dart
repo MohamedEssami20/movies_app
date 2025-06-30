@@ -14,3 +14,17 @@ final class AddWatchListMoviesFailure extends WatchListMoviesState {
 }
 
 final class AddWatchListMoviesLoading extends WatchListMoviesState {}
+
+// create all state of get movies from watch list
+final class GetWatchListMoviesSuccess extends WatchListMoviesState {
+  final List<WatchListEntity> watchListMovies;
+
+  GetWatchListMoviesSuccess({required this.watchListMovies});
+}
+
+final class GetWatchListMoviesFailure extends WatchListMoviesState {
+  final String errorMessage;
+  GetWatchListMoviesFailure({required this.errorMessage});
+}
+
+final class GetWatchListMoviesLoading extends WatchListMoviesState {}

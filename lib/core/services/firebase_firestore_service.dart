@@ -18,14 +18,14 @@ class FirebaseFirestoreService implements DatabaseService {
   }
 
   @override
-  Future <Map<String, dynamic>> getData(
+  Future <List<Map<String,dynamic>>> getData(
       {required String path}) async {
     final results = await FirebaseFirestore.instance.collection(path).get();
     if (results.docs.isNotEmpty) {
-      return results.docs as Map<String,dynamic>;
+      return results.docs.map((doc) => doc.data()).toList(); 
     }
     else{
-      return {};
+      return [];
     }
   }
 }

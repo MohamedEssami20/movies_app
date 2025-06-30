@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:movies_app/core/errors/failure.dart';
@@ -25,10 +27,12 @@ class WatchListRepoImpl implements WatchListRepos {
       final results = await watchListRemoteDataSource.getWatchListMovies();
       return right(results);
     } on FirebaseException catch (error) {
+      log("error from fireStore when getWatchListMovies is= $error");
       return left(
         FirestoreErrors.fromCode(error),
       );
     } catch (error) {
+      log("error from fireStore when getWatchListMovies is 2= $error");
       return left(
         Failure("Opps there was an error, try later."),
       );

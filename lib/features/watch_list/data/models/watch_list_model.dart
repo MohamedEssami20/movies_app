@@ -1,4 +1,3 @@
-
 import 'package:movies_app/features/watch_list/domain/watch_list_entity/watch_list_entity.dart';
 
 class WatchListModel extends WatchListEntity {
@@ -36,11 +35,7 @@ class WatchListModel extends WatchListEntity {
       relaseDate: json['release_date'],
       voteAverage: json['vote_average'],
       runtime: json['runtime'],
-      genres: List<String>.from(
-        json['genres'].map(
-          (e) => e['name'],
-        ),
-      ),
+      genres: json['genres'] != null ? List<String>.from(json['genres']) : [],
     );
   }
 }
