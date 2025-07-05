@@ -7,7 +7,12 @@ import '../../../../../core/utils/assets.dart';
 class WatchListMoviesDetails extends StatelessWidget {
   const WatchListMoviesDetails({
     super.key,
+    required this.movieTitle,
+    required this.movieDate,
+    required this.movieRate,
   });
+  final String movieTitle, movieDate;
+  final double movieRate;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -16,33 +21,48 @@ class WatchListMoviesDetails extends StatelessWidget {
         spacing: 8,
         children: [
           Text(
-            "movie title name",
+            movieTitle,
             style: AppTextStyles.medium16(context).copyWith(
               color: Colors.white,
             ),
             maxLines: null,
             overflow: TextOverflow.visible,
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
+          Wrap(
+            alignment: WrapAlignment.start,
+            crossAxisAlignment: WrapCrossAlignment.start,
             spacing: 8,
             children: [
-              SvgPicture.asset(
-                Assets.assetsImagesCalenderIcon,
+              Baseline(
+                baseline: 22,
+                baselineType: TextBaseline.alphabetic,
+                child: SvgPicture.asset(
+                  Assets.assetsImagesCalenderIcon,
+                ),
               ),
               Text(
-                "21-01-2023",
+                movieDate.isEmpty ? 'N/A' : movieDate,
                 style: AppTextStyles.medium16(context).copyWith(
                   color: Colors.white,
                 ),
               ),
-              SizedBox(width: 6),
-              Icon(Icons.star, color: Colors.white, size: 20),
-              Text(
-                "12",
-                style: AppTextStyles.medium16(context).copyWith(
-                  color: Colors.white,
-                ),
+              SizedBox(width: 5),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 5,
+                children: [
+                  Baseline(
+                    baseline: 20,
+                    baselineType: TextBaseline.alphabetic,
+                    child: Icon(Icons.star, color: Colors.white, size: 20),
+                  ),
+                  Text(
+                    movieRate.toString().substring(0, 3),
+                    style: AppTextStyles.medium16(context).copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

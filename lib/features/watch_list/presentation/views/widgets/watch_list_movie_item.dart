@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/features/watch_list/domain/watch_list_entity/watch_list_entity.dart';
 import 'package:movies_app/features/watch_list/presentation/views/widgets/watch_list_movie_details_and_photo.dart';
 
 class WatchListMovieItem extends StatelessWidget {
   const WatchListMovieItem({
     super.key,
+    required this.movie,
   });
+  final WatchListEntity movie;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +23,12 @@ class WatchListMovieItem extends StatelessWidget {
         ),
         color: Colors.transparent,
       ),
-      child: WatchListMovieDetailsAndPhoto(),
+      child: WatchListMovieDetailsAndPhoto(
+        movieDate: movie.movieRelaseDate,
+        moviePoster: movie.movieImage,
+        movieRate: movie.movieVoteAverage,
+        movieTitle: movie.movietitle,
+      ),
     );
   }
 }

@@ -60,20 +60,20 @@ class _HomeViewState extends State<HomeView> {
             controller: _pageController,
             physics:
                 const NeverScrollableScrollPhysics(), // فقط تغيير عبر bottom bar
-            children: const [
+            children: [
               HomeViewBody(),
-              WatchListView(),
+              BlocProvider(
+                create: (context) => WatchListMoviesCubit(
+                  watchListRepos: getIt.get<WatchListRepos>(),
+                ),
+                child: WatchListView(),
+              ),
               DownloadListView(),
               ProfileView(),
             ],
           ),
         ),
-        bottomNavigationBar: BlocProvider(
-          create: (context) => WatchListMoviesCubit(
-            watchListRepos: getIt.get<WatchListRepos>(),
-          ),
-          child: CustomBottomNavigationBar(),
-        ),
+        bottomNavigationBar: CustomBottomNavigationBar(),
       ),
     );
   }

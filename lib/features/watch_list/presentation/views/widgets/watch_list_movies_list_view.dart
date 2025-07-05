@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/watch_list_entity/watch_list_entity.dart';
 import 'watch_list_movie_item.dart';
 
 class WatchListMoviesListView extends StatelessWidget {
   const WatchListMoviesListView({
     super.key,
+    required this.movies,
   });
-
+  final List<WatchListEntity> movies;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,14 +18,14 @@ class WatchListMoviesListView extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(bottom: 14),
             child: GestureDetector(
-              onTap: () {
-                
-              },
-              child: WatchListMovieItem(),
+              onTap: () {},
+              child: WatchListMovieItem(
+                movie: movies[index],
+              ),
             ),
           );
         },
-        itemCount: 5,
+        itemCount: movies.length,
       ),
     );
   }

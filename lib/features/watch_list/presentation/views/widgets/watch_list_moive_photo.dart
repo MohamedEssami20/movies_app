@@ -5,8 +5,9 @@ import 'package:shimmer/shimmer.dart';
 class WatchListMoivePhoto extends StatelessWidget {
   const WatchListMoivePhoto({
     super.key,
+    required this.moviePoster,
   });
-
+  final String moviePoster;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -20,7 +21,8 @@ class WatchListMoivePhoto extends StatelessWidget {
           height: 130,
           width: 124,
           child: CachedNetworkImage(
-            imageUrl: "https://image.tmdb.org/t/p/original/6WxhEvFsauuACfv8HyoVX6mZKFj.jpg",
+            imageUrl:
+                moviePoster,
             memCacheHeight: 150,
             memCacheWidth: 124,
             fit: BoxFit.fill,
