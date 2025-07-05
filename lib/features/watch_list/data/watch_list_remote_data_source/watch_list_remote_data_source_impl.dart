@@ -1,4 +1,3 @@
-
 import 'package:movies_app/core/services/firebase_firestore_service.dart';
 import 'package:movies_app/core/utils/api_end_points.dart';
 import 'package:movies_app/features/watch_list/data/models/watch_list_model.dart';

@@ -12,7 +12,8 @@ class TabletDetailsMobileBlocConsumer extends StatelessWidget {
       builder: (context, state) {
         if (state is MoviesDetailsSuccess || state is MoviesDetailsLoading) {
           return MoviesDetailsMobile(
-            moviesDetailsEntity: context.read<MoviesDetailsCubit>().currentMoviesDetails[0],
+            moviesDetailsEntity:
+                context.read<MoviesDetailsCubit>().currentMoviesDetails[0],
             casts: context.read<MoviesDetailsCubit>().currentMoviesCasting,
           );
         } else if (state is MoviesDetailsFailure) {

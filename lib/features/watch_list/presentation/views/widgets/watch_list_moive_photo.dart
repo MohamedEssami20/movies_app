@@ -21,8 +21,7 @@ class WatchListMoivePhoto extends StatelessWidget {
           height: 130,
           width: 124,
           child: CachedNetworkImage(
-            imageUrl:
-                moviePoster,
+            imageUrl: moviePoster,
             memCacheHeight: 150,
             memCacheWidth: 124,
             fit: BoxFit.fill,

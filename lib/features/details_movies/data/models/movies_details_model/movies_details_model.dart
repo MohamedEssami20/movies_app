@@ -61,7 +61,7 @@ class MoviesDetailsModel extends MoviesDetailsEntity {
     this.voteAverage,
     this.voteCount,
   }) : super(
-           id ?? 0,
+          id ?? 0,
           movieImage: backdropPath ?? "",
           movieTitle: title ?? "",
           movieGenres: genres?.map((e) => e.name ?? "").toList() ?? [],

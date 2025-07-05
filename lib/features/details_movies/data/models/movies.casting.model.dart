@@ -27,13 +27,14 @@ class MoviesCastingModel extends MoviesCastingEntity{
     this.character,
     this.creditId,
     this.order,
-  }):super(
-    movieCastId: id??0,
-    castName: name??'',
-    castpProfilePath: profilePath??'',
-  );
+  }) : super(
+          movieCastId: id ?? 0,
+          castName: name ?? '',
+          castpProfilePath: profilePath ?? '',
+        );
 
-  factory MoviesCastingModel.fromJson(Map<String, dynamic> json) => MoviesCastingModel(
+  factory MoviesCastingModel.fromJson(Map<String, dynamic> json) =>
+      MoviesCastingModel(
         adult: json['adult'] as bool?,
         gender: json['gender'] as int?,
         id: json['id'] as int?,

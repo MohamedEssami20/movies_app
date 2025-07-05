@@ -47,7 +47,7 @@ class AdventureMoviesView extends StatelessWidget {
                 return FittedBox(
                   fit: BoxFit.fill,
                   child: GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       navigateToDetailsView(
                         context,
                         adventureMovies[index].movieId,

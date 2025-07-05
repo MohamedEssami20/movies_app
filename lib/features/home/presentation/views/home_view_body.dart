@@ -21,7 +21,8 @@ class HomeViewBody extends StatefulWidget {
   State<HomeViewBody> createState() => _HomeViewBodyState();
 }
 
-class _HomeViewBodyState extends State<HomeViewBody>  with AutomaticKeepAliveClientMixin{
+class _HomeViewBodyState extends State<HomeViewBody>
+    with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
   @override

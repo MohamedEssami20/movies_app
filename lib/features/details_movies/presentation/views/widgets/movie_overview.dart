@@ -10,7 +10,7 @@ class MovieOverView extends StatelessWidget {
     return Text(
       maxLines: null,
       overflow: TextOverflow.visible,
-        movieOverView,
+      movieOverView,
       style: AppTextStyles.regular16(context).copyWith(color: Colors.white),
     );
   }
