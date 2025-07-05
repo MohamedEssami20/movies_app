@@ -18,6 +18,7 @@ class WatchListMoviesDetails extends StatelessWidget {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         spacing: 8,
         children: [
           Text(

@@ -51,25 +51,27 @@ class _HomeTabletLayoutState extends State<HomeTabletLayout> {
               }
               Widget child;
               if (homeStateNow == HomeStateNow.search) {
-                child = Expanded(child: const SearchView());
+                child = const SearchView();
               } else {
-                child = Expanded(
-                  child: SizedBox(
-                    height: 50,
-                    child: BlocProvider(
-                      create: (context) => CategoriesItemsCubit(),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: CategoriesItemListView(),
+                child = Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: BlocProvider(
+                        create: (context) => CategoriesItemsCubit(),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: CategoriesItemListView(),
+                        ),
                       ),
                     ),
-                  ),
-                );
-                SizedBox(
-                  height: 14,
-                );
-                Expanded(
-                  child: HomeBlocProviders(),
+                    SizedBox(
+                      height: 14,
+                    ),
+                    Expanded(
+                      child: HomeBlocProviders(),
+                    ),
+                  ],
                 );
               }
               return Expanded(
@@ -84,7 +86,13 @@ class _HomeTabletLayoutState extends State<HomeTabletLayout> {
                   },
                   child: KeyedSubtree(
                     key: ValueKey(homeStateNow),
-                    child: child,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: child,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
