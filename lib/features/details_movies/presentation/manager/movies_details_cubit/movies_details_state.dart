@@ -20,3 +20,17 @@ final class MoviesDetailsSuccess extends MoviesDetailsState {
   MoviesDetailsSuccess(
       {required this.moviesCastingEntity, required this.moviesDetailsEntity});
 }
+
+// create all state of get trailer from movies details;
+
+final class MoviesTraillerLoading extends MoviesDetailsState {}
+
+final class MoviesTraillerFailure extends MoviesDetailsState {
+  final String errorMessage;
+  MoviesTraillerFailure({required this.errorMessage});
+}
+
+final class MoviesTraillerSuccess extends MoviesDetailsState {
+  final MovieTrailerEntity movieTrailerEntity;
+  MoviesTraillerSuccess({required this.movieTrailerEntity});
+}

@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/features/details_movies/domain/repos/details_movies_repos.dart';
 
+import '../../../domain/movies_details_entity/movie_trailer_entity.dart';
 import '../../../domain/movies_details_entity/movies_casting_entity.dart';
 import '../../../domain/movies_details_entity/movies_details_entity.dart';
 part 'movies_details_state.dart';
@@ -33,12 +32,26 @@ class MoviesDetailsCubit extends Cubit<MoviesDetailsState> {
       currentMoviesDetails.clear();
       currentMoviesDetails.addAll(results.getOrElse(() => []));
       currentMoviesCasting.addAll(castingResults.getOrElse(() => []));
-      log("movies details length= ${currentMoviesDetails.length}");
-      log("movies casting length= ${currentMoviesCasting.length}");
       emit(MoviesDetailsSuccess(
         moviesDetailsEntity: currentMoviesDetails,
         moviesCastingEntity: currentMoviesCasting,
       ));
     }
+  }
+
+  // create method that get trailer from movies details;
+  Future<void> getMoviesTrailer({required int movieId}) async {
+    emit(MoviesTraillerLoading());
+    final results =
+        await detailsMoviesRepos.getMoviesTrailler(movieId: movieId);
+    results.fold((failure) {
+      emit(MoviesTraillerFailure(
+        errorMessage: failure.message,
+      ));
+    }, (trailer) {
+      emit(MoviesTraillerSuccess(
+        movieTrailerEntity: trailer,
+      ));
+    });
   }
 }
