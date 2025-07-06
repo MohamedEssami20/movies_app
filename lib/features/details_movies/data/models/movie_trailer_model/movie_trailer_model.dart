@@ -29,6 +29,7 @@ class MovieTrailerModel extends MovieTrailerEntity {
           movieKey: key ?? '',
           movieSite: site ?? '',
           moviePublishedAt: publishedAt ?? DateTime.now(),
+          siteType: type ?? '',
         );
 
   factory MovieTrailerModel.fromJson(Map<String, dynamic> json) {

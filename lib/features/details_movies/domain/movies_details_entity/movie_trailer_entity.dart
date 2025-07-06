@@ -3,6 +3,7 @@ class MovieTrailerEntity {
   final String movieName;
   final String movieKey;
   final String movieSite;
+  final String siteType;
   final DateTime moviePublishedAt;
 
   MovieTrailerEntity(
@@ -10,5 +11,6 @@ class MovieTrailerEntity {
       required this.movieName,
       required this.movieKey,
       required this.movieSite,
+      required this.siteType,
       required this.moviePublishedAt});
 }
