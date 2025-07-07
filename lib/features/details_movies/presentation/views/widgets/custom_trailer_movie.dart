@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/app_color.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+import '../../../../../core/utils/app_text_styles.dart';
 
 class CustomTrailerMovie extends StatefulWidget {
   const CustomTrailerMovie({super.key});
@@ -13,7 +16,7 @@ class _CustomTrailerMovieState extends State<CustomTrailerMovie>
   late AnimationController _controller;
   late Animation<double> _opacityAnimation;
   late Animation<Offset> _slideAnimation;
-
+  late YoutubePlayerController _youtubePlayercontroller;
   @override
   void initState() {
     super.initState();
@@ -32,6 +35,16 @@ class _CustomTrailerMovieState extends State<CustomTrailerMovie>
       curve: Curves.easeOut,
     ));
 
+    _youtubePlayercontroller = YoutubePlayerController(
+      initialVideoId: 'kBskrYZfhw8',
+      flags: const YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
+        useHybridComposition: true,
+        loop: true,
+      ),
+    );
+
     _controller.forward();
   }
 
@@ -39,6 +52,8 @@ class _CustomTrailerMovieState extends State<CustomTrailerMovie>
   void dispose() {
     _controller.reverse();
     _controller.dispose();
+    _youtubePlayercontroller.pause();
+    _youtubePlayercontroller.dispose();
     super.dispose();
   }
 
@@ -58,11 +73,34 @@ class _CustomTrailerMovieState extends State<CustomTrailerMovie>
               ),
             ),
             padding: const EdgeInsets.all(16),
-            child: Center(
-              child: Text(
-                "🎬 محتوى التريلر هنا",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
+            child: Column(
+              spacing: 16,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Trailer',
+                  style: AppTextStyles.regular16(context).copyWith(
+                    color: Colors.white,
+                  ),
+                ),
+                Center(
+                  child: YoutubePlayer(
+                    controller: _youtubePlayercontroller,
+                    showVideoProgressIndicator: true,
+                    progressIndicatorColor: Colors.white,
+                    progressColors: ProgressBarColors(
+                      playedColor: Colors.white,
+                      handleColor: Colors.white,
+                    ),
+                  ),
+                ),
+                Text(
+                  "overview about this film is here overview about this film is here overview about this film is here",
+                  style: AppTextStyles.regular16(context).copyWith(
+                    color: Colors.white,
+                  ),
+                )
+              ],
             ),
           ),
         ),
