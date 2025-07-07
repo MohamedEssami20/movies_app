@@ -13,6 +13,7 @@ class MoviesDetailsCubit extends Cubit<MoviesDetailsState> {
   final DetailsMoviesRepos detailsMoviesRepos;
   final List<MoviesDetailsEntity> currentMoviesDetails = [];
   final List<MoviesCastingEntity> currentMoviesCasting = [];
+  final List<MovieTrailerEntity> currentMoviesTrailer=[];
   // create method that get all details of  movie;
   Future<void> getMoviesDetails({required int movieId}) async {
     emit(MoviesDetailsLoading());
@@ -49,6 +50,7 @@ class MoviesDetailsCubit extends Cubit<MoviesDetailsState> {
         errorMessage: failure.message,
       ));
     }, (trailer) {
+      currentMoviesTrailer.add(trailer);
       emit(MoviesTraillerSuccess(
         movieTrailerEntity: trailer,
       ));

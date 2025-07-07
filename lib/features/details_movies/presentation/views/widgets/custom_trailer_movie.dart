@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/utils/app_color.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
+import 'package:movies_app/features/details_movies/presentation/manager/movies_details_cubit/movies_details_cubit.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import 'bottom_sheet_watch_trailer_body.dart';
 
 class CustomTrailerMovie extends StatefulWidget {
-  const CustomTrailerMovie({super.key});
-
+  const CustomTrailerMovie(
+      {super.key,
+      required this.movieId,
+      required this.movieName,
+      required this.movieOverview});
+  final int movieId;
+  final String movieName, movieOverview;
   @override
   State<CustomTrailerMovie> createState() => _CustomTrailerMovieState();
 }
@@ -16,10 +22,15 @@ class _CustomTrailerMovieState extends State<CustomTrailerMovie>
   late AnimationController _controller;
   late Animation<double> _opacityAnimation;
   late Animation<Offset> _slideAnimation;
-  late YoutubePlayerController _youtubePlayercontroller;
   @override
   void initState() {
     super.initState();
+    getTrailer();
+    _initAnimation();
+  }
+
+  // create method that implement animation Conrtroller;
+  void _initAnimation() {
     _controller =
         AnimationController(vsync: this, duration: Duration(milliseconds: 400));
 
@@ -35,25 +46,19 @@ class _CustomTrailerMovieState extends State<CustomTrailerMovie>
       curve: Curves.easeOut,
     ));
 
-    _youtubePlayercontroller = YoutubePlayerController(
-      initialVideoId: 'kBskrYZfhw8',
-      flags: const YoutubePlayerFlags(
-        autoPlay: true,
-        mute: false,
-        useHybridComposition: true,
-        loop: true,
-      ),
-    );
-
     _controller.forward();
+  }
+
+  void getTrailer() async {
+    await context.read<MoviesDetailsCubit>().getMoviesTrailer(
+          movieId: widget.movieId,
+        );
   }
 
   @override
   void dispose() {
     _controller.reverse();
     _controller.dispose();
-    _youtubePlayercontroller.pause();
-    _youtubePlayercontroller.dispose();
     super.dispose();
   }
 
@@ -73,34 +78,30 @@ class _CustomTrailerMovieState extends State<CustomTrailerMovie>
               ),
             ),
             padding: const EdgeInsets.all(16),
-            child: Column(
-              spacing: 16,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Trailer',
-                  style: AppTextStyles.regular16(context).copyWith(
-                    color: Colors.white,
-                  ),
-                ),
-                Center(
-                  child: YoutubePlayer(
-                    controller: _youtubePlayercontroller,
-                    showVideoProgressIndicator: true,
-                    progressIndicatorColor: Colors.white,
-                    progressColors: ProgressBarColors(
-                      playedColor: Colors.white,
-                      handleColor: Colors.white,
+            child: BlocBuilder<MoviesDetailsCubit, MoviesDetailsState>(
+              builder: (context, state) {
+                if (state is MoviesTraillerSuccess) {
+                  return WatchTrailerBottomSheetBody(
+                    movieTrailerEntity: state.movieTrailerEntity,
+                    movieName: widget.movieName,
+                    movieOverview: widget.movieOverview,
+                  );
+                } else if (state is MoviesTraillerFailure) {
+                  return Center(
+                    child: Text(
+                      state.errorMessage.toString(),
+                      style: AppTextStyles.regular16(context)
+                          .copyWith(color: Colors.white),
                     ),
-                  ),
-                ),
-                Text(
-                  "overview about this film is here overview about this film is here overview about this film is here",
-                  style: AppTextStyles.regular16(context).copyWith(
-                    color: Colors.white,
-                  ),
-                )
-              ],
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  );
+                }
+              },
             ),
           ),
         ),
